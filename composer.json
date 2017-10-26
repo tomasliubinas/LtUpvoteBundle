@@ -1,0 +1,23 @@
+{
+    "name": "liubinas/upvote-bundle",
+    "description": "Provides thumbs up and down functionality for Symfony project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Tomas Liubinas",
+            "email": "git@liubinas.com"
+        }
+    ],
+    "require-dev": {
+        "phpspec/phpspec": "^4.1",
+        "phpunit/phpunit": "^6.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "LT\\UpvoteBundle\\": ""
+        },
+        "exclude-from-classmap": [
+            "/Tests/"
+        ]
+    }
+}

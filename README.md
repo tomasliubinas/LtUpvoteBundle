@@ -1,2 +1,2 @@
 # LTUpvoteBundle
-Provides thumbsup and thumbsdown functionality for Symfony project
+Provides thumbs up and down functionality for Symfony project

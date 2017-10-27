@@ -8,7 +8,6 @@
     <field name="userId" type="integer" column="user_id"/>
     <field name="visitorId" type="string" column="visitor_id" length="32"/>
     <field name="vote" type="integer" column="vote"/>
-    <field name="createdAt" type="datetime" column="created_at"/>
     <field name="updatedAt" type="datetime" column="updated_at"/>
   </entity>
 </doctrine-mapping>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity repository-class="LT\UpvoteBundle\Repository\VoteRepository" name="LT\UpvoteBundle\Entity\Vote">
+    <id name="id" type="integer" column="id">
+      <generator strategy="AUTO"/>
+    </id>
+    <field name="voteAggregateId" type="integer" column="vote_aggregate_id"/>
+    <field name="userId" type="integer" column="user_id"/>
+    <field name="visitorId" type="string" column="visitor_id" length="32"/>
+    <field name="vote" type="integer" column="vote"/>
+    <field name="createdAt" type="datetime" column="created_at"/>
+    <field name="updatedAt" type="datetime" column="updated_at"/>
+  </entity>
+</doctrine-mapping>

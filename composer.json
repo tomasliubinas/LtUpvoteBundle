@@ -8,6 +8,11 @@
             "email": "git@liubinas.com"
         }
     ],
+    "require": {
+        "doctrine/doctrine-bundle": "^1.7",
+        "symfony/framework-bundle": "^3.3",
+        "doctrine/orm": "^2.5"
+    },
     "require-dev": {
         "phpspec/phpspec": "^4.1",
         "phpunit/phpunit": "^6.4"

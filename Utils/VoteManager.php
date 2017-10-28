@@ -33,8 +33,20 @@ class VoteManager
         // TODO: write logic here
     }
 
+    /**
+     * Get total vote result for subject
+     *
+     * @param string $subjectId
+     * @param string $subjectType
+     * @return int
+     */
     public function getTotal($subjectId, $subjectType)
     {
-        // TODO: write logic here
+        $voteAggregate = $this->voteAggregateRepository->findOneBySubject($subjectId, $subjectType);
+        if ($voteAggregate !== null) {
+            return $voteAggregate->getTotal();
+        }
+
+        return 0;
     }
 }

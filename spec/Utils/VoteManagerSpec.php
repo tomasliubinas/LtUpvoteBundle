@@ -43,7 +43,7 @@ class VoteManagerSpec extends ObjectBehavior
         $subjectId = '1';
         $subjectType = 'blog';
         $voteAggregateRepository->findOneBySubject($subjectId, $subjectType)->willReturn($voteAggregate);
-        $voteAggregate->getTotal()->willReturn(1025);
-        $this->getTotal($subjectId, $subjectType)->shouldReturn(1025);
+        $voteAggregate->getTotal()->willReturn(10);
+        $this->getTotal($subjectId, $subjectType)->shouldReturn(10);
     }
 }

@@ -3,7 +3,7 @@
 namespace LT\UpvoteBundle\Entity;
 
 /**
- * VoteAggregate
+ * VoteAggregate Entity represents vote totals for given subject
  */
 class VoteAggregate
 {

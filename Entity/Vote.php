@@ -3,7 +3,7 @@
 namespace LT\UpvoteBundle\Entity;
 
 /**
- * Vote
+ * Vote Entity represents a single upvote or download
  */
 class Vote
 {

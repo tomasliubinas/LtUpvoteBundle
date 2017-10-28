@@ -1,0 +1,5 @@
+suites:
+    lt_upvote_bundle_suite:
+        src_path: .
+        namespace: LT\UpvoteBundle
+        psr4_prefix: LT\UpvoteBundle

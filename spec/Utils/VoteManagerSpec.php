@@ -2,6 +2,7 @@
 
 namespace spec\LT\UpvoteBundle\Utils;
 
+use Doctrine\ORM\EntityManager;
 use LT\UpvoteBundle\Entity\VoteAggregate;
 use LT\UpvoteBundle\Repository\VoteAggregateRepository;
 use LT\UpvoteBundle\Repository\VoteRepository;
@@ -10,9 +11,9 @@ use PhpSpec\ObjectBehavior;
 
 class VoteManagerSpec extends ObjectBehavior
 {
-    function let(VoteRepository $voteRepository, VoteAggregateRepository $voteAggregateRepository)
+    function let(EntityManager $entityManager, VoteRepository $voteRepository, VoteAggregateRepository $voteAggregateRepository)
     {
-        $this->beConstructedWith($voteRepository, $voteAggregateRepository);
+        $this->beConstructedWith($entityManager, $voteRepository, $voteAggregateRepository);
     }
 
     function it_is_initializable()

@@ -1,5 +1,5 @@
 {
-    "name": "liubinas/upvote-bundle",
+    "name": "liubinas/lt-upvote-bundle",
     "description": "Provides thumbs up and down functionality for Symfony project",
     "type": "symfony-bundle",
     "license": "MIT",
@@ -20,7 +20,7 @@
     },
     "autoload": {
         "psr-4": {
-            "LT\\UpvoteBundle\\": ""
+            "Lt\\UpvoteBundle\\": ""
         },
         "exclude-from-classmap": [
             "/Tests/"

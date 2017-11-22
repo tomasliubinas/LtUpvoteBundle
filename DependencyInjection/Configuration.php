@@ -1,6 +1,6 @@
 <?php
 
-namespace LT\UpvoteBundle\DependencyInjection;
+namespace Lt\UpvoteBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;

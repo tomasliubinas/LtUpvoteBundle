@@ -1,6 +1,6 @@
 <?php
 
-namespace LT\UpvoteBundle\Entity;
+namespace Lt\UpvoteBundle\Entity;
 
 /**
  * VoteAggregate Entity represents vote totals for given subject

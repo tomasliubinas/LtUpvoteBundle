@@ -1,12 +1,12 @@
 <?php
 
-namespace spec\LT\UpvoteBundle\Utils;
+namespace spec\Lt\UpvoteBundle\Utils;
 
 use Doctrine\ORM\EntityManager;
-use LT\UpvoteBundle\Entity\VoteAggregate;
-use LT\UpvoteBundle\Repository\VoteAggregateRepository;
-use LT\UpvoteBundle\Repository\VoteRepository;
-use LT\UpvoteBundle\Utils\VoteManager;
+use Lt\UpvoteBundle\Entity\VoteAggregate;
+use Lt\UpvoteBundle\Repository\VoteAggregateRepository;
+use Lt\UpvoteBundle\Repository\VoteRepository;
+use Lt\UpvoteBundle\Utils\VoteManager;
 use PhpSpec\ObjectBehavior;
 
 class VoteManagerSpec extends ObjectBehavior
@@ -18,8 +18,7 @@ class VoteManagerSpec extends ObjectBehavior
 
     function it_is_initializable()
     {
-        $this->shouldHaveType(VoteManager::class);
-    }
+        $this->shouldHaveType(VoteManager::class);    }
 
     function it_upvotes()
     {

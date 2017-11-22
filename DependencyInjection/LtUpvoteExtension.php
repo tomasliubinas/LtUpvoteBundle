@@ -1,6 +1,6 @@
 <?php
 
-namespace LT\UpvoteBundle\DependencyInjection;
+namespace Lt\UpvoteBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
@@ -12,7 +12,7 @@ use Symfony\Component\DependencyInjection\Loader;
  *
  * @link http://symfony.com/doc/current/cookbook/bundles/extension.html
  */
-class LTUpvoteExtension extends Extension
+class LtUpvoteExtension extends Extension
 {
     /**
      * {@inheritdoc}

@@ -1,12 +1,12 @@
 <?php
 
-namespace LT\UpvoteBundle\Utils;
+namespace Lt\UpvoteBundle\Utils;
 
 use Doctrine\ORM\EntityManager;
-use LT\UpvoteBundle\Entity\Vote;
-use LT\UpvoteBundle\Entity\VoteAggregate;
-use LT\UpvoteBundle\Repository\VoteAggregateRepository;
-use LT\UpvoteBundle\Repository\VoteRepository;
+use Lt\UpvoteBundle\Entity\Vote;
+use Lt\UpvoteBundle\Entity\VoteAggregate;
+use Lt\UpvoteBundle\Repository\VoteAggregateRepository;
+use Lt\UpvoteBundle\Repository\VoteRepository;
 
 class VoteManager
 {

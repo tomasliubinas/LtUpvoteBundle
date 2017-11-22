@@ -1,6 +1,6 @@
 <?php
 
-namespace LT\UpvoteBundle\Tests\Controller;
+namespace Lt\UpvoteBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 

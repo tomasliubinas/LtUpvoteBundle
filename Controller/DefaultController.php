@@ -1,6 +1,6 @@
 <?php
 
-namespace LT\UpvoteBundle\Controller;
+namespace Lt\UpvoteBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -10,7 +10,7 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('LTUpvoteBundle:Default:index.html.twig');
+        return $this->render('LtUpvoteBundle:Default:index.html.twig');
     }
 
     public function upvoteAction(Request $request)

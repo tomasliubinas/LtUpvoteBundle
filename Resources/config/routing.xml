@@ -5,9 +5,9 @@
     xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
 
     <route id="lt_upvote_upvote" path="lt-upvote/upvote/{subjectType}/{subjectId}/{userId}">
-        <default key="_controller">LTUpvoteBundle:Default:upvote</default>
+        <default key="_controller">LtUpvoteBundle:Default:upvote</default>
     </route>
     <route id="lt_upvote_downvote" path="lt-upvote/downvote/{subjectType}/{subjectId}/{userId}">
-        <default key="_controller">LTUpvoteBundle:Default:downvote</default>
+        <default key="_controller">LtUpvoteBundle:Default:downvote</default>
     </route>
 </routes>

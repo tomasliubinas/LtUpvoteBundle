@@ -1,6 +1,6 @@
 <?php
 
-namespace LT\UpvoteBundle\Entity;
+namespace Lt\UpvoteBundle\Entity;
 
 /**
  * Vote Entity represents a single upvote or download

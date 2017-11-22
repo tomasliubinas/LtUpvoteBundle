@@ -1,9 +1,9 @@
 <?php
 
-namespace LT\UpvoteBundle\Repository;
+namespace Lt\UpvoteBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
-use LT\UpvoteBundle\Entity\Vote;
+use Lt\UpvoteBundle\Entity\Vote;
 
 class VoteRepository extends EntityRepository
 {

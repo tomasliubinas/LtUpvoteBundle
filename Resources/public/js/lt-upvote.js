@@ -19,17 +19,17 @@
                 var ltuDiv = this.settings.divs[i];
                 var upvoteA = ltuDiv.querySelector('a.ltu-upvote');
                 var downvoteA = ltuDiv.querySelector('a.ltu-downvote');
-                //if (this.alternativeUpvoteAction !== null) {
-                //    upvoteA.onclick = this.alternativeUpvoteAction;
-                //} else {
-                upvoteA.onclick = this.upvoteAction;
-                //}
+                if (this.alternativeUpvoteAction) {
+                    upvoteA.onclick = this.alternativeUpvoteAction;
+                } else {
+                    upvoteA.onclick = this.upvoteAction;
+                }
 
-                //if (this.alternativeDownvoteAction !== null) {
-                //    downvoteA.onclick = this.alternativeDownvoteAction;
-                //} else {
-                downvoteA.onclick = this.downvoteAction;
-                //}
+                if (this.alternativeDownvoteAction) {
+                    downvoteA.onclick = this.alternativeDownvoteAction;
+                } else {
+                    downvoteA.onclick = this.downvoteAction;
+                }
             }
         },
         upvoteAction: function (e) {

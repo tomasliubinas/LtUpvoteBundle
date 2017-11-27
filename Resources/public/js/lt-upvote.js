@@ -19,21 +19,21 @@ var LtUpvote = {
             var ltuDiv = this.settings.divs[i];
             var upvoteA = ltuDiv.querySelector('a.ltu-upvote');
             var downvoteA = ltuDiv.querySelector('a.ltu-downvote');
-            if (this.alternativeUpvoteAction !== null) {
-                upvoteA.onclick = this.alternativeUpvoteAction;
-            } else {
-                upvoteA.onclick = this.upvoteAction();
-            }
+            //if (this.alternativeUpvoteAction !== null) {
+            //    upvoteA.onclick = this.alternativeUpvoteAction;
+            //} else {
+            upvoteA.onclick = this.upvoteAction;
+            //}
 
-            if (this.alternativeDownvoteAction !== null) {
-                downvoteA.onclick = this.alternativeDownvoteAction;
-            } else {
-                downvoteA.onclick = this.downvoteAction();
-            }
+            //if (this.alternativeDownvoteAction !== null) {
+            //    downvoteA.onclick = this.alternativeDownvoteAction;
+            //} else {
+            downvoteA.onclick = this.downvoteAction;
+            //}
         }
     },
     upvoteAction: function (e) {
-        var counter = this.parentNode.querySelector('span.ltu-counter');
+        var counter = e.target.parentNode.querySelector('span.ltu-counter');
         var action = 'upvote';
         if (!e.target.classList.contains(LtUpvote.settings.isUpvotedClass)) {
             e.target.classList.add(LtUpvote.settings.isUpvotedClass);
@@ -51,7 +51,7 @@ var LtUpvote = {
         LtUpvote.performBackendAction(action, counter.dataset.ltuId);
     },
     downvoteAction: function (e) {
-        var counter = this.parentNode.querySelector('span.ltu-counter');
+        var counter = e.target.parentNode.querySelector('span.ltu-counter');
         var action = 'downvote';
         if (!e.target.classList.contains(LtUpvote.settings.isDownvotedClass)) {
             e.target.classList.add(LtUpvote.settings.isDownvotedClass);

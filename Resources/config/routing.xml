@@ -10,6 +10,12 @@
     <route id="lt_upvote_upvote" path="lt-upvote/{subjectId}/upvote/">
         <default key="_controller">LtUpvoteBundle:Default:upvote</default>
     </route>
+    <route id="lt_upvote_upvote" path="lt-upvote/{subjectType}/{subjectId}/reset/">
+        <default key="_controller">LtUpvoteBundle:Default:reset</default>
+    </route>
+    <route id="lt_upvote_upvote" path="lt-upvote/{subjectId}/reset/">
+        <default key="_controller">LtUpvoteBundle:Default:reset</default>
+    </route>
     <route id="lt_upvote_downvote" path="lt-upvote/{subjectType}/{subjectId}/downvote/">
         <default key="_controller">LtUpvoteBundle:Default:downvote</default>
     </route>

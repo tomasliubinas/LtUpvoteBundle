@@ -22,4 +22,9 @@ class DefaultController extends Controller
     {
         return new Response('downoted');
     }
+
+    public function resetAction(Request $request)
+    {
+        return new Response('reset');
+    }
 }

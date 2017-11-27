@@ -81,7 +81,7 @@
         },
         callUrl: function (url) {
             var xhttp = new XMLHttpRequest();
-            xhttp.open(this.actionMethod, url, true);
+            xhttp.open(this.settings.actionMethod, url, true);
             xhttp.send();
         },
         renderUrl: function (url, id) {

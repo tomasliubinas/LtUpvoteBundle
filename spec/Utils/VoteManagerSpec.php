@@ -38,6 +38,15 @@ class VoteManagerSpec extends ObjectBehavior
         $this->downvote($subjectId, $subjectType, $userId, $visitorId);
     }
 
+    function it_resets()
+    {
+        $subjectId = '1';
+        $subjectType = 'blog';
+        $userId = 1;
+        $visitorId = '127.0.0.1';
+        $this->reset($subjectId, $subjectType, $userId, $visitorId);
+    }
+
     function it_gets_total(VoteAggregateRepository $voteAggregateRepository, VoteAggregate $voteAggregate)
     {
         $subjectId = '1';

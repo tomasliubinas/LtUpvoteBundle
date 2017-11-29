@@ -14,7 +14,7 @@ class VoteManager
     /**
      * @var EntityManager
      */
-    private $em;
+    private $ementityManager;
 
     /**
      * @var VoteRepository
@@ -31,7 +31,7 @@ class VoteManager
         VoteRepository $voteRepository,
         VoteAggregateRepository $voteAggregateRepository
     ) {
-        $this->em = $entityManager;
+        $this->ementityManager = $entityManager;
         $this->voteRepository = $voteRepository;
         $this->voteAggregateRepository = $voteAggregateRepository;
     }
@@ -63,6 +63,14 @@ class VoteManager
         return 0;
     }
 
+    public function reset($subjectId, $subjectType)
+    {
+        $vote = $this->voteAggregateRepository->findOneBySubject($subjectId, $subjectType);
+        if ($vote) {
+            $this->entityManager->delete($vote);
+        }
+    }
+
     /**
      * @param int $voteValue
      * @param string $subjectId
@@ -78,9 +86,9 @@ class VoteManager
         $vote->setVote($voteValue);
         $voteAggregate->setTotal($voteAggregate->getTotal() - $existingVoteValue + $voteValue);
 
-        $this->em->persist($vote);
-        $this->em->persist($voteAggregate);
-        $this->em->flush();
+        $this->ementityManager->persist($vote);
+        $this->ementityManager->persist($voteAggregate);
+        $this->ementityManager->flush();
     }
 
     /**
@@ -119,7 +127,7 @@ class VoteManager
             $voteAggregate = new VoteAggregate();
             $voteAggregate->setSubjectId($subjectId);
             $voteAggregate->setSubjectType($subjectType);
-            $this->em->persist($voteAggregate);
+            $this->ementityManager->persist($voteAggregate);
         }
         return $voteAggregate;
     }

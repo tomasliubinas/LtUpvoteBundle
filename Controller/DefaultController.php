@@ -13,17 +13,35 @@ class DefaultController extends Controller
         return $this->render('LtUpvoteBundle:Default:index.html.twig');
     }
 
-    public function upvoteAction(Request $request)
+    /**
+     * @param Request $request
+     * @param string $subjectId
+     * @param string $subjectType
+     * @return Response
+     */
+    public function upvoteAction(Request $request, $subjectId, $subjectType)
     {
         return new Response('upvoted');
     }
 
-    public function downvoteAction(Request $request)
+    /**
+     * @param Request $request
+     * @param string $subjectId
+     * @param string $subjectType
+     * @return Response
+     */
+    public function downvoteAction(Request $request, $subjectId, $subjectType)
     {
-        return new Response('downoted');
+        return new Response("downvoted");
     }
 
-    public function resetAction(Request $request)
+    /**
+     * @param Request $request
+     * @param string $subjectId
+     * @param string $subjectType
+     * @return Response
+     */
+    public function resetAction(Request $request, $subjectId, $subjectType)
     {
         return new Response('reset');
     }

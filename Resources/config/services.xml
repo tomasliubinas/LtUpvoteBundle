@@ -4,13 +4,13 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <!--
     <services>
-        <service id="lt_upvote.example" class="LT\UpvoteBundle\Example">
-            <argument type="service" id="service_id" />
-            <argument>plain_value</argument>
-            <argument>%parameter_name%</argument>
+        <service id="lt_upvote_bundle.utils.user_provider" class="Lt\UpvoteBundle\Utils\UserProvider">
         </service>
+
+        <service id="lt_upvote_bundle.controller.default" class="Lt\UpvoteBundle\Controller\DefaultController">
+            <argument type="service" id="lt_upvote_bundle.utils.user_provider"/>
+        </service>
+
     </services>
-    -->
 </container>

@@ -2,15 +2,21 @@
 
 namespace Lt\UpvoteBundle\Controller;
 
+use Lt\UpvoteBundle\Utils\UserProvider;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {
-    public function indexAction()
+    /**
+     * @var UserProvider
+     */
+    private $userProvider;
+
+    public function __construct(UserProvider $userProvider)
     {
-        return $this->render('LtUpvoteBundle:Default:index.html.twig');
+        $this->userProvider = $userProvider;
     }
 
     /**

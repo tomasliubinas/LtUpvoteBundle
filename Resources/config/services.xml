@@ -6,6 +6,7 @@
 
     <services>
         <service id="lt_upvote_bundle.utils.user_provider" class="Lt\UpvoteBundle\Utils\UserProvider">
+            <argument type="service" id="security.token_storage"/>
         </service>
 
         <service id="lt_upvote_bundle.controller.default" class="Lt\UpvoteBundle\Controller\DefaultController">

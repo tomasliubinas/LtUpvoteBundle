@@ -14,7 +14,7 @@ class VoteManager
     /**
      * @var EntityManager
      */
-    private $ementityManager;
+    private $entityManager;
 
     /**
      * @var VoteRepository
@@ -27,13 +27,11 @@ class VoteManager
     protected $voteAggregateRepository;
 
     public function __construct(
-        EntityManager $entityManager,
-        VoteRepository $voteRepository,
-        VoteAggregateRepository $voteAggregateRepository
+        EntityManager $entityManager
     ) {
-        $this->ementityManager = $entityManager;
-        $this->voteRepository = $voteRepository;
-        $this->voteAggregateRepository = $voteAggregateRepository;
+        $this->entityManager = $entityManager;
+        $this->voteRepository = $entityManager->getRepository(Vote::class);
+        $this->voteAggregateRepository = $entityManager->getRepository(VoteAggregate::class);
     }
 
     public function upvote($subjectId, $subjectType, $userId, $visitorId)
@@ -86,9 +84,9 @@ class VoteManager
         $vote->setVote($voteValue);
         $voteAggregate->setTotal($voteAggregate->getTotal() - $existingVoteValue + $voteValue);
 
-        $this->ementityManager->persist($vote);
-        $this->ementityManager->persist($voteAggregate);
-        $this->ementityManager->flush();
+        $this->entityManager->persist($vote);
+        $this->entityManager->persist($voteAggregate);
+        $this->entityManager->flush();
     }
 
     /**
@@ -127,7 +125,7 @@ class VoteManager
             $voteAggregate = new VoteAggregate();
             $voteAggregate->setSubjectId($subjectId);
             $voteAggregate->setSubjectType($subjectType);
-            $this->ementityManager->persist($voteAggregate);
+            $this->entityManager->persist($voteAggregate);
         }
         return $voteAggregate;
     }

@@ -7,7 +7,7 @@
     <route id="lt_upvote_upvote" path="lt-upvote/{subjectType}/{subjectId}/upvote/">
         <default key="_controller">lt_upvote_bundle.controller.default:upvoteAction</default>
     </route>
-    <route id="lt_upvote_upvote" path="lt-upvote/{subjectType}/{subjectId}/reset/">
+    <route id="lt_upvote_reset" path="lt-upvote/{subjectType}/{subjectId}/reset/">
         <default key="_controller">lt_upvote_bundle.controller.default:resetAction</default>
     </route>
     <route id="lt_upvote_downvote" path="lt-upvote/{subjectType}/{subjectId}/downvote/">

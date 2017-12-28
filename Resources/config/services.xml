@@ -9,8 +9,16 @@
             <argument type="service" id="security.token_storage"/>
         </service>
 
+        <service id="lt_upvote_bundle.utils.visitor_identifier" class="Lt\UpvoteBundle\Utils\VisitorIdentifier"/>
+
+        <service id="lt_upvote_bundle.utils.vote_manager" class="Lt\UpvoteBundle\Utils\VoteManager">
+            <argument type="service" id="doctrine.orm.entity_manager"/>
+        </service>
+
         <service id="lt_upvote_bundle.controller.default" class="Lt\UpvoteBundle\Controller\DefaultController">
             <argument type="service" id="lt_upvote_bundle.utils.user_provider"/>
+            <argument type="service" id="lt_upvote_bundle.utils.visitor_identifier"/>
+            <argument type="service" id="lt_upvote_bundle.utils.vote_manager"/>
         </service>
 
     </services>

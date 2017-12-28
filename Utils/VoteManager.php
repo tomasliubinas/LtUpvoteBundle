@@ -65,7 +65,7 @@ class VoteManager
     {
         $vote = $this->voteAggregateRepository->findOneBySubject($subjectId, $subjectType);
         if ($vote !== null) {
-            $this->entityManager->delete($vote);
+            $this->entityManager->remove($vote);
         }
     }
 

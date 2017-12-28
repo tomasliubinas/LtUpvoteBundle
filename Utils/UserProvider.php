@@ -2,6 +2,7 @@
 
 namespace Lt\UpvoteBundle\Utils;
 
+use Symfony\Component\Security\Core\Authentication\Token\AnonymousToken;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 use Symfony\Component\Security\Core\Role\RoleInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -24,7 +25,13 @@ class UserProvider
     public function getUser()
     {
         $token = $this->tokenStorage->getToken();
+
         if ($token !== null) {
+
+            if ($token instanceof AnonymousToken) {
+                return null;
+            }
+
             return $token->getUser();
         }
 

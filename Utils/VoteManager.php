@@ -64,7 +64,7 @@ class VoteManager
     public function reset($subjectId, $subjectType)
     {
         $vote = $this->voteAggregateRepository->findOneBySubject($subjectId, $subjectType);
-        if ($vote) {
+        if ($vote !== null) {
             $this->entityManager->delete($vote);
         }
     }

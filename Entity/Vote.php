@@ -42,6 +42,11 @@ class Vote
      */
     private $voteAggregate;
 
+    public function __construct()
+    {
+        $this->updatedAt = new \DateTime();
+    }
+
     /**
      * Get id
      *

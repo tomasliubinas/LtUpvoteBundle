@@ -14,7 +14,7 @@ class VoteRepository extends EntityRepository
      */
     public function findOneByAggregateAndUser($voteAggregateId, $userId)
     {
-        return $this->findOneBy(['voteAggregateId' => $voteAggregateId, 'userId' => $userId]);
+        return $this->findOneBy(['voteAggregate' => $voteAggregateId, 'userId' => $userId]);
     }
 
     /**
@@ -24,6 +24,6 @@ class VoteRepository extends EntityRepository
      */
     public function findOneByAggregateAndVisitor($voteAggregateId, $visitorId)
     {
-        return $this->findOneBy(['voteAggregateId' => $voteAggregateId, 'userId' => null, 'visitorId' => $visitorId]);
+        return $this->findOneBy(['voteAggregate' => $voteAggregateId, 'userId' => null, 'visitorId' => $visitorId]);
     }
 }

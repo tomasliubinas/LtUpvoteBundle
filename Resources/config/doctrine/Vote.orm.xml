@@ -4,7 +4,7 @@
     <id name="id" type="integer" column="id">
       <generator strategy="AUTO"/>
     </id>
-    <field name="userId" type="integer" column="user_id"/>
+    <field name="userId" type="integer" column="user_id" nullable="true"/>
     <field name="visitorId" type="string" column="visitor_id" length="32"/>
     <field name="vote" type="integer" column="vote"/>
     <field name="updatedAt" type="datetime" column="updated_at"/>

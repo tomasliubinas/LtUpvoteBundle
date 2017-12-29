@@ -79,10 +79,14 @@ class VoteManager
     protected function castVote($voteValue, $subjectId, $subjectType, $userId, $visitorId)
     {
         $voteAggregate = $this->getVoteAggregate($subjectId, $subjectType);
-        $vote = $this->getVote($voteAggregate, $visitorId, $userId);
+        $vote = $this->getVote($voteAggregate, $userId, $visitorId);
         $existingVoteValue = $vote->getVote();
         $vote->setVote($voteValue);
         $voteAggregate->setTotal($voteAggregate->getTotal() - $existingVoteValue + $voteValue);
+
+        $vote->setVoteAggregate($voteAggregate);
+        $voteAggregate->addVote($vote);
+
 
         $this->entityManager->persist($vote);
         $this->entityManager->persist($voteAggregate);
@@ -123,8 +127,9 @@ class VoteManager
         $voteAggregate = $this->voteAggregateRepository->findOneBySubject($subjectId, $subjectType);
         if ($voteAggregate === null) {
             $voteAggregate = new VoteAggregate();
-            $voteAggregate->setSubjectId($subjectId);
-            $voteAggregate->setSubjectType($subjectType);
+            $voteAggregate
+                ->setSubjectId($subjectId)
+                ->setSubjectType($subjectType);
             $this->entityManager->persist($voteAggregate);
         }
         return $voteAggregate;

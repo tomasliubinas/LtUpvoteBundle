@@ -4,12 +4,13 @@
     <id name="id" type="integer" column="id">
       <generator strategy="AUTO"/>
     </id>
-    <field name="subjectId" type="string" column="subject_id" length="64"/>
     <field name="subjectType" type="string" column="subject_type" length="64"/>
+    <field name="subjectId" type="string" column="subject_id" length="64"/>
     <field name="total" type="integer" column="total"/>
     <field name="upvotes" type="integer" column="upvotes"/>
     <field name="downvotes" type="integer" column="downvotes"/>
     <field name="userUpvotes" type="integer" column="user_upvotes"/>
     <field name="userDownvotes" type="integer" column="user_downvotes"/>
+    <one-to-many target-entity="Lt\UpvoteBundle\Entity\Vote" mapped-by="voteAggregate" field="votes"/>
   </entity>
 </doctrine-mapping>

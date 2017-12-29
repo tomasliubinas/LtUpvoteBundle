@@ -37,6 +37,10 @@ class Vote
      */
     private $updatedAt;
 
+    /**
+     * @var VoteAggregate
+     */
+    private $voteAggregate;
 
     /**
      * Get id
@@ -167,5 +171,28 @@ class Vote
     {
         return $this->updatedAt;
     }
-}
 
+    /**
+     * Set voteAggregate
+     *
+     * @param VoteAggregate $voteAggregate
+     *
+     * @return Vote
+     */
+    public function setVoteAggregate(VoteAggregate $voteAggregate = null)
+    {
+        $this->voteAggregate = $voteAggregate;
+
+        return $this;
+    }
+
+    /**
+     * Get voteAggregate
+     *
+     * @return VoteAggregate
+     */
+    public function getVoteAggregate()
+    {
+        return $this->voteAggregate;
+    }
+}

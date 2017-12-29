@@ -2,6 +2,8 @@
 
 namespace Lt\UpvoteBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 /**
  * VoteAggregate Entity represents vote totals for given subject
  */
@@ -47,6 +49,10 @@ class VoteAggregate
      */
     private $userDownvotes;
 
+    /**
+     * @var Collection
+     */
+    private $votes;
 
     /**
      * Get id
@@ -225,5 +231,46 @@ class VoteAggregate
     {
         return $this->userDownvotes;
     }
-}
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->votes = new ArrayCollection();
+    }
+
+    /**
+     * Add vote
+     *
+     * @param Vote $vote
+     *
+     * @return VoteAggregate
+     */
+    public function addVote(Vote $vote)
+    {
+        $this->votes[] = $vote;
+
+        return $this;
+    }
+
+    /**
+     * Remove vote
+     *
+     * @param Vote $vote
+     */
+    public function removeVote(Vote $vote)
+    {
+        $this->votes->removeElement($vote);
+    }
+
+    /**
+     * Get votes
+     *
+     * @return Collection
+     */
+    public function getVotes()
+    {
+        return $this->votes;
+    }
+}

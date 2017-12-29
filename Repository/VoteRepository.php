@@ -8,22 +8,22 @@ use Lt\UpvoteBundle\Entity\Vote;
 class VoteRepository extends EntityRepository
 {
     /**
-     * @param integer $aggregateId
+     * @param integer $voteAggregateId
      * @param integer $userId
      * @return null|Vote
      */
-    public function findOneByAggregateAndUser($aggregateId, $userId)
+    public function findOneByAggregateAndUser($voteAggregateId, $userId)
     {
-        return $this->findOneBy(['aggregateId' => $aggregateId, 'userId' => $userId]);
+        return $this->findOneBy(['voteAggregateId' => $voteAggregateId, 'userId' => $userId]);
     }
 
     /**
-     * @param integer $aggregateId
+     * @param integer $voteAggregateId
      * @param integer $visitorId
      * @return null|Vote
      */
-    public function findOneByAggregateAndVisitor($aggregateId, $visitorId)
+    public function findOneByAggregateAndVisitor($voteAggregateId, $visitorId)
     {
-        return $this->findOneBy(['aggregateId' => $aggregateId, 'userId' => null, 'visitorId' => $visitorId]);
+        return $this->findOneBy(['voteAggregateId' => $voteAggregateId, 'userId' => null, 'visitorId' => $visitorId]);
     }
 }

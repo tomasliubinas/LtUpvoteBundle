@@ -7,18 +7,9 @@ namespace Lt\UpvoteBundle\Entity;
  */
 class Vote
 {
+  
     /**
-     * @var int
-     */
-    private $id;
-
-    /**
-     * @var int
-     */
-    private $voteAggregateId;
-
-    /**
-     * @var string
+     * @var integer
      */
     private $userId;
 
@@ -28,9 +19,9 @@ class Vote
     private $visitorId;
 
     /**
-     * @var int
+     * @var integer
      */
-    private $vote;
+    private $value;
 
     /**
      * @var \DateTime
@@ -38,53 +29,20 @@ class Vote
     private $updatedAt;
 
     /**
-     * @var VoteAggregate
+     * @var integer
+     */
+    private $id;
+
+    /**
+     * @var \Lt\UpvoteBundle\Entity\VoteAggregate
      */
     private $voteAggregate;
 
-    public function __construct()
-    {
-        $this->updatedAt = new \DateTime();
-    }
-
-    /**
-     * Get id
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Set voteAggregateId
-     *
-     * @param integer $voteAggregateId
-     *
-     * @return Vote
-     */
-    public function setVoteAggregateId($voteAggregateId)
-    {
-        $this->voteAggregateId = $voteAggregateId;
-
-        return $this;
-    }
-
-    /**
-     * Get voteAggregateId
-     *
-     * @return int
-     */
-    public function getVoteAggregateId()
-    {
-        return $this->voteAggregateId;
-    }
 
     /**
      * Set userId
      *
-     * @param string $userId
+     * @param integer $userId
      *
      * @return Vote
      */
@@ -98,7 +56,7 @@ class Vote
     /**
      * Get userId
      *
-     * @return string
+     * @return integer
      */
     public function getUserId()
     {
@@ -130,27 +88,27 @@ class Vote
     }
 
     /**
-     * Set vote
+     * Set value
      *
-     * @param integer $vote
+     * @param integer $value
      *
      * @return Vote
      */
-    public function setVote($vote)
+    public function setValue($value)
     {
-        $this->vote = $vote;
+        $this->value = $value;
 
         return $this;
     }
 
     /**
-     * Get vote
+     * Get value
      *
-     * @return int
+     * @return integer
      */
-    public function getVote()
+    public function getValue()
     {
-        return $this->vote;
+        return $this->value;
     }
 
     /**
@@ -178,13 +136,23 @@ class Vote
     }
 
     /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
      * Set voteAggregate
      *
-     * @param VoteAggregate $voteAggregate
+     * @param \Lt\UpvoteBundle\Entity\VoteAggregate $voteAggregate
      *
      * @return Vote
      */
-    public function setVoteAggregate(VoteAggregate $voteAggregate = null)
+    public function setVoteAggregate(\Lt\UpvoteBundle\Entity\VoteAggregate $voteAggregate = null)
     {
         $this->voteAggregate = $voteAggregate;
 
@@ -194,7 +162,7 @@ class Vote
     /**
      * Get voteAggregate
      *
-     * @return VoteAggregate
+     * @return \Lt\UpvoteBundle\Entity\VoteAggregate
      */
     public function getVoteAggregate()
     {

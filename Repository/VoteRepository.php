@@ -8,22 +8,51 @@ use Lt\UpvoteBundle\Entity\Vote;
 class VoteRepository extends EntityRepository
 {
     /**
-     * @param integer $voteAggregateId
-     * @param integer $userId
+     * @param string $subjectType
+     * @param string $subjectId
+     * @param string $userId
+     *
      * @return null|Vote
      */
-    public function findOneByAggregateAndUser($voteAggregateId, $userId)
+    public function findOneBySubjectAndUserId($subjectType, $subjectId, $userId)
     {
-        return $this->findOneBy(['voteAggregate' => $voteAggregateId, 'userId' => $userId]);
+        return $this->_em
+            ->getRepository(Vote::class)
+            ->createQueryBuilder('v')
+            ->join('v.voteAggregate', 'va')
+            ->where('va.subjectType = :subjectType')
+            ->andWhere('va.subjectId = :subjectId')
+            ->andWhere('v.userId = :userId')
+            ->setParameter('subjectType', $subjectType)
+            ->setParameter('subjectId', $subjectId)
+            ->setParameter('userId', $userId)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
     }
 
     /**
-     * @param integer $voteAggregateId
-     * @param integer $visitorId
+     * @param string $subjectType
+     * @param string $subjectId
+     * @param string $visitorId
+     *
      * @return null|Vote
      */
-    public function findOneByAggregateAndVisitor($voteAggregateId, $visitorId)
+    public function findOneBySubjectAndVisitorId($subjectType, $subjectId, $visitorId)
     {
-        return $this->findOneBy(['voteAggregate' => $voteAggregateId, 'userId' => null, 'visitorId' => $visitorId]);
+        return $this->_em
+            ->getRepository(Vote::class)
+            ->createQueryBuilder('v')
+            ->join('v.voteAggregate', 'va')
+            ->where('va.subjectType = :subjectType')
+            ->andWhere('va.subjectId = :subjectId')
+            ->andWhere('v.userId is null')
+            ->andWhere('v.visitorId = :visitorId')
+            ->setParameter('subjectType', $subjectType)
+            ->setParameter('subjectId', $subjectId)
+            ->setParameter('visitorId', $visitorId)
+            ->getQuery()
+            ->getOneOrNullResult()
+            ;
     }
 }

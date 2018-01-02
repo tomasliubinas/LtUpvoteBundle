@@ -6,11 +6,11 @@
     </id>
     <field name="subjectType" type="string" column="subject_type" length="64"/>
     <field name="subjectId" type="string" column="subject_id" length="64"/>
-    <field name="total" type="integer" column="total"/>
-    <field name="upvotes" type="integer" column="upvotes"/>
-    <field name="downvotes" type="integer" column="downvotes"/>
-    <field name="userUpvotes" type="integer" column="user_upvotes"/>
-    <field name="userDownvotes" type="integer" column="user_downvotes"/>
+    <field name="totalValue" type="integer" column="total_value"/>
+    <field name="totalUpvotes" type="integer" column="total_upvotes"/>
+    <field name="totalDownvotes" type="integer" column="total_downvotes"/>
+    <field name="totalUserUpvotes" type="integer" column="total_user_upvotes"/>
+    <field name="totalUserDownvotes" type="integer" column="total_user_downvotes"/>
     <one-to-many target-entity="Lt\UpvoteBundle\Entity\Vote" mapped-by="voteAggregate" field="votes"/>
   </entity>
 </doctrine-mapping>

@@ -10,10 +10,11 @@ use Doctrine\Common\Collections\Collection;
  */
 class VoteAggregate
 {
+ 
     /**
-     * @var int
+     * @var string
      */
-    private $id;
+    private $subjectType;
 
     /**
      * @var string
@@ -21,34 +22,34 @@ class VoteAggregate
     private $subjectId;
 
     /**
-     * @var string
+     * @var integer
      */
-    private $subjectType;
+    private $totalValue;
 
     /**
-     * @var int
+     * @var integer
      */
-    private $total;
+    private $totalUpvotes;
 
     /**
-     * @var int
+     * @var integer
      */
-    private $upvotes;
+    private $totalDownvotes;
 
     /**
-     * @var int
+     * @var integer
      */
-    private $downvotes;
+    private $totalUserUpvotes;
 
     /**
-     * @var int
+     * @var integer
      */
-    private $userUpvotes;
+    private $totalUserDownvotes;
 
     /**
-     * @var int
+     * @var integer
      */
-    private $userDownvotes;
+    private $id;
 
     /**
      * @var Collection
@@ -61,47 +62,6 @@ class VoteAggregate
     public function __construct()
     {
         $this->votes = new ArrayCollection();
-        $this
-            ->setTotal(0)
-            ->setUpvotes(0)
-            ->setDownvotes(0)
-            ->setUserUpvotes(0)
-            ->setUserDownvotes(0)
-        ;
-    }
-
-    /**
-     * Get id
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Set subjectId
-     *
-     * @param string $subjectId
-     *
-     * @return VoteAggregate
-     */
-    public function setSubjectId($subjectId)
-    {
-        $this->subjectId = $subjectId;
-
-        return $this;
-    }
-
-    /**
-     * Get subjectId
-     *
-     * @return string
-     */
-    public function getSubjectId()
-    {
-        return $this->subjectId;
     }
 
     /**
@@ -129,123 +89,157 @@ class VoteAggregate
     }
 
     /**
-     * Set total
+     * Set subjectId
      *
-     * @param integer $total
+     * @param string $subjectId
      *
      * @return VoteAggregate
      */
-    public function setTotal($total)
+    public function setSubjectId($subjectId)
     {
-        $this->total = $total;
+        $this->subjectId = $subjectId;
 
         return $this;
     }
 
     /**
-     * Get total
+     * Get subjectId
      *
-     * @return int
+     * @return string
      */
-    public function getTotal()
+    public function getSubjectId()
     {
-        return $this->total;
+        return $this->subjectId;
     }
 
     /**
-     * Set upvotes
+     * Set totalValue
      *
-     * @param integer $upvotes
+     * @param integer $totalValue
      *
      * @return VoteAggregate
      */
-    public function setUpvotes($upvotes)
+    public function setTotalValue($totalValue)
     {
-        $this->upvotes = $upvotes;
+        $this->totalValue = $totalValue;
 
         return $this;
     }
 
     /**
-     * Get upvotes
+     * Get totalValue
      *
-     * @return int
+     * @return integer
      */
-    public function getUpvotes()
+    public function getTotalValue()
     {
-        return $this->upvotes;
+        return $this->totalValue;
     }
 
     /**
-     * Set downvotes
+     * Set totalUpvotes
      *
-     * @param integer $downvotes
+     * @param integer $totalUpvotes
      *
      * @return VoteAggregate
      */
-    public function setDownvotes($downvotes)
+    public function setTotalUpvotes($totalUpvotes)
     {
-        $this->downvotes = $downvotes;
+        $this->totalUpvotes = $totalUpvotes;
 
         return $this;
     }
 
     /**
-     * Get downvotes
+     * Get totalUpvotes
      *
-     * @return int
+     * @return integer
      */
-    public function getDownvotes()
+    public function getTotalUpvotes()
     {
-        return $this->downvotes;
+        return $this->totalUpvotes;
     }
 
     /**
-     * Set userUpvotes
+     * Set totalDownvotes
      *
-     * @param integer $userUpvotes
+     * @param integer $totalDownvotes
      *
      * @return VoteAggregate
      */
-    public function setUserUpvotes($userUpvotes)
+    public function setTotalDownvotes($totalDownvotes)
     {
-        $this->userUpvotes = $userUpvotes;
+        $this->totalDownvotes = $totalDownvotes;
 
         return $this;
     }
 
     /**
-     * Get userUpvotes
+     * Get totalDownvotes
      *
-     * @return int
+     * @return integer
      */
-    public function getUserUpvotes()
+    public function getTotalDownvotes()
     {
-        return $this->userUpvotes;
+        return $this->totalDownvotes;
     }
 
     /**
-     * Set userDownvotes
+     * Set totalUserUpvotes
      *
-     * @param integer $userDownvotes
+     * @param integer $totalUserUpvotes
      *
      * @return VoteAggregate
      */
-    public function setUserDownvotes($userDownvotes)
+    public function setTotalUserUpvotes($totalUserUpvotes)
     {
-        $this->userDownvotes = $userDownvotes;
+        $this->totalUserUpvotes = $totalUserUpvotes;
 
         return $this;
     }
 
     /**
-     * Get userDownvotes
+     * Get totalUserUpvotes
      *
-     * @return int
+     * @return integer
      */
-    public function getUserDownvotes()
+    public function getTotalUserUpvotes()
     {
-        return $this->userDownvotes;
+        return $this->totalUserUpvotes;
+    }
+
+    /**
+     * Set totalUserDownvotes
+     *
+     * @param integer $totalUserDownvotes
+     *
+     * @return VoteAggregate
+     */
+    public function setTotalUserDownvotes($totalUserDownvotes)
+    {
+        $this->totalUserDownvotes = $totalUserDownvotes;
+
+        return $this;
+    }
+
+    /**
+     * Get totalUserDownvotes
+     *
+     * @return integer
+     */
+    public function getTotalUserDownvotes()
+    {
+        return $this->totalUserDownvotes;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 
     /**
@@ -275,7 +269,7 @@ class VoteAggregate
     /**
      * Get votes
      *
-     * @return Collection
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getVotes()
     {

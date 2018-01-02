@@ -10,12 +10,12 @@ class VoteAggregateRepository extends EntityRepository
     /**
      * Finds one Vote Aggregate By Subject (id and type)
      *
+     * @param string $subjectType
      * @param string $subjectId
-     * @param string|null $subjectType
      * @return null|VoteAggregate
      */
-    public function findOneBySubject($subjectId, $subjectType)
+    public function findOneBySubject($subjectType, $subjectId)
     {
-        return $this->findOneBy(['subjectId' => $subjectId, 'subjectType' => $subjectType]);
+        return $this->findOneBy(['subjectType' => $subjectType, 'subjectId' => $subjectId]);
     }
 }

@@ -8,7 +8,10 @@
     <field name="visitorId" type="string" column="visitor_id" length="32"/>
     <field name="value" type="integer" column="value"/>
     <field name="updatedAt" type="datetime" column="updated_at"/>
-    <many-to-one field="voteAggregate" target-entity="Lt\UpvoteBundle\Entity\VoteAggregate" inversed-by="votes">
+    <indexes>
+      <index name="user_id_idx" columns="user_id"/>
+      <index name="visitor_id_idx" columns="visitor_id"/>
+    </indexes>    <many-to-one field="voteAggregate" target-entity="Lt\UpvoteBundle\Entity\VoteAggregate" inversed-by="votes">
       <join-column name="vote_aggregate_id" referenced-column-name="id"/>
     </many-to-one>
   </entity>

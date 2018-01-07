@@ -7,7 +7,7 @@ namespace Lt\UpvoteBundle\Entity;
  */
 class Vote
 {
-  
+    
     /**
      * @var integer
      */
@@ -148,11 +148,11 @@ class Vote
     /**
      * Set voteAggregate
      *
-     * @param \Lt\UpvoteBundle\Entity\VoteAggregate $voteAggregate
+     * @param VoteAggregate $voteAggregate
      *
      * @return Vote
      */
-    public function setVoteAggregate(\Lt\UpvoteBundle\Entity\VoteAggregate $voteAggregate = null)
+    public function setVoteAggregate(VoteAggregate $voteAggregate = null)
     {
         $this->voteAggregate = $voteAggregate;
 
@@ -162,7 +162,7 @@ class Vote
     /**
      * Get voteAggregate
      *
-     * @return \Lt\UpvoteBundle\Entity\VoteAggregate
+     * @return VoteAggregate
      */
     public function getVoteAggregate()
     {

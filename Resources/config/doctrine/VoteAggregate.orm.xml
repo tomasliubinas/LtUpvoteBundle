@@ -9,6 +9,5 @@
     <field name="totalValue" type="integer" column="total_value"/>
     <field name="totalUpvotes" type="integer" column="total_upvotes"/>
     <field name="totalDownvotes" type="integer" column="total_downvotes"/>
-    <one-to-many target-entity="Lt\UpvoteBundle\Entity\Vote" mapped-by="voteAggregate" field="votes"/>
   </entity>
 </doctrine-mapping>

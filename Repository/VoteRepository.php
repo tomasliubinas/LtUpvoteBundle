@@ -16,8 +16,7 @@ class VoteRepository extends EntityRepository
      */
     public function findOneBySubjectAndUserId($subjectType, $subjectId, $userId)
     {
-        return $this->_em
-            ->getRepository(Vote::class)
+        return $this->_em->getRepository(Vote::class)
             ->createQueryBuilder('v')
             ->join('v.voteAggregate', 'va')
             ->where('va.subjectType = :subjectType')
@@ -40,8 +39,7 @@ class VoteRepository extends EntityRepository
      */
     public function findOneBySubjectAndVisitorId($subjectType, $subjectId, $visitorId)
     {
-        return $this->_em
-            ->getRepository(Vote::class)
+        return $this->_em->getRepository(Vote::class)
             ->createQueryBuilder('v')
             ->join('v.voteAggregate', 'va')
             ->where('va.subjectType = :subjectType')
@@ -53,6 +51,6 @@ class VoteRepository extends EntityRepository
             ->setParameter('visitorId', $visitorId)
             ->getQuery()
             ->getOneOrNullResult()
-            ;
+        ;
     }
 }

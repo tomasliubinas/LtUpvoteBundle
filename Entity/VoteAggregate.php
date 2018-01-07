@@ -39,16 +39,6 @@ class VoteAggregate
     /**
      * @var integer
      */
-    private $totalUserUpvotes;
-
-    /**
-     * @var integer
-     */
-    private $totalUserDownvotes;
-
-    /**
-     * @var integer
-     */
     private $id;
 
     /**
@@ -182,54 +172,6 @@ class VoteAggregate
     public function getTotalDownvotes()
     {
         return $this->totalDownvotes;
-    }
-
-    /**
-     * Set totalUserUpvotes
-     *
-     * @param integer $totalUserUpvotes
-     *
-     * @return VoteAggregate
-     */
-    public function setTotalUserUpvotes($totalUserUpvotes)
-    {
-        $this->totalUserUpvotes = $totalUserUpvotes;
-
-        return $this;
-    }
-
-    /**
-     * Get totalUserUpvotes
-     *
-     * @return integer
-     */
-    public function getTotalUserUpvotes()
-    {
-        return $this->totalUserUpvotes;
-    }
-
-    /**
-     * Set totalUserDownvotes
-     *
-     * @param integer $totalUserDownvotes
-     *
-     * @return VoteAggregate
-     */
-    public function setTotalUserDownvotes($totalUserDownvotes)
-    {
-        $this->totalUserDownvotes = $totalUserDownvotes;
-
-        return $this;
-    }
-
-    /**
-     * Get totalUserDownvotes
-     *
-     * @return integer
-     */
-    public function getTotalUserDownvotes()
-    {
-        return $this->totalUserDownvotes;
     }
 
     /**

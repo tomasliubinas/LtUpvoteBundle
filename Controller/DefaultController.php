@@ -41,7 +41,9 @@ class DefaultController extends Controller
      */
     public function upvoteAction(Request $request, $subjectId, $subjectType)
     {
-        $this->voteManager->upvote($subjectId, $subjectType, $this->userProvider->getUserId(), $this->visitorIdentifier->getVisitorId($request));
+        $userId = $this->userProvider->getUserId();
+        $visitorId = $this->visitorIdentifier->getVisitorId($request);
+        $this->voteManager->upvote($subjectId, $subjectType, $userId, $visitorId);
         return new Response(json_encode('upvoted'));
     }
 
@@ -53,7 +55,9 @@ class DefaultController extends Controller
      */
     public function downvoteAction(Request $request, $subjectId, $subjectType)
     {
-        $this->voteManager->downvote($subjectId, $subjectType, $this->userProvider->getUserId(), $this->visitorIdentifier->getVisitorId($request));
+        $userId = $this->userProvider->getUserId();
+        $visitorId = $this->visitorIdentifier->getVisitorId($request);
+        $this->voteManager->downvote($subjectId, $subjectType, $userId, $visitorId);
         return new Response("downvoted");
     }
 
@@ -65,7 +69,9 @@ class DefaultController extends Controller
      */
     public function resetAction(Request $request, $subjectId, $subjectType)
     {
-        $this->voteManager->reset($subjectId, $subjectType);
+        $userId = $this->userProvider->getUserId();
+        $visitorId = $this->visitorIdentifier->getVisitorId($request);
+        $this->voteManager->reset($subjectId, $subjectType, $userId, $visitorId);
         return new Response('reset');
     }
 }

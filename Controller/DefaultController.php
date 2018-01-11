@@ -4,7 +4,7 @@ namespace Lt\UpvoteBundle\Controller;
 
 use Lt\UpvoteBundle\Utils\UserProvider;
 use Lt\UpvoteBundle\Utils\VisitorIdentifier;
-use Lt\UpvoteBundle\Utils\VoteManager;
+use Lt\UpvoteBundle\Model\VoteManager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -58,7 +58,7 @@ class DefaultController extends Controller
         $userId = $this->userProvider->getUserId();
         $visitorId = $this->visitorIdentifier->getVisitorId($request);
         $this->voteManager->downvote($subjectId, $subjectType, $userId, $visitorId);
-        return new Response("downvoted");
+        return new Response('downvoted');
     }
 
     /**

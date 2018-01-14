@@ -26,17 +26,25 @@ class DefaultController extends Controller
      */
     private $voteManager;
 
-    public function __construct(UserProvider $userProvider, VisitorIdentifier $visitorIdentifier, VoteManager $voteManager)
-    {
+    public function __construct(
+        UserProvider $userProvider,
+        VisitorIdentifier $visitorIdentifier,
+        VoteManager $voteManager
+    ) {
         $this->userProvider = $userProvider;
-        $this->voteManager = $voteManager;
         $this->visitorIdentifier = $visitorIdentifier;
+        $this->voteManager = $voteManager;
     }
 
     /**
+     * Registers an upvote for the identified user or visitor.
+     * Depending on current upvote status adds 1 or 2 to total vote counts for the given subject.
+     * Fails in case the upvote already exists.
+     *
      * @param Request $request
      * @param string $subjectId
      * @param string $subjectType
+     *
      * @return Response
      */
     public function upvoteAction(Request $request, $subjectId, $subjectType)
@@ -48,9 +56,14 @@ class DefaultController extends Controller
     }
 
     /**
+     * Registers a downvote for the identified user or visitor.
+     * Depending on current upvote status subtracts 1 or 2 from total vote counts for the given subject.
+     * Fails in case the downvote already exists.
+     *
      * @param Request $request
      * @param string $subjectId
      * @param string $subjectType
+     *
      * @return Response
      */
     public function downvoteAction(Request $request, $subjectId, $subjectType)
@@ -62,9 +75,12 @@ class DefaultController extends Controller
     }
 
     /**
+     * Resets any existing upvote or downvote for subject.
+     *
      * @param Request $request
      * @param string $subjectId
      * @param string $subjectType
+     *
      * @return Response
      */
     public function resetAction(Request $request, $subjectId, $subjectType)

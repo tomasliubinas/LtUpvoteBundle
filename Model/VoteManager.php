@@ -69,11 +69,10 @@ class VoteManager
         $vote = $this->findVote($subjectType, $subjectId, $userId, $visitorId);
         if ($vote !== null) {
             $voteAggregate = $vote->getVoteAggregate();
-            $voteAggregate->setTotalValue($voteAggregate->getTotalValue() - $vote->getValue());
+            $this->subtractFromAggregate($voteAggregate, $vote);
             $this->entityManager->remove($vote);
         }
     }
-
 
     /**
      * Get total vote result for subject
@@ -176,5 +175,22 @@ class VoteManager
             $vote->setUserId($userId);
         }
         return $vote;
+    }
+
+    /**
+     * @param VoteAggregate $voteAggregate
+     * @param Vote $vote
+     */
+    protected function subtractFromAggregate(VoteAggregate $voteAggregate, Vote $vote)
+    {
+        $voteAggregate->setTotalValue($voteAggregate->getTotalValue() - $vote->getValue());
+
+        if ($vote->getValue() > 0) {
+            $voteAggregate->setTotalUpvotes($voteAggregate->getTotalUpvotes() - 1);
+        }
+
+        if ($vote->getValue() < 0) {
+            $voteAggregate->setTotalDownvotes($voteAggregate->getTotalDownvotes() - 1);
+        }
     }
 }

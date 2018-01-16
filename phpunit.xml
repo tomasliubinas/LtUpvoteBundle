@@ -25,4 +25,8 @@
             <directory suffix="Test.php" phpVersion="5.3.0" phpVersionOperator=">=">Tests</directory>
         </testsuite>
     </testsuites>
+
+    <php>
+        <server name="KERNEL_DIR" value="./Tests/" />
+    </php>
 </phpunit>

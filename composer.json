@@ -15,6 +15,8 @@
         "doctrine/orm": "^2.5"
     },
     "require-dev": {
+        "doctrine/orm": "*",
+        "doctrine/doctrine-bundle": "*",
         "phpspec/phpspec": "^4.1",
         "phpunit/phpunit": "^6.4"
     },

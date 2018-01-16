@@ -8,13 +8,13 @@
         <service id="lt_upvote_bundle.utils.user_provider" class="Lt\UpvoteBundle\Utils\UserProvider">
             <argument type="service" id="security.token_storage"/>
         </service>
-
         <service id="lt_upvote_bundle.utils.visitor_identifier" class="Lt\UpvoteBundle\Utils\VisitorIdentifier"/>
 
         <service id="lt_upvote_bundle.repository.vote" class="Lt\UpvoteBundle\Repository\VoteRepository"/>
         <service id="lt_upvote_bundle.repository.vote_aggregate" class="Lt\UpvoteBundle\Repository\VoteAggregateRepository"/>
 
         <service id="lt_upvote_bundle.utils.vote_manager" class="Lt\UpvoteBundle\Model\VoteManager">
+            <argument type="service" id="doctrine.orm.entity_manager"/>
             <argument type="service" id="lt_upvote_bundle.repository.vote"/>
             <argument type="service" id="lt_upvote_bundle.repository.vote_aggregate"/>
         </service>

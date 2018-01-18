@@ -20,6 +20,7 @@
         </service>
 
         <service id="lt_upvote_bundle.controller.default" class="Lt\UpvoteBundle\Controller\DefaultController">
+            <tag name="controller.service_arguments"/>
             <argument type="service" id="lt_upvote_bundle.utils.user_provider"/>
             <argument type="service" id="lt_upvote_bundle.utils.visitor_identifier"/>
             <argument type="service" id="lt_upvote_bundle.utils.vote_manager"/>

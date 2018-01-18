@@ -9,9 +9,8 @@ class DefaultControllerTest extends WebTestCase
     public function testIndex()
     {
         $client = static::createClient();
+        $client->request('GET', '/lt-upvote/blog/15/upvote/');
 
-        $crawler = $client->request('GET', '/');
-
-        $this->assertContains('Hello World', $client->getResponse()->getContent());
+        $this->assertContains('upvoted', $client->getResponse()->getContent());
     }
 }

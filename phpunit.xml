@@ -27,6 +27,6 @@
     </testsuites>
 
     <php>
-        <server name="KERNEL_DIR" value="./Tests/" />
+        <server name="KERNEL_CLASS" value="Lt\UpvoteBundle\Tests\AppKernel" />
     </php>
 </phpunit>

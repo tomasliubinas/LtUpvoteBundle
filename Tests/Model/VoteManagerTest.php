@@ -40,7 +40,7 @@ class VoteManagerTest extends TestCase
         $this->voteManager = new VoteManager($this->entityManager, $this->voteRepository, $this->voteAggregateRepository);
     }
 
-    public function testReset()
+    public function testResetForUpvote()
     {
         $vote = new Vote();
         $vote
@@ -52,9 +52,10 @@ class VoteManagerTest extends TestCase
             ->setTotalValue(113)
             ->setTotalUpvotes(115)
             ->setTotalDownvotes(2);
+        $vote->setVoteAggregate($voteAggregate);
+
 
         $this->voteRepository->expects($this->once())->method('findOneBySubjectAndVisitorId')->with('testBlog', 15, 'testVisitor')->willReturn($vote);
-        $this->voteAggregateRepository->expects($this->once())->method('findOneBySubject')->with('testBlog', 15)->willReturn($voteAggregate);
 
         $this->entityManager->expects($this->once())->method('remove')->with($vote);
 

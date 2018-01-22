@@ -54,9 +54,7 @@ class VoteManagerTest extends TestCase
             ->setTotalDownvotes(25);
         $vote->setVoteAggregate($voteAggregate);
 
-
         $this->voteRepository->expects($this->once())->method('findOneBySubjectAndVisitorId')->with('testBlog', 15, 'testVisitor')->willReturn($vote);
-
         $this->entityManager->expects($this->once())->method('remove')->with($vote);
 
         $this->voteManager->reset(15, 'testBlog', null, 'testVisitor');
@@ -71,6 +69,7 @@ class VoteManagerTest extends TestCase
         $vote = new Vote();
         $vote
             ->setValue(-1)
+            ->setUserId(20)
             ->setVisitorId('testVisitor');
 
         $voteAggregate = new VoteAggregate();
@@ -80,12 +79,10 @@ class VoteManagerTest extends TestCase
             ->setTotalDownvotes(25);
         $vote->setVoteAggregate($voteAggregate);
 
-
-        $this->voteRepository->expects($this->once())->method('findOneBySubjectAndVisitorId')->with('testBlog', 15, 'testVisitor')->willReturn($vote);
-
+        $this->voteRepository->expects($this->once())->method('findOneBySubjectAndUserId')->with('testBlog', 15, 20)->willReturn($vote);
         $this->entityManager->expects($this->once())->method('remove')->with($vote);
 
-        $this->voteManager->reset(15, 'testBlog', null, 'testVisitor');
+        $this->voteManager->reset(15, 'testBlog', 20, 'testVisitor');
 
         $this->assertEquals(91, $voteAggregate->getTotalValue());
         $this->assertEquals(115, $voteAggregate->getTotalUpvotes());

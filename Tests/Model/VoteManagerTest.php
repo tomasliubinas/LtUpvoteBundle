@@ -40,7 +40,7 @@ class VoteManagerTest extends TestCase
         $this->voteManager = new VoteManager($this->entityManager, $this->voteRepository, $this->voteAggregateRepository);
     }
 
-    public function testResetForUpvote()
+    public function testResetUpvote()
     {
         $vote = new Vote();
         $vote
@@ -49,9 +49,9 @@ class VoteManagerTest extends TestCase
 
         $voteAggregate = new VoteAggregate();
         $voteAggregate
-            ->setTotalValue(113)
+            ->setTotalValue(90)
             ->setTotalUpvotes(115)
-            ->setTotalDownvotes(2);
+            ->setTotalDownvotes(25);
         $vote->setVoteAggregate($voteAggregate);
 
 
@@ -61,8 +61,34 @@ class VoteManagerTest extends TestCase
 
         $this->voteManager->reset(15, 'testBlog', null, 'testVisitor');
 
-        $this->assertEquals(112, $voteAggregate->getTotalValue());
+        $this->assertEquals(89, $voteAggregate->getTotalValue());
         $this->assertEquals(114, $voteAggregate->getTotalUpvotes());
-        $this->assertEquals(2, $voteAggregate->getTotalDownvotes());
+        $this->assertEquals(25, $voteAggregate->getTotalDownvotes());
+    }
+
+    public function testResetDownvote()
+    {
+        $vote = new Vote();
+        $vote
+            ->setValue(-1)
+            ->setVisitorId('testVisitor');
+
+        $voteAggregate = new VoteAggregate();
+        $voteAggregate
+            ->setTotalValue(90)
+            ->setTotalUpvotes(115)
+            ->setTotalDownvotes(25);
+        $vote->setVoteAggregate($voteAggregate);
+
+
+        $this->voteRepository->expects($this->once())->method('findOneBySubjectAndVisitorId')->with('testBlog', 15, 'testVisitor')->willReturn($vote);
+
+        $this->entityManager->expects($this->once())->method('remove')->with($vote);
+
+        $this->voteManager->reset(15, 'testBlog', null, 'testVisitor');
+
+        $this->assertEquals(91, $voteAggregate->getTotalValue());
+        $this->assertEquals(115, $voteAggregate->getTotalUpvotes());
+        $this->assertEquals(24, $voteAggregate->getTotalDownvotes());
     }
 }

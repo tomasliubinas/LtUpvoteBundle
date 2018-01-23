@@ -21,23 +21,22 @@ class VoteAggregate
     /**
      * @var integer
      */
-    private $totalValue;
+    private $totalValue = 0;
 
     /**
      * @var integer
      */
-    private $totalUpvotes;
+    private $totalUpvotes = 0;
 
     /**
      * @var integer
      */
-    private $totalDownvotes;
+    private $totalDownvotes = 0;
 
     /**
      * @var integer
      */
     private $id;
-
 
     /**
      * Set subjectType

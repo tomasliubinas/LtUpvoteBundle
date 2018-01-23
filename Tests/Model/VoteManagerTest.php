@@ -58,8 +58,8 @@ class VoteManagerTest extends TestCase
         $this->voteRepository->expects($this->once())->method('findOneBySubjectAndVisitorId')->with('testBlog', 'testId', 'testVisitor')->willReturn(null);
         $this->voteAggregateRepository->expects($this->once())->method('findOneBySubject')->with('testBlog', 'testId')->willReturn(null);
 
-        $this->entityManager->expects($this->once())->method('persist')->with($voteAggregate);
-        $this->entityManager->expects($this->once())->method('persist')->with($vote);
+        $this->entityManager->expects($this->at(0))->method('persist')->with($vote);
+        $this->entityManager->expects($this->at(1))->method('persist')->with($voteAggregate);
 
         $this->voteManager->upvote('testBlog', 'testId', null, 'testVisitor');
     }

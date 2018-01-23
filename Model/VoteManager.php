@@ -32,7 +32,7 @@ class VoteManager
      */
     public function __construct(
         EntityManager $entityManager,
-        VoteRepository $voteRepository, 
+        VoteRepository $voteRepository,
         VoteAggregateRepository $voteAggregateRepository
     ) {
         $this->voteRepository = $voteRepository;
@@ -41,30 +41,43 @@ class VoteManager
     }
 
     /**
-     * @param string $subjectId
+     * Performs upvote on the subject.
+     * Adds 1-2 votes to the total value.
+     *
      * @param string $subjectType
-     * @param string $userId
+     * @param string $subjectId
+     * @param string|null $userId
      * @param string $visitorId
-     *
-     *
      */
-    public function upvote($subjectId, $subjectType, $userId, $visitorId)
+    public function upvote($subjectType, $subjectId, $userId, $visitorId)
     {
-        $this->castVote(+1, $subjectId, $subjectType, $userId, $visitorId);
+        $this->castVote(+1, $subjectType, $subjectId, $userId, $visitorId);
     }
 
     /**
-     * @param string $subjectId
+     * Performs downvote on the subject
+     * Subtracts 1-2 votes from the total value.
+     *
      * @param string $subjectType
-     * @param string $userId
+     * @param string $subjectId
+     * @param string|null $userId
      * @param string $visitorId
      */
-    public function downvote($subjectId, $subjectType, $userId, $visitorId)
+    public function downvote($subjectType, $subjectId, $userId, $visitorId)
     {
-        $this->castVote(-1, $subjectId, $subjectType, $userId, $visitorId);
+        $this->castVote(-1, $subjectType, $subjectId, $userId, $visitorId);
     }
 
-    public function reset($subjectId, $subjectType, $userId, $visitorId)
+    /**
+     * Removes any existing vote.
+     * Subtract the vote from the total value.
+     *
+     * @param string $subjectType
+     * @param string $subjectId
+     * @param string|null $userId
+     * @param string $visitorId
+     */
+    public function reset($subjectType, $subjectId, $userId, $visitorId)
     {
         $vote = $this->findVote($subjectType, $subjectId, $userId, $visitorId);
         if ($vote !== null) {
@@ -77,11 +90,11 @@ class VoteManager
     /**
      * Get total vote result for subject
      *
-     * @param string $subjectId
      * @param string $subjectType
+     * @param string $subjectId
      * @return int
      */
-    public function getTotal($subjectId, $subjectType)
+    public function getTotal($subjectType, $subjectId)
     {
         $voteAggregate = $this->voteAggregateRepository->findOneBySubject($subjectId, $subjectType);
         if ($voteAggregate !== null) {
@@ -93,53 +106,54 @@ class VoteManager
 
     /**
      * @param int $voteValue
-     * @param string $subjectId
      * @param string $subjectType
-     * @param int $userId
+     * @param string $subjectId
+     * @param string|null $userId
      * @param string $visitorId
      */
-    protected function castVote($voteValue, $subjectId, $subjectType, $userId, $visitorId)
+    protected function castVote($voteValue, $subjectType, $subjectId, $userId, $visitorId)
     {
-        $voteAggregate = $this->getVoteAggregate($subjectId, $subjectType);
-        $vote = $this->getVote($subjectId, $subjectType, $userId, $visitorId);
+        $vote = $this->getVote($subjectType, $subjectId, $userId, $visitorId);
         $existingVoteValue = $vote->getValue();
         $vote->setValue($voteValue);
+
+        $voteAggregate = $vote->getVoteAggregate();
         $voteAggregate->setTotalValue($voteAggregate->getTotalValue() - $existingVoteValue + $voteValue);
+        $voteAggregate->setTotalUpvotes($voteAggregate->getTotalUpvotes() - $existingVoteValue + $voteValue);
+        $voteAggregate->setTotalDownvotes($voteAggregate->getTotalUpvotes() + $existingVoteValue - $voteValue);
 
-        $vote->setVoteAggregate($voteAggregate);
-
-        $this->entityManager->persist($voteAggregate);
         $this->entityManager->persist($vote);
+        $this->entityManager->persist($voteAggregate);
     }
 
     /**
      * @param string $subjectType
      * @param string $subjectId
-     * @param string $userId
+     * @param string|null $userId
      * @param string $visitorId
+     *
      * @return Vote
      */
     protected function getVote($subjectType, $subjectId, $userId, $visitorId)
     {
         $vote = $this->findVote($subjectType, $subjectId, $userId, $visitorId);
         if ($vote === null) {
-            $vote = $this->createVote($userId);
+            $vote = $this->createVote($subjectType, $subjectId, $userId, $visitorId);
         }
-
         return $vote;
     }
 
     /**
-     * @param string $subjectId
      * @param string $subjectType
+     * @param string $subjectId
+     *
      * @return VoteAggregate|null
      */
-    protected function getVoteAggregate($subjectId, $subjectType)
+    protected function getVoteAggregate($subjectType, $subjectId)
     {
-        $voteAggregate = $this->voteAggregateRepository->findOneBySubject($subjectId, $subjectType);
+        $voteAggregate = $this->voteAggregateRepository->findOneBySubject($subjectType, $subjectId);
         if ($voteAggregate === null) {
-            $voteAggregate = new VoteAggregate();
-            $voteAggregate
+            $voteAggregate = (new VoteAggregate())
                 ->setSubjectId($subjectId)
                 ->setSubjectType($subjectType);
         }
@@ -147,10 +161,10 @@ class VoteManager
     }
 
     /**
-     * @param $subjectType
-     * @param $subjectId
-     * @param $userId
-     * @param $visitorId
+     * @param string $subjectType
+     * @param string $subjectId
+     * @param string|null $userId
+     * @param string $visitorId
      *
      * @return Vote|null
      */
@@ -164,16 +178,20 @@ class VoteManager
     }
 
     /**
-     * @param string $userId
+     * @param string $subjectType
+     * @param string $subjectId
+     * @param string|null $userId
+     * @param string $visitorId
      *
      * @return Vote
      */
-    protected function createVote($userId)
+    protected function createVote($subjectType, $subjectId, $userId, $visitorId)
     {
-        $vote = new Vote();
-        if ($userId) {
-            $vote->setUserId($userId);
-        }
+        $vote = (new Vote())
+            ->setUserId($userId)
+            ->setVisitorId($visitorId)
+            ->setVoteAggregate($this->getVoteAggregate($subjectType, $subjectId))
+        ;
         return $vote;
     }
 

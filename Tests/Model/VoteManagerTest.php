@@ -108,7 +108,7 @@ class VoteManagerTest extends TestCase
             ->setVoteAggregate($voteAggregate)
         ;
 
-        $this->voteRepository->expects($this->once())->method('findOneBySubjectAndVisitorId')->with('testBlog', 'testId', 'testVisitor')->willReturn(null);
+        $this->voteRepository->expects($this->once())->method('findOneBySubjectAndVisitorId')->with('testBlog', 'testId', 'testVisitor')->willReturn($vote);
         $this->voteAggregateRepository->expects($this->once())->method('findOneBySubject')->with('testBlog', 'testId')->willReturn($voteAggregate);
 
         $this->voteManager->upvote('testBlog', 'testId', null, 'testVisitor');

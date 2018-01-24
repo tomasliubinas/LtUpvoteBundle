@@ -5,6 +5,8 @@ namespace Lt\UpvoteBundle\Model;
 use Doctrine\ORM\EntityManager;
 use Lt\UpvoteBundle\Entity\Vote;
 use Lt\UpvoteBundle\Entity\VoteAggregate;
+
+use Lt\UpvoteBundle\Exception\UniqueConstraintViolationException;
 use Lt\UpvoteBundle\Repository\VoteAggregateRepository;
 use Lt\UpvoteBundle\Repository\VoteRepository;
 
@@ -110,19 +112,30 @@ class VoteManager
      * @param string $subjectId
      * @param string|null $userId
      * @param string $visitorId
+     *
+     * @throws UniqueConstraintViolationException
      */
     protected function castVote($voteValue, $subjectType, $subjectId, $userId, $visitorId)
     {
         $vote = $this->getVote($subjectType, $subjectId, $userId, $visitorId);
-        $existingVoteValue = $vote->getValue();
+        $currentVoteValue = $vote->getValue();
+        if ($currentVoteValue === $voteValue) {
+            throw new UniqueConstraintViolationException('Can not cast the same vote more than once');
+        }
         $vote->setValue($voteValue);
 
         $voteAggregate = $vote->getVoteAggregate();
-        $voteAggregate->setTotalValue($voteAggregate->getTotalValue() - $existingVoteValue + $voteValue);
+        $voteAggregate->setTotalValue($voteAggregate->getTotalValue() - $currentVoteValue + $voteValue);
         if ($voteValue > 0) {
-            $voteAggregate->setTotalUpvotes($voteAggregate->getTotalUpvotes() - $existingVoteValue + $voteValue);
-        } else {
-            $voteAggregate->setTotalDownvotes($voteAggregate->getTotalDownvotes() + $existingVoteValue - $voteValue);
+            $voteAggregate->setTotalUpvotes($voteAggregate->getTotalUpvotes() + 1);
+        } elseif ($voteValue < 0 && $currentVoteValue > 0) {
+            $voteAggregate->setTotalUpvotes($voteAggregate->getTotalUpvotes() - 1);
+        }
+
+        if ($voteValue < 0) {
+            $voteAggregate->setTotalDownvotes($voteAggregate->getTotalDownvotes() + 1);
+        } elseif ($voteValue > 0 && $currentVoteValue < 0) {
+            $voteAggregate->setTotalDownvotes($voteAggregate->getTotalDownvotes() - 1);
         }
 
         $this->entityManager->persist($vote);

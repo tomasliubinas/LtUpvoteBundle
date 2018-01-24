@@ -119,8 +119,11 @@ class VoteManager
 
         $voteAggregate = $vote->getVoteAggregate();
         $voteAggregate->setTotalValue($voteAggregate->getTotalValue() - $existingVoteValue + $voteValue);
-        $voteAggregate->setTotalUpvotes($voteAggregate->getTotalUpvotes() - $existingVoteValue + $voteValue);
-        $voteAggregate->setTotalDownvotes($voteAggregate->getTotalUpvotes() + $existingVoteValue - $voteValue);
+        if ($voteValue > 0) {
+            $voteAggregate->setTotalUpvotes($voteAggregate->getTotalUpvotes() - $existingVoteValue + $voteValue);
+        } else {
+            $voteAggregate->setTotalDownvotes($voteAggregate->getTotalDownvotes() + $existingVoteValue - $voteValue);
+        }
 
         $this->entityManager->persist($vote);
         $this->entityManager->persist($voteAggregate);

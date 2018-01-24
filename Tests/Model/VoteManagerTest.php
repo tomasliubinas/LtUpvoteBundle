@@ -45,8 +45,8 @@ class VoteManagerTest extends TestCase
         $voteAggregate = (new VoteAggregate())
             ->setSubjectType('testBlog')
             ->setSubjectId('testId')
-            ->setTotalUpvotes(1)
             ->setTotalValue(1)
+            ->setTotalUpvotes(1)
         ;
 
         $vote = (new Vote())
@@ -62,6 +62,34 @@ class VoteManagerTest extends TestCase
         $this->entityManager->expects($this->at(1))->method('persist')->with($voteAggregate);
 
         $this->voteManager->upvote('testBlog', 'testId', null, 'testVisitor');
+    }
+
+    public function testUpvoteBlankVote()
+    {
+        $voteAggregate = (new VoteAggregate())
+            ->setSubjectType('testBlog')
+            ->setSubjectId('testId')
+            ->setTotalValue(145)
+            ->setTotalUpvotes(150)
+            ->setTotalDownvotes(5)
+        ;
+
+        $vote = (new Vote())
+            ->setValue(1)
+            ->setVisitorId('testVisitor')
+            ->setVoteAggregate($voteAggregate)
+        ;
+
+        $this->voteRepository->expects($this->once())->method('findOneBySubjectAndVisitorId')->with('testBlog', 'testId', 'testVisitor')->willReturn(null);
+        $this->voteAggregateRepository->expects($this->once())->method('findOneBySubject')->with('testBlog', 'testId')->willReturn($voteAggregate);
+
+        $this->entityManager->expects($this->at(0))->method('persist')->with($vote);
+
+        $this->voteManager->upvote('testBlog', 'testId', null, 'testVisitor');
+
+        $this->assertEquals($voteAggregate->getTotalValue(), 146);
+        $this->assertEquals($voteAggregate->getTotalUpvotes(), 151);
+        $this->assertEquals($voteAggregate->getTotalDownvotes(), 5);
     }
 
     public function testResetUpvote()

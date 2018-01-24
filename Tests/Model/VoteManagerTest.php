@@ -121,17 +121,17 @@ class VoteManagerTest extends TestCase
 
     public function testResetUpvote()
     {
-        $vote = (new Vote())
-            ->setValue(1)
-            ->setVisitorId('testVisitor')
-        ;
-
         $voteAggregate = (new VoteAggregate())
             ->setTotalValue(90)
             ->setTotalUpvotes(115)
             ->setTotalDownvotes(25)
         ;
-        $vote->setVoteAggregate($voteAggregate);
+
+        $vote = (new Vote())
+            ->setValue(1)
+            ->setVisitorId('testVisitor')
+            ->setVoteAggregate($voteAggregate)
+        ;
 
         $this->voteRepository->expects($this->once())->method('findOneBySubjectAndVisitorId')->with('testBlog', 15, 'testVisitor')->willReturn($vote);
         $this->entityManager->expects($this->once())->method('remove')->with($vote);
@@ -145,16 +145,17 @@ class VoteManagerTest extends TestCase
 
     public function testResetDownvote()
     {
-        $vote = (new Vote())
-            ->setValue(-1)
-            ->setUserId(20)
-            ->setVisitorId('testVisitor');
-
         $voteAggregate = (new VoteAggregate())
             ->setTotalValue(90)
             ->setTotalUpvotes(115)
             ->setTotalDownvotes(25);
-        $vote->setVoteAggregate($voteAggregate);
+
+        $vote = (new Vote())
+            ->setValue(-1)
+            ->setUserId(20)
+            ->setVisitorId('testVisitor')
+            ->setVoteAggregate($voteAggregate)
+        ;
 
         $this->voteRepository->expects($this->once())->method('findOneBySubjectAndUserId')->with('testBlog', 15, 20)->willReturn($vote);
         $this->entityManager->expects($this->once())->method('remove')->with($vote);

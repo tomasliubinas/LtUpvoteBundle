@@ -113,10 +113,10 @@ class VoteManagerTest extends TestCase
 
         $this->voteManager->upvote('testBlog', 'testId', null, 'testVisitor');
 
+        $this->assertEquals($vote->getValue(), 1);
         $this->assertEquals($voteAggregate->getTotalValue(), 147);
         $this->assertEquals($voteAggregate->getTotalUpvotes(), 151);
         $this->assertEquals($voteAggregate->getTotalDownvotes(), 4);
-        $this->assertEquals($vote->getValue(), 1);
     }
 
     public function testResetUpvoted()

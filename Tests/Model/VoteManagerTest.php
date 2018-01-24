@@ -119,7 +119,7 @@ class VoteManagerTest extends TestCase
         $this->assertEquals($vote->getValue(), 1);
     }
 
-    public function testResetUpvote()
+    public function testResetUpvoted()
     {
         $voteAggregate = (new VoteAggregate())
             ->setTotalValue(90)
@@ -143,7 +143,7 @@ class VoteManagerTest extends TestCase
         $this->assertEquals(25, $voteAggregate->getTotalDownvotes());
     }
 
-    public function testResetDownvote()
+    public function testResetDownvoted()
     {
         $voteAggregate = (new VoteAggregate())
             ->setTotalValue(90)

@@ -92,6 +92,33 @@ class VoteManagerTest extends TestCase
         $this->assertEquals($voteAggregate->getTotalDownvotes(), 5);
     }
 
+    public function testUpvoteDownvoted()
+    {
+        $voteAggregate = (new VoteAggregate())
+            ->setSubjectType('testBlog')
+            ->setSubjectId('testId')
+            ->setTotalValue(145)
+            ->setTotalUpvotes(150)
+            ->setTotalDownvotes(5)
+        ;
+
+        $vote = (new Vote())
+            ->setValue(-1)
+            ->setVisitorId('testVisitor')
+            ->setVoteAggregate($voteAggregate)
+        ;
+
+        $this->voteRepository->expects($this->once())->method('findOneBySubjectAndVisitorId')->with('testBlog', 'testId', 'testVisitor')->willReturn(null);
+        $this->voteAggregateRepository->expects($this->once())->method('findOneBySubject')->with('testBlog', 'testId')->willReturn($voteAggregate);
+
+        $this->voteManager->upvote('testBlog', 'testId', null, 'testVisitor');
+
+        $this->assertEquals($voteAggregate->getTotalValue(), 147);
+        $this->assertEquals($voteAggregate->getTotalUpvotes(), 151);
+        $this->assertEquals($voteAggregate->getTotalDownvotes(), 4);
+        $this->assertEquals($vote->getValue(), 1);
+    }
+
     public function testResetUpvote()
     {
         $vote = (new Vote())

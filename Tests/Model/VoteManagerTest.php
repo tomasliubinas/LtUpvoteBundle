@@ -77,15 +77,16 @@ class VoteManagerTest extends TestCase
         $vote = (new Vote())
             ->setValue(1)
             ->setVisitorId('testVisitor')
+            ->setUserId('testUserId')
             ->setVoteAggregate($voteAggregate)
         ;
 
-        $this->voteRepository->expects($this->once())->method('findOneBySubjectAndVisitorId')->with('testBlog', 'testId', 'testVisitor')->willReturn(null);
+        $this->voteRepository->expects($this->once())->method('findOneBySubjectAndUserId')->with('testBlog', 'testId', 'testUserId')->willReturn(null);
         $this->voteAggregateRepository->expects($this->once())->method('findOneBySubject')->with('testBlog', 'testId')->willReturn($voteAggregate);
 
         $this->entityManager->expects($this->at(0))->method('persist')->with($vote);
 
-        $this->voteManager->upvote('testBlog', 'testId', null, 'testVisitor');
+        $this->voteManager->upvote('testBlog', 'testId', 'testUserId', 'testVisitor');
 
         $this->assertEquals($voteAggregate->getTotalValue(), 146);
         $this->assertEquals($voteAggregate->getTotalUpvotes(), 151);

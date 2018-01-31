@@ -2,6 +2,8 @@
 
 namespace Lt\UpvoteBundle\Tests;
 
+use Doctrine\Bundle\DoctrineBundle\DoctrineBundle;
+use Symfony\Bundle\SecurityBundle\SecurityBundle;
 use Symfony\Component\HttpKernel\Kernel;
 use Lt\UpvoteBundle\LtUpvoteBundle;
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
@@ -16,6 +18,8 @@ class AppKernel extends Kernel
     {
         return array(
             new FrameworkBundle(),
+            new SecurityBundle(),
+            new DoctrineBundle(),
             new LtUpvoteBundle(),
         );
     }

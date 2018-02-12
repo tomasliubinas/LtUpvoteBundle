@@ -3,7 +3,6 @@
 namespace Lt\UpvoteBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 class TestController extends Controller
@@ -16,6 +15,6 @@ class TestController extends Controller
             throw new AccessDeniedHttpException('Access denied in production environment');
         }
 
-        return new Response('Demo page');
+        return $this->render('LtUpvoteBundle:Default:index.html.twig');
     }
 }

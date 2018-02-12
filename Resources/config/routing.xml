@@ -4,6 +4,9 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
 
+    <route id="lt_upvote_test" path="lt-upvote/test/">
+        <default key="_controller">lt_upvote_bundle.controller.test:indexAction</default>
+    </route>
     <route id="lt_upvote_upvote" path="lt-upvote/{subjectType}/{subjectId}/upvote/">
         <default key="_controller">lt_upvote_bundle.controller.default:upvoteAction</default>
     </route>

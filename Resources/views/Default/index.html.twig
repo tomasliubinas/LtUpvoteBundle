@@ -1,1 +1,81 @@
-Hello World!
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LtUpvoteBundleTest page</title>
+</head>
+
+<style>
+    a.ltu-upvote {
+        display:inline-block;
+        width: 16px;
+        height: 16px;
+        background-image: url('data:image/svg+xml;utf8,<svg width="16" height="32" xmlns="http://www.w3.org/2000/svg"> <path id="up_off" d="m0,12l8,-8l8,8l-16,0z" fill="#ddd"/></svg>');
+        background-repeat:no-repeat;
+        cursor: pointer;
+    }
+
+    a.ltu-upvote-on {
+        color: white;
+        background-image: url('data:image/svg+xml;utf8,<svg width="16" height="32" xmlns="http://www.w3.org/2000/svg"> <path id="up_on" d="m0,12l8,-8l8,8l-16,0z" fill="#d22"/> </svg>');
+    }
+
+    a.ltu-downvote {
+        display:inline-block;
+        margin: 0px;
+        padding: 0px;
+        width: 16px;
+        height: 16px;
+        cursor: hand;
+        color: orange;
+        background-image: url('data:image/svg+xml;utf8,<svg width="16" height="16" xmlns="http://www.w3.org/2000/svg"> <path id="dn_off" d="m0,4l8,8l8,-8l-16,0z" fill="#ddd"/> </svg>');
+        background-repeat:no-repeat;
+        cursor: pointer;
+    }
+
+    a.ltu-downvote-on {
+        background-image: url('data:image/svg+xml;utf8,<svg width="16" height="32" xmlns="http://www.w3.org/2000/svg"><path id="dn_on" d="m0,4l8,8l8,-8l-16,0z" fill="#a9f"/></svg>');
+    }
+
+    .ltu-counter {
+        display:inline-block;
+        padding-left: 3px;
+        padding-right: 3px;
+        min-width: 20px;
+        text-align: center;
+        font-size: 16px;
+    }
+</style>
+<body>
+
+<div class="ltu">
+    <a class="ltu-upvote"></a>
+    <span class="ltu-counter" data-ltu-id="13">126</span>
+    <a class="ltu-downvote"></a>
+</div>
+<div class="ltu">
+    <a class="ltu-upvote ltu-upvote-on"></a>
+    <span class="ltu-counter" data-ltu-id="14">13</span>
+    <a class="ltu-downvote"></a>
+</div>
+<div class="ltu">
+    <a class="ltu-upvote"></a>
+    <span class="ltu-counter" data-ltu-id="15">-3</span>
+    <a class="ltu-downvote ltu-downvote-on"></a>
+</div>
+
+
+<script src="{{asset('/bundles/ltupvote/js/lt-upvote.js')}}"></script>
+<script language="JavaScript"><!--
+    ltupvote.init();
+    //-->
+</script>
+
+
+</body>
+</html>
+
+
+
+
+

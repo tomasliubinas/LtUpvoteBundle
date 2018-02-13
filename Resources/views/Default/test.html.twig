@@ -12,9 +12,9 @@
 <p style="margin-bottom: 10px">Try to upvote/downvote the following item, then reload this page and see if it works. The result should stay the same. </p>
 
 <div class="ltu">
-    <a class="ltu-upvote {{ if upvoteManager.isUpvoted(1,'test') }}ltu-upvote-on{{ endif }}"></a>
-    <span class="ltu-counter">{{ upvoteManager.getTotal(1, 'test') }}</span>
-    <a class="ltu-downvote {{ if upvoteManager.isDownvoted(1,'test') }}ltu-downvote-on{{ endif }}"></a>
+    <a class="ltu-upvote ltu-upvote-on"></a>
+    <span class="ltu-counter">{{ voteManager.getTotal('test', '1') }}</span>
+    <a class="ltu-downvote ltu-downvote-on"></a>
 </div>
 
 

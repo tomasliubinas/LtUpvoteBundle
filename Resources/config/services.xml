@@ -11,10 +11,12 @@
         <service id="lt_upvote_bundle.utils.visitor_identifier" class="Lt\UpvoteBundle\Utils\VisitorIdentifier"/>
 
         <service id="lt_upvote_bundle.repository.vote" class="Lt\UpvoteBundle\Repository\VoteRepository">
-            <argument type="service" id="doctrine.orm.entity_manager"/>
+            <factory service="doctrine.orm.entity_manager" method="getRepository"/>
+            <argument>Lt\UpvoteBundle\Entity\Vote</argument>
         </service>
         <service id="lt_upvote_bundle.repository.vote_aggregate" class="Lt\UpvoteBundle\Repository\VoteAggregateRepository">
-            <argument type="service" id="doctrine.orm.entity_manager"/>
+            <factory service="doctrine.orm.entity_manager" method="getRepository"/>
+            <argument>Lt\UpvoteBundle\Entity\VoteAggregate</argument>
         </service>
         <service id="lt_upvote_bundle.utils.vote_manager" class="Lt\UpvoteBundle\Model\VoteManager">
             <argument type="service" id="doctrine.orm.entity_manager"/>
@@ -23,6 +25,7 @@
         </service>
 
         <service id="lt_upvote_bundle.controller.test" class="Lt\UpvoteBundle\Controller\TestController">
+            <argument type="service" id="lt_upvote_bundle.utils.vote_manager"/>
         </service>
 
         <service id="lt_upvote_bundle.controller.default" class="Lt\UpvoteBundle\Controller\DefaultController">

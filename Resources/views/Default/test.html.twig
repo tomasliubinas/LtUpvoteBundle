@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LtUpvoteBundleTest page</title>
+    <link rel="stylesheet" type="text/css" href="{{ asset('/bundles/ltupvote/css/lt-upvote.css') }}">
+</head>
+<body>
+
+<h1 style="font-size: 16px">LtUpvoteBundle test configuration</h1>
+
+<p style="margin-bottom: 10px">Try to upvote/downvote the following item, then reload this page and see if it works. The result should stay the same. </p>
+
+<div class="ltu">
+    <a class="ltu-upvote {{ if upvoteManager.isUpvoted(1,'test') }}ltu-upvote-on{{ endif }}"></a>
+    <span class="ltu-counter">{{ upvoteManager.getTotal(1, 'test') }}</span>
+    <a class="ltu-downvote {{ if upvoteManager.isDownvoted(1,'test') }}ltu-downvote-on{{ endif }}"></a>
+</div>
+
+
+<script src="{{asset('/bundles/ltupvote/js/lt-upvote.js')}}"></script>
+<script language="JavaScript"><!--
+    ltupvote.init();
+    //-->
+</script>
+
+
+</body>
+</html>
+
+
+
+
+

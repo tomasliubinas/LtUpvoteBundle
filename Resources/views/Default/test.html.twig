@@ -11,10 +11,11 @@
 
 <p style="margin-bottom: 10px">Try to upvote/downvote the following item, then reload this page and see if it works. The result should stay the same. </p>
 
+
 <div class="ltu">
-    <a class="ltu-upvote ltu-upvote-on"></a>
+    <input type="checkbox" class="ltu-upvote">
     <span class="ltu-counter">{{ voteManager.getTotal('test', '1') }}</span>
-    <a class="ltu-downvote ltu-downvote-on"></a>
+    <input type="checkbox" class="ltu-downvote">
 </div>
 
 

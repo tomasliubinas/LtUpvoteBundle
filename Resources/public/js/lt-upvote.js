@@ -6,66 +6,71 @@
             downvoteUrl: '/lt-upvote/:id/downvote/',
             resetUrl: '/lt-upvote/:id/reset/',
             actionMethod: 'GET',
-            divs: document.querySelectorAll('div.ltu'),
-            isUpvotedClass: 'ltu-upvote-on',
-            isDownvotedClass: 'ltu-downvote-on',
-            alternativeUpvoteAction: null,
-            alternativeDownvoteAction: null
+            divs: document.querySelectorAll('div.ltu')
         },
         init: function () {            this.bindUIActions();
         },
         bindUIActions: function () {
             for (var i = 0; i < this.settings.divs.length; i++) {
                 var ltuDiv = this.settings.divs[i];
-                var upvoteA = ltuDiv.querySelector('a.ltu-upvote');
-                var downvoteA = ltuDiv.querySelector('a.ltu-downvote');
-                if (this.alternativeUpvoteAction) {
-                    upvoteA.onclick = this.alternativeUpvoteAction;
-                } else {
+                var upvoteA = ltuDiv.querySelector('input.ltu-upvote');
+                var downvoteA = ltuDiv.querySelector('input.ltu-downvote');
+                if (upvoteA != null) {
                     upvoteA.onclick = this.upvoteAction;
-                }
-
-                if (this.alternativeDownvoteAction) {
-                    downvoteA.onclick = this.alternativeDownvoteAction;
                 } else {
+                    console.warn('Upvote element not found');
+                }
+                if (downvoteA != null) {
                     downvoteA.onclick = this.downvoteAction;
+                } else {
+                    console.warn('Downvote element not found');
                 }
             }
         },
         upvoteAction: function (e) {
-            var counter = e.target.parentNode.querySelector('span.ltu-counter');
+            var divLtu = e.target.parentNode;
+            var counter = divLtu.querySelector('span.ltu-counter');
             var action = 'upvote';
-            if (!e.target.classList.contains(LtUpvote.settings.isUpvotedClass)) {
-                e.target.classList.add(LtUpvote.settings.isUpvotedClass);
+            var upvoteElement = e.target;
+            var downvoteElement = divLtu.querySelector('input.ltu-downvote');
+            var isCheckedUpvote = upvoteElement.checked;
+            var isCheckedDownvote = downvoteElement.checked;
+            upvoteElement.checked = false;
+            downvoteElement.checked = false;
+            upvoteElement.checked = isCheckedUpvote;
+
+            if (isCheckedUpvote) {
                 counter.innerText++;
-                if (this.parentNode.querySelector('a.ltu-downvote').classList.contains(LtUpvote.settings.isDownvotedClass)) {
+                if (isCheckedDownvote) {
                     counter.innerText++;
-                    this.parentNode.querySelector('a.ltu-downvote').classList.remove(LtUpvote.settings.isDownvotedClass);
                 }
             } else {
-                e.target.classList.remove(LtUpvote.settings.isUpvotedClass);
                 counter.innerText--;
                 action = 'reset';
             }
-            LtUpvote.clearSelection();
             LtUpvote.performBackendAction(action, counter.dataset.ltuId);
         },
         downvoteAction: function (e) {
-            var counter = e.target.parentNode.querySelector('span.ltu-counter');
+            var divLtu = e.target.parentNode;
+            var counter = divLtu.querySelector('span.ltu-counter');
             var action = 'downvote';
-            if (!e.target.classList.contains(LtUpvote.settings.isDownvotedClass)) {
-                e.target.classList.add(LtUpvote.settings.isDownvotedClass);
+            var upvoteElement = divLtu.querySelector('input.ltu-upvote');
+            var downvoteElement = e.target;
+            var isCheckedUpvote = upvoteElement.checked;
+            var isCheckedDownvote = downvoteElement.checked;
+            upvoteElement.checked = false;
+            downvoteElement.checked = false;
+            downvoteElement.checked = isCheckedDownvote;
+
+            if (isCheckedDownvote) {
                 counter.innerText--;
-                if (this.parentNode.querySelector('a.ltu-upvote').classList.contains(LtUpvote.settings.isUpvotedClass)) {
+                if (isCheckedUpvote) {
                     counter.innerText--;
-                    this.parentNode.querySelector('a.ltu-upvote').classList.remove(LtUpvote.settings.isUpvotedClass);
                 }
             } else {
-                e.target.classList.remove(LtUpvote.settings.isDownvotedClass);
                 counter.innerText++;
                 action = 'reset';
             }
-            LtUpvote.clearSelection();
             LtUpvote.performBackendAction(action, counter.dataset.ltuId);
         },
         performBackendAction: function (action, id) {

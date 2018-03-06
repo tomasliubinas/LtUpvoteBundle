@@ -8,7 +8,9 @@
             actionMethod: 'GET',
             divs: document.querySelectorAll('div.ltu')
         },
-        init: function () {            this.bindUIActions();
+        init: function () {
+            this.bindUIActions();
+
         },
         bindUIActions: function () {
             for (var i = 0; i < this.settings.divs.length; i++) {
@@ -28,7 +30,7 @@
             }
         },
         upvoteAction: function (e) {
-            var divLtu = e.target.parentNode;
+            var divLtu = e.target.parentNode.parentNode;
             var counter = divLtu.querySelector('span.ltu-counter');
             var action = 'upvote';
             var upvoteElement = e.target;
@@ -51,7 +53,7 @@
             LtUpvote.performBackendAction(action, counter.dataset.ltuId);
         },
         downvoteAction: function (e) {
-            var divLtu = e.target.parentNode;
+            var divLtu = e.target.parentNode.parentNode;
             var counter = divLtu.querySelector('span.ltu-counter');
             var action = 'downvote';
             var upvoteElement = divLtu.querySelector('input.ltu-upvote');

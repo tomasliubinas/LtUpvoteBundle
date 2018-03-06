@@ -4,18 +4,69 @@
     <meta charset="UTF-8">
     <title>LtUpvoteBundleTest page</title>
     <link rel="stylesheet" type="text/css" href="{{ asset('/bundles/ltupvote/css/lt-upvote.css') }}">
+    <style>
+        h1.test-header {
+            font-size: 16px;
+            margin: 11px;
+        }
+
+        div.test-container {
+            border: 1px solid lightgray;
+            margin: 10px;
+        }
+
+        div.test-contents {
+            display: inline-block;
+            vertical-align: middle;
+            color: #2e6da4;
+            font-size: 18px
+        }
+    </style>
 </head>
 <body>
 
-<h1 style="font-size: 16px">LtUpvoteBundle test configuration</h1>
-
-<p style="margin-bottom: 10px">Try to upvote/downvote the following item, then reload this page and see if it works. The result should stay the same. </p>
+<h1 class="test-header">LtUpvoteBundle test page</h1>
 
 
+<div id="test-container-1" class="test-container">
+
+<!-- Start LtUpvoteBundle component code-->
 <div class="ltu">
-    <input type="checkbox" class="ltu-upvote">
-    <span class="ltu-counter">{{ voteManager.getTotal('test', '1') }}</span>
-    <input type="checkbox" class="ltu-downvote">
+    <div>
+        <input type="checkbox" id="ltu-checkbox-upvote-1" class="ltu-hidden">
+        <label for="ltu-checkbox-upvote-1" class="ltu-upvote"></label>
+    </div>
+    <span class="ltu-counter">0</span>
+    <div>
+        <input type="checkbox" id="ltu-checkbox-downvote-1" class="ltu-hidden">
+        <label for="ltu-checkbox-downvote-1" class="ltu-downvote"></label>
+    </div>
+</div>
+<!-- End LtUpvoteBundle component code-->
+
+
+<div class="test-contents">Your main focus for today</div>
+</div>
+
+
+<div id="test-container-2" class="test-container">
+
+    <!-- Start LtUpvoteBundle component code-->
+    <div class="ltu">
+        <div>
+            <input type="checkbox" id="ltu-checkbox-upvote-2" class="ltu-hidden">
+            <label for="ltu-checkbox-upvote-2" class="ltu-upvote"></label>
+        </div>
+        <span class="ltu-counter">0</span>
+        <div>
+            <input type="checkbox" id="ltu-checkbox-downvote-2" class="ltu-hidden">
+            <label for="ltu-checkbox-downvote-2" class="ltu-downvote"></label>
+        </div>
+    </div>
+    <!-- End LtUpvoteBundle component code-->
+
+
+    <div class="test-contents">Daily weather forecast for your location</div>
 </div>
 
 
@@ -24,6 +75,7 @@
     ltupvote.init();
     //-->
 </script>
+
 
 
 </body>

@@ -5,8 +5,12 @@
     <title>LtUpvoteBundleTest page</title>
     <link rel="stylesheet" type="text/css" href="{{ asset('/bundles/ltupvote/css/lt-upvote.css') }}">
     <style>
-        h1.test-header {
+        h1 {
             font-size: 16px;
+            margin: 11px;
+        }
+
+        p {
             margin: 11px;
         }
 
@@ -27,19 +31,19 @@
 
 <h1 class="test-header">LtUpvoteBundle test page</h1>
 
-This test page is available on dev environment only.
+<p class="test-paragraph">This test page is served for dev environment only.</p>
 
 <div id="test-container-1" class="test-container">
 
 <!-- Start LtUpvoteBundle component code-->
 <div class="ltu">
     <div>
-        <input type="checkbox" id="ltu-checkbox-upvote-1" class="ltu-hidden">
+        <input type="checkbox" id="ltu-checkbox-upvote-1" class="ltu-hidden ltu-upvote">
         <label for="ltu-checkbox-upvote-1" class="ltu-upvote"></label>
     </div>
     <span class="ltu-counter">0</span>
     <div>
-        <input type="checkbox" id="ltu-checkbox-downvote-1" class="ltu-hidden">
+        <input type="checkbox" id="ltu-checkbox-downvote-1" class="ltu-hidden ltu-downvote">
         <label for="ltu-checkbox-downvote-1" class="ltu-downvote"></label>
     </div>
 </div>
@@ -55,12 +59,12 @@ This test page is available on dev environment only.
     <!-- Start LtUpvoteBundle component code-->
     <div class="ltu">
         <div>
-            <input type="checkbox" id="ltu-checkbox-upvote-2" class="ltu-hidden">
+            <input type="checkbox" id="ltu-checkbox-upvote-2" class="ltu-hidden ltu-upvote">
             <label for="ltu-checkbox-upvote-2" class="ltu-upvote"></label>
         </div>
         <span class="ltu-counter">0</span>
         <div>
-            <input type="checkbox" id="ltu-checkbox-downvote-2" class="ltu-hidden">
+            <input type="checkbox" id="ltu-checkbox-downvote-2" class="ltu-hidden ltu-downvote">
             <label for="ltu-checkbox-downvote-2" class="ltu-downvote"></label>
         </div>
     </div>

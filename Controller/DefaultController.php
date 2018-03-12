@@ -90,4 +90,16 @@ class DefaultController extends Controller
         $this->voteManager->reset($subjectId, $subjectType, $userId, $visitorId);
         return new Response('reset');
     }
+
+    public function renderUpvote(Request $request, $subjectId, $subjectType)
+    {
+        $totalValue = $this->voteManager->getTotalValue($subjectType, $subjectId);
+
+        $params = [
+            'id' => $subjectId,
+            'type' => $subjectType,
+            'total' => $totalValue,
+        ];
+        return $this->render('@LtUpvote/Default/upvote.html.twig', $params);
+    }
 }

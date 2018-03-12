@@ -2,9 +2,9 @@
     'use strict';
     var LtUpvote = {
         settings: {
-            upvoteUrl: '/lt-upvote/:id/upvote/',
-            downvoteUrl: '/lt-upvote/:id/downvote/',
-            resetUrl: '/lt-upvote/:id/reset/',
+            upvoteUrl: '/lt-upvote/:type/:id/upvote/',
+            downvoteUrl: '/lt-upvote/:type/:id/downvote/',
+            resetUrl: '/lt-upvote/:type/:id/reset/',
             actionMethod: 'GET',
             divs: document.querySelectorAll('div.ltu')
         },
@@ -73,17 +73,17 @@
                 counter.innerText++;
                 action = 'reset';
             }
-            LtUpvote.performBackendAction(action, counter.dataset.ltuId);
+            LtUpvote.performBackendAction(action, counter.dataset.ltuType, counter.dataset.ltuId);
         },
-        performBackendAction: function (action, id) {
+        performBackendAction: function (action, type, id) {
             if (action === 'upvote' && this.settings.upvoteUrl !== null) {
-                this.callUrl(this.renderUrl(this.settings.upvoteUrl, id));
+                this.callUrl(this.renderUrl(this.settings.upvoteUrl, type, id));
             }
             if (action === 'downvote' && this.settings.downvoteUrl !== null) {
-                this.callUrl(this.renderUrl(this.settings.downvoteUrl, id));
+                this.callUrl(this.renderUrl(this.settings.downvoteUrl, type, id));
             }
             if (action === 'reset' && this.settings.resetUrl !== null) {
-                this.callUrl(this.renderUrl(this.settings.resetUrl, id));
+                this.callUrl(this.renderUrl(this.settings.resetUrl, type, id));
             }
         },
         callUrl: function (url) {
@@ -91,8 +91,8 @@
             xhttp.open(this.settings.actionMethod, url, true);
             xhttp.send();
         },
-        renderUrl: function (url, id) {
-            return url.replace(':id', id);
+        renderUrl: function (url, type, id) {
+            return url.replace(':id', id).replace(':type', type);
         },
         clearSelection: function () {
             if (window.getSelection) {

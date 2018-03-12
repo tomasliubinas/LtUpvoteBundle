@@ -107,6 +107,39 @@ class VoteManager
     }
 
     /**
+     * Find Vote by subject and visitor
+     *
+     * @param string $subjectType
+     * @param string $subjectId
+     * @param string|null $userId
+     * @param string $visitorId
+     *
+     * @return Vote|null
+     */
+    public function findVote($subjectType, $subjectId, $userId, $visitorId)
+    {
+        if ($userId !== null) {
+            return $this->voteRepository->findOneBySubjectAndUserId($subjectType, $subjectId, $userId);
+        } else {
+            return $this->voteRepository->findOneBySubjectAndVisitorId($subjectType, $subjectId, $visitorId);
+        }
+    }
+
+    /**
+     * Find VoteAggregate by subject and visitor
+     *
+     * @param string $subjectType
+     * @param string $subjectId
+     *
+     * @return VoteAggregate|null
+     */
+    public function findVoteAggregate($subjectType, $subjectId)
+    {
+        $voteAggregate = $this->voteAggregateRepository->findOneBySubject($subjectType, $subjectId);
+        return $voteAggregate;
+    }
+
+    /**
      * @param int $voteValue
      * @param string $subjectType
      * @param string $subjectId
@@ -145,6 +178,8 @@ class VoteManager
     }
 
     /**
+     * Get Vote object by subject and visitor
+     *
      * @param string $subjectType
      * @param string $subjectId
      * @param string|null $userId
@@ -169,30 +204,13 @@ class VoteManager
      */
     protected function getVoteAggregate($subjectType, $subjectId)
     {
-        $voteAggregate = $this->voteAggregateRepository->findOneBySubject($subjectType, $subjectId);
+        $voteAggregate = $this->findVoteAggregate($subjectType, $subjectId);
         if ($voteAggregate === null) {
             $voteAggregate = (new VoteAggregate())
                 ->setSubjectId($subjectId)
                 ->setSubjectType($subjectType);
         }
         return $voteAggregate;
-    }
-
-    /**
-     * @param string $subjectType
-     * @param string $subjectId
-     * @param string|null $userId
-     * @param string $visitorId
-     *
-     * @return Vote|null
-     */
-    protected function findVote($subjectType, $subjectId, $userId, $visitorId)
-    {
-        if ($userId !== null) {
-            return $this->voteRepository->findOneBySubjectAndUserId($subjectType, $subjectId, $userId);
-        } else {
-            return $this->voteRepository->findOneBySubjectAndVisitorId($subjectType, $subjectId, $visitorId);
-        }
     }
 
     /**
@@ -229,4 +247,5 @@ class VoteManager
             $voteAggregate->setTotalDownvotes($voteAggregate->getTotalDownvotes() - 1);
         }
     }
+
 }

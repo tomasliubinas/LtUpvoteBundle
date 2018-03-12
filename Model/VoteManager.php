@@ -138,6 +138,8 @@ class VoteManager
             $voteAggregate->setTotalDownvotes($voteAggregate->getTotalDownvotes() - 1);
         }
 
+        $vote->setUpdatedAt(new \DateTime());
+
         $this->entityManager->persist($vote);
         $this->entityManager->persist($voteAggregate);
     }

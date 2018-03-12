@@ -20,7 +20,7 @@ input[type=checkbox].ltu-hidden ~ label.ltu-upvote::before {
     vertical-align: bottom;
     height: 1em;
     background-image: url('data:image/svg+xml;utf8,<svg width="16" height="32" xmlns="http://www.w3.org/2000/svg"> <path id="up_off" d="m0,12l8,-8l8,8l-16,0z" fill="#ddd"/></svg>');
-    background-repeat:no-repeat;
+    background-repeat: no-repeat;
 }
 
 input[type=checkbox].ltu-hidden:checked ~ label.ltu-upvote::before {

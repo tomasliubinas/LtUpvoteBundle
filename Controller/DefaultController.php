@@ -52,6 +52,7 @@ class DefaultController extends Controller
         $userId = $this->userProvider->getUserId();
         $visitorId = $this->visitorIdentifier->getVisitorId($request);
         $this->voteManager->upvote($subjectId, $subjectType, $userId, $visitorId);
+        $this->getDoctrine()->getManager()->flush();
         return new Response(json_encode('upvoted'));
     }
 
@@ -71,6 +72,7 @@ class DefaultController extends Controller
         $userId = $this->userProvider->getUserId();
         $visitorId = $this->visitorIdentifier->getVisitorId($request);
         $this->voteManager->downvote($subjectId, $subjectType, $userId, $visitorId);
+        $this->getDoctrine()->getManager()->flush();
         return new Response('downvoted');
     }
 
@@ -88,6 +90,7 @@ class DefaultController extends Controller
         $userId = $this->userProvider->getUserId();
         $visitorId = $this->visitorIdentifier->getVisitorId($request);
         $this->voteManager->reset($subjectId, $subjectType, $userId, $visitorId);
+        $this->getDoctrine()->getManager()->flush();
         return new Response('reset');
     }
 

@@ -19,12 +19,11 @@ input[type=checkbox].ltu-hidden ~ label.ltu-upvote::before {
     width: 1em;
     vertical-align: bottom;
     height: 1em;
-    background-image: url('data:image/svg+xml;utf8,<svg width="16" height="32" xmlns="http://www.w3.org/2000/svg"> <path id="up_off" d="m0,12l8,-8l8,8l-16,0z" fill="#ddd"/></svg>');
-    background-repeat: no-repeat;
+    background: no-repeat url('data:image/svg+xml;utf8,<svg width="16" height="32" xmlns="http://www.w3.org/2000/svg"><path id="up_off" d="m0,12l8,-8l8,8l-16,0z" fill="rgb(208,208,208)"/></svg>');
 }
 
 input[type=checkbox].ltu-hidden:checked ~ label.ltu-upvote::before {
-    background-image: url('data:image/svg+xml;utf8,<svg width="16" height="32" xmlns="http://www.w3.org/2000/svg"> <path id="up_off" d="m0,12l8,-8l8,8l-16,0z" fill="#d52"/></svg>');
+    background: no-repeat url('data:image/svg+xml;utf8,<svg width="16" height="32" xmlns="http://www.w3.org/2000/svg"><path id="up_off" d="m0,12l8,-8l8,8l-16,0z" fill="rgb(208,80,32)"/></svg>');
 }
 
 input[type=checkbox].ltu-hidden ~ label.ltu-downvote::before {
@@ -34,12 +33,11 @@ input[type=checkbox].ltu-hidden ~ label.ltu-downvote::before {
     width: 1em;
     vertical-align: bottom;
     height: 1em;
-    background-image: url('data:image/svg+xml;utf8,<svg width="16" height="16" xmlns="http://www.w3.org/2000/svg"> <path id="dn_off" d="m0,4l8,8l8,-8l-16,0z" fill="#ddd"/> </svg>');
-    background-repeat:no-repeat;
+    background: no-repeat url('data:image/svg+xml;utf8,<svg width="16" height="16" xmlns="http://www.w3.org/2000/svg"><path id="dn_off" d="m0,2l8,8l8,-8l-16,0z" fill="rgb(208,208,208)"/></svg>');
 }
 
 input[type=checkbox].ltu-hidden:checked ~ label.ltu-downvote::before {
-    background-image: url('data:image/svg+xml;utf8,<svg width="16" height="16" xmlns="http://www.w3.org/2000/svg"> <path id="dn_off" d="m0,4l8,8l8,-8l-16,0z" fill="#59d"/> </svg>');
+    background: no-repeat url('data:image/svg+xml;utf8,<svg width="16" height="16" xmlns="http://www.w3.org/2000/svg"><path id="dn_off" d="m0,2l8,8l8,-8l-16,0z" fill="rgb(80,144,208)"/></svg>');
 }
 
 .ltu-counter {

@@ -42,7 +42,7 @@ Test page Controller is using isolated test configuration.
 The following is an example yml configuration defining and enabling 2 content types `blog-post` and
  `comment` to be used by LtUpvoteBundle:
 
-```
+```yml
     # app/config/config.yml
     lt-upvote-bundle:
         types:

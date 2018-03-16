@@ -91,7 +91,7 @@ To include Voting component in your project you need to:
 In order for the component to be properly initialized and displayed you would need to render
 the component over the Controller:  
 
-```json
+```
 {{ render(
     controller(
         'lt_upvote_bundle.controller.default:renderVoteComponent',

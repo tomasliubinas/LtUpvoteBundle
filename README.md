@@ -9,14 +9,14 @@ you basically need to support different types of content for that).
 - Vanilla JavaScript frontend component implementation
 - JavaScript events on authorized/unauthorized votes.
 
-##System requirements
+## System requirements
 
 - Symfony 3.0, 4.0
 - Doctrine bundle
 - Configured database connection
 
 
-##Installation
+## Installation
 
 * LtUpvoteBundle could be installed over Composer:
 
@@ -38,7 +38,7 @@ Run Bundle test page in order to test your installation:
 Test page Controller is using isolated test configuration.
  
 
-##Configuration
+## Configuration
 
 The following is an example yml configuration defining and enabling 2 content types `blog-post` and
  `comment` to be used by LtUpvoteBundle:
@@ -57,9 +57,9 @@ The following is an example yml configuration defining and enabling 2 content ty
 
 ```
 
-##Basic usage
+## Basic usage
 
-In order to include Voting component in your project you need to:
+To include Voting component in your project you need to:
 
 * Include basic CSS file asset within your twig template html document `<head>` section:
 
@@ -102,7 +102,7 @@ Where:
 
 See [test.html.twig] file for example implementation.
 
-##Styling
+## Styling
 
 Frontend Component files:
 * Base JavaScipt module:
@@ -114,14 +114,14 @@ Frontend Component files:
 
 The bundle comes with a couple of predefined sample style clasess which could be reused or adapted as required.
 
-##JavaScript Event handling
+## JavaScript Event handling
 
 ...
 
-##Support
+## Support
 Commercial support and custom adaptation are available from the fork owner. 
 
 
-##License
+## License
 
 This bundle is under the MIT license. See the complete license in the bundle.

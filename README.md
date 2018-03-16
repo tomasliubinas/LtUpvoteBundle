@@ -1,7 +1,7 @@
 # LtUpvoteBundle
 Provides thumbs up and thumbs down functionality for Symfony 3.0 project
 
-Features:
+#### Features
 - Multiple content type support (as in upvote blog post and separately upvote comments, 
 you basically need to support different types of content for that).
 - Allow/disable anonymous upvote or/and downvote

@@ -20,19 +20,25 @@ you basically need to support different types of content for that).
 
 * LtUpvoteBundle could be installed over Composer:
 
-    `composer require liubinas/upvote-bundle`
+ ```
+ composer require liubinas/upvote-bundle
+ ```
 
 * Include the following lines into your AppKernel.php class file:
 
-    `$bundles[] = Lt\UpvoteBundle\LtUpvoteBundle();`
+ ```php
+ $bundles[] = Lt\UpvoteBundle\LtUpvoteBundle();
+ ```
 
 * Create required database tables:
 
-    `> bin/console  doctrine:schema:update`
+ ```
+ $ bin/console  doctrine:schema:update
+ ```
 
 Run Bundle test page in order to test your installation:
  
- `http://<dev-host>/lt-upvote-test`
+    [http://<dev-host>/lt-upvote-test]
 
 Test page Controller is using isolated test configuration.
  
@@ -62,36 +68,40 @@ To include Voting component in your project you need to:
 
 * Include basic CSS file asset within your twig template html document `<head>` section:
 
-    `<link rel="stylesheet" type="text/css" href="{{ asset('/bundles/ltupvote/css/lt-upvote.css') }}">`
+ ```html
+ <link rel="stylesheet" type="text/css" href="{{ asset('/bundles/ltupvote/css/lt-upvote.css') }}">
+```
 
 * Include JavaScrip module file:
 
-    `<script src="{{asset('/bundles/ltupvote/js/lt-upvote.js')}}"></script>`
+ ```html
+ <script src="{{asset('/bundles/ltupvote/js/lt-upvote.js')}}"></script>
+ ```
 
 * Initialize JavaScript module:
 
- ```
-    <script language="JavaScript"><!--
-        ltupvote.init();
-        //-->
-    </script>
+ ```html
+ <script language="JavaScript"><!--
+     ltupvote.init();
+     //-->
+ </script>
  ```
 
 * Include one or more front end components into your page. 
 In order for the component to be properly initialized and displayed you would need to render
 the component over the Controller:  
 
-```
-    {{ render(
-        controller(
-            'lt_upvote_bundle.controller.default:renderVoteComponent',
-            {
-                'subjectType': 'TYPE',
-                'subjectId': 'ID',
-                'css_class': 'CLASS' 
-            }
-        )
-    ) }}
+```twig
+{{ render(
+    controller(
+        'lt_upvote_bundle.controller.default:renderVoteComponent',
+        {
+            'subjectType': 'TYPE',
+            'subjectId': 'ID',
+            'css_class': 'CLASS' 
+        }
+    )
+) }}
 ```
 
 Where:

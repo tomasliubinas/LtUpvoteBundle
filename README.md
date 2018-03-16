@@ -26,8 +26,7 @@ you basically need to support different types of content for that).
 
     `$bundles[] = Lt\UpvoteBundle\LtUpvoteBundle();`
 
-* Create required database tables (you'll need to provide `--force` parameter in order
-for database schema to be actually updated):
+* Create required database tables:
 
     `> bin/console  doctrine:schema:update`
 

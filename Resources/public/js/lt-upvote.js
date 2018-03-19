@@ -50,6 +50,7 @@
                 counter.innerText--;
                 action = 'reset';
             }
+            LtUpvote.dispatchCustomEvent(counter, action);
             LtUpvote.performBackendAction(action, counter.dataset.ltuId);
         },
         downvoteAction: function (e) {
@@ -73,7 +74,20 @@
                 counter.innerText++;
                 action = 'reset';
             }
+            LtUpvote.dispatchCustomEvent(counter, action);
             LtUpvote.performBackendAction(action, counter.dataset.ltuType, counter.dataset.ltuId);
+        },
+        dispatchCustomEvent: function (counter, action) {
+            var event = new CustomEvent('ltu', {
+                detail: {
+                    id: counter.dataset.ltuId,
+                    type: counter.dataset.ltuType,
+                    counter: counter.innerText,
+                    action: action,
+                    anonymous: false
+                }
+            });
+            dispatchEvent(event);
         },
         performBackendAction: function (action, type, id) {
             if (action === 'upvote' && this.settings.upvoteUrl !== null) {

@@ -6,8 +6,9 @@ Provides thumbs up and thumbs down functionality for Symfony 3.0 project
 you basically need to support different types of content for that).
 - Allow/disable anonymous upvote or/and downvote
 - Optionally show upvote button only
-- Vanilla JavaScript frontend component implementation
+- Pure JavaScript frontend component implementation
 - JavaScript events on authorized/unauthorized votes.
+- Unit tested
 
 ## System requirements
 
@@ -36,35 +37,38 @@ you basically need to support different types of content for that).
  $ bin/console  doctrine:schema:update
  ```
 
-Run Bundle test page in order to test your installation:
+Start webserver and run the test page to test your installation:
  
     [http://<dev-host>/lt-upvote-test]
 
-Test page Controller is using isolated test configuration.
- 
 
 ## Configuration
 
-The following is an example yml configuration defining and enabling 2 content types `blog-post` and
+The following is an example yml configuration defining 2 basic content types `blog-post` and
  `comment` to be used by LtUpvoteBundle:
 
 ```yml
     # app/config/config.yml
     lt-upvote-bundle:
         types:
-            # Example:
             - blog-post: # Custom type
                 allow_upvote: true
                 allow_downvote: true
                 allow_anonymous_upvote: true
                 allow_anonymous_downvote: false
-            - comment
+            - comment # Custom type having the default values 
 
 ```
 
 ## Basic usage
 
-To include Voting component in your project you need to:
+Frontend voting component is implemented in a single dependency free JavaScript file.
+It also requires basic element styling defined in a CSS file which could be used as it is 
+or adopted according to custom requirements. 
+
+For the following steps it is assumed you are using Twig template engine and 
+Assetic asset management package. However the files could be included for different
+packages in a similar fashion:
 
 * Include basic CSS file asset within your twig template html document `<head>` section:
 
@@ -109,19 +113,7 @@ Where:
  * `ID` is quoted string value representing Subject ID.
  * `CLASS` is is component specific styling CSS class. Predefined styles are `Style1` and `Style2`. 
 
-See [test.html.twig] file for example implementation.
-
-## Styling
-
-Frontend Component files:
-* Base JavaScipt module:
-    `Resources/public/js/lt-upvote.js`   
-* Base CSS file:
-    `Resources/public/css/lt-upvote.css` 
-* Twig template:
-    `Resources/views/Default/upvote.html.twig`
-
-The bundle comes with a couple of predefined sample style clasess which could be reused or adapted as required.
+See (test.html.twig)[Resources/views/Default/test.html.twig] file for example implementation.
 
 ## JavaScript Custom Event handling
 

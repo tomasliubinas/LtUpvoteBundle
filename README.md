@@ -1,7 +1,7 @@
 # LtUpvoteBundle
 Provides thumbs up and thumbs down functionality for Symfony 3.0 project
 
-Features:
+#### Features
 - Multiple content type support (as in upvote blog post and separately upvote comments, 
 you basically need to support different types of content for that).
 - Allow/disable anonymous upvote or/and downvote
@@ -9,41 +9,46 @@ you basically need to support different types of content for that).
 - Vanilla JavaScript frontend component implementation
 - JavaScript events on authorized/unauthorized votes.
 
-##System requirements
+## System requirements
 
 - Symfony 3.0, 4.0
 - Doctrine bundle
 - Configured database connection
 
 
-##Installation
+## Installation
 
 * LtUpvoteBundle could be installed over Composer:
 
-    `composer require liubinas/upvote-bundle`
+ ```
+ composer require liubinas/upvote-bundle
+ ```
 
 * Include the following lines into your AppKernel.php class file:
 
-    `$bundles[] = Lt\UpvoteBundle\LtUpvoteBundle();`
+ ```php
+ $bundles[] = Lt\UpvoteBundle\LtUpvoteBundle();
+ ```
 
-* Create required database tables (you'll need to provide `--force` parameter in order
-for database schema to be actually updated):
+* Create required database tables:
 
-    `> bin/console  doctrine:schema:update`
+ ```
+ $ bin/console  doctrine:schema:update
+ ```
 
 Run Bundle test page in order to test your installation:
  
- `http://<dev-host>/lt-upvote-test`
+    [http://<dev-host>/lt-upvote-test]
 
 Test page Controller is using isolated test configuration.
  
 
-##Configuration
+## Configuration
 
 The following is an example yml configuration defining and enabling 2 content types `blog-post` and
  `comment` to be used by LtUpvoteBundle:
 
-```
+```yml
     # app/config/config.yml
     lt-upvote-bundle:
         types:
@@ -57,25 +62,29 @@ The following is an example yml configuration defining and enabling 2 content ty
 
 ```
 
-##Basic usage
+## Basic usage
 
-In order to include Voting component in your project you need to:
+To include Voting component in your project you need to:
 
 * Include basic CSS file asset within your twig template html document `<head>` section:
 
-    `<link rel="stylesheet" type="text/css" href="{{ asset('/bundles/ltupvote/css/lt-upvote.css') }}">`
+ ```html
+ <link rel="stylesheet" type="text/css" href="{{ asset('/bundles/ltupvote/css/lt-upvote.css') }}">
+```
 
 * Include JavaScrip module file:
 
-    `<script src="{{asset('/bundles/ltupvote/js/lt-upvote.js')}}"></script>`
+ ```html
+ <script src="{{asset('/bundles/ltupvote/js/lt-upvote.js')}}"></script>
+ ```
 
 * Initialize JavaScript module:
 
- ```
-    <script language="JavaScript"><!--
-        ltupvote.init();
-        //-->
-    </script>
+ ```html
+ <script language="JavaScript"><!--
+     ltupvote.init();
+     //-->
+ </script>
  ```
 
 * Include one or more front end components into your page. 
@@ -83,16 +92,16 @@ In order for the component to be properly initialized and displayed you would ne
 the component over the Controller:  
 
 ```
-    {{ render(
-        controller(
-            'lt_upvote_bundle.controller.default:renderVoteComponent',
-            {
-                'subjectType': 'TYPE',
-                'subjectId': 'ID',
-                'css_class': 'CLASS' 
-            }
-        )
-    ) }}
+{{ render(
+    controller(
+        'lt_upvote_bundle.controller.default:renderVoteComponent',
+        {
+            'subjectType': 'TYPE',
+            'subjectId': 'ID',
+            'css_class': 'CLASS' 
+        }
+    )
+) }}
 ```
 
 Where:
@@ -102,7 +111,7 @@ Where:
 
 See [test.html.twig] file for example implementation.
 
-##Styling
+## Styling
 
 Frontend Component files:
 * Base JavaScipt module:
@@ -114,7 +123,7 @@ Frontend Component files:
 
 The bundle comes with a couple of predefined sample style clasess which could be reused or adapted as required.
 
-##JavaScript Custom Event handling
+## JavaScript Custom Event handling
 
 On each upvote/downvote action custom event is dispatched. The type of the event is `ltu`.
 Visitor upvote/downvote action could be handled by adding custom event listener and checking event `detail` property if needed.
@@ -130,6 +139,6 @@ addEventListener('ltu', function(event) {
 })
 ```   
 
-##License
+## License
 
 This bundle is under the MIT license. See the complete license in the bundle.

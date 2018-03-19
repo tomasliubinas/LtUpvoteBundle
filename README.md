@@ -70,17 +70,17 @@ For the following steps it is assumed you are using Twig template engine and
 Assetic asset management package. However the files could be included for different
 packages in a similar fashion:
 
-* Include basic CSS file asset within your twig template html document `<head>` section:
-
- ```html
- <link rel="stylesheet" type="text/css" href="{{ asset('/bundles/ltupvote/css/lt-upvote.css') }}">
-```
-
 * Include JavaScrip module file:
 
  ```html
  <script src="{{asset('/bundles/ltupvote/js/lt-upvote.js')}}"></script>
  ```
+
+* Include basic CSS file asset within your twig template html document `<head>` section:
+
+ ```html
+ <link rel="stylesheet" type="text/css" href="{{ asset('/bundles/ltupvote/css/lt-upvote.css') }}">
+```
 
 * Initialize JavaScript module:
 
@@ -113,7 +113,7 @@ Where:
  * `ID` is quoted string value representing Subject ID.
  * `CLASS` is is component specific styling CSS class. Predefined styles are `Style1` and `Style2`. 
 
-See (test.html.twig)[Resources/views/Default/test.html.twig] file for example implementation.
+See [test.html.twig](Resources/views/Default/test.html.twig) file for example implementation.
 
 ## JavaScript Custom Event handling
 

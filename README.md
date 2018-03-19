@@ -114,13 +114,21 @@ Frontend Component files:
 
 The bundle comes with a couple of predefined sample style clasess which could be reused or adapted as required.
 
-##JavaScript Event handling
+##JavaScript Custom Event handling
 
-...
+On each upvote/downvote action custom event is dispatched. The type of the event is `ltu`.
+Visitor upvote/downvote action could be handled by adding custom event listener and checking event `detail` property if needed.
+The following example shows anonymous downvote handling: 
 
-##Support
-Commercial support and custom adaptation are available from the fork owner. 
-
+```JavaScript
+addEventListener('ltu', function(event) {
+    var action = event.detail.action;
+    var anonymous = event.detail.anonymous;
+    if (anonymous && action === 'downvote') {
+        alert('This action is permitted for the logged in visitors only.');
+    }
+})
+```   
 
 ##License
 

@@ -2,7 +2,6 @@
 
 namespace Lt\UpvoteBundle\DependencyInjection;
 
-use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
@@ -21,23 +20,9 @@ class LtUpvoteExtension extends Extension
     public function load(array $configs, ContainerBuilder $container)
     {
         $configuration = new Configuration();
-        $this->processConfiguration($configuration, $configs);
+        $loadedConfigs = $this->processConfiguration($configuration, $configs);
 
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
-    }
-
-    public function getConfigTreeBuilder()
-    {
-        $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('lt_upvote');
-
-        $rootNode->children()
-            ->arrayNode('content_types')
-                ->beforeNormalization()->ifString()->then(function ($v) { return array($v); })->end()
-                ->prototype('scalar')->end()
-        ;
-
-        return $treeBuilder;
     }
 }

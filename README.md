@@ -51,12 +51,12 @@ The following is an example yml configuration defining 2 basic content types `bl
     # app/config/config.yml
     lt-upvote-bundle:
         types:
-            - blog-post: # Custom type
+            blog-post: # Custom type
                 allow_upvote: true
                 allow_downvote: true
                 allow_anonymous_upvote: true
                 allow_anonymous_downvote: false
-            - comment # Custom type having the default values 
+            comment # Custom type having the default values 
 
 ```
 

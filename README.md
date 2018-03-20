@@ -133,4 +133,4 @@ addEventListener('ltu', function(event) {
 
 ## License
 
-This bundle is under the MIT license. See the complete license in the bundle.
+This bundle is under the MIT license. See the complete license in [LICENSE](LICENSE) file.

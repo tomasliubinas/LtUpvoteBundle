@@ -2,7 +2,6 @@
 
 namespace Lt\UpvoteBundle\Utils;
 
-use Lt\UpvoteBundle\Exception\LtUpvoteBundleException;
 use Symfony\Component\Security\Core\Authentication\Token\AnonymousToken;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -39,8 +38,6 @@ class UserProvider
     /**
      * Returns authorised user identifier
      *
-     * @throws LtUpvoteBundleException
-     *
      * @return int|null
      */
     public function getUserId()
@@ -48,7 +45,7 @@ class UserProvider
         $user = $this->getUser();
         if ($user !== null) {
             if (!method_exists($user, 'getId')) {
-               throw new LtUpvoteBundleException('User must be identified');
+               return $user->getUsername();
             }
             return $user->getId();
         }

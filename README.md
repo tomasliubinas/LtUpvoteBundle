@@ -52,8 +52,8 @@ The following is an example yml configuration defining 2 basic content types `bl
     lt-upvote-bundle:
         types:
             blog-post: # Custom type
-                allow_upvote: true
-                allow_downvote: true
+                show_upvote: true
+                show_downvote: true
                 allow_anonymous_upvote: true
                 allow_anonymous_downvote: false
             comment # Custom type having the default values all true

@@ -22,6 +22,7 @@
             <argument type="service" id="doctrine.orm.entity_manager"/>
             <argument type="service" id="lt_upvote_bundle.repository.vote"/>
             <argument type="service" id="lt_upvote_bundle.repository.vote_aggregate"/>
+            <argument>%lt-upvote.types%</argument>
         </service>
 
         <service id="lt_upvote_bundle.controller.test" class="Lt\UpvoteBundle\Controller\TestController">

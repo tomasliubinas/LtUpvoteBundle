@@ -5,7 +5,7 @@ namespace Lt\UpvoteBundle\Model;
 use Doctrine\ORM\EntityManager;
 use Lt\UpvoteBundle\Entity\Vote;
 use Lt\UpvoteBundle\Entity\VoteAggregate;
-
+use Lt\UpvoteBundle\Exception\PermissionViolationException;
 use Lt\UpvoteBundle\Exception\UniqueConstraintViolationException;
 use Lt\UpvoteBundle\Repository\VoteAggregateRepository;
 use Lt\UpvoteBundle\Repository\VoteRepository;
@@ -28,18 +28,39 @@ class VoteManager
     private $voteAggregateRepository;
 
     /**
+     * @var array
+     */
+    private $types;
+
+    /**
      * @param EntityManager $entityManager
      * @param VoteRepository $voteRepository
      * @param VoteAggregateRepository $voteAggregateRepository
+     * @param array $types
      */
     public function __construct(
         EntityManager $entityManager,
         VoteRepository $voteRepository,
-        VoteAggregateRepository $voteAggregateRepository
+        VoteAggregateRepository $voteAggregateRepository,
+        array $types
     ) {
         $this->voteRepository = $voteRepository;
         $this->voteAggregateRepository = $voteAggregateRepository;
         $this->entityManager = $entityManager;
+        $this->types = $types;
+    }
+
+    /**
+     * Set available subject type configuration. Provided in bundle configuration array format.
+     *
+     * @param array $types
+     *
+     * @return VoteManager
+     */
+    public function setTypes($types)
+    {
+        $this->types = $types;
+        return $this;
     }
 
     /**
@@ -114,10 +135,16 @@ class VoteManager
      * @param string|null $userId
      * @param string $visitorId
      *
+     * @throws PermissionViolationException
+     *
      * @return Vote|null
      */
     public function findVote($subjectType, $subjectId, $userId, $visitorId)
     {
+        if (!$this->isTypeAvailable($subjectType)) {
+            throw new PermissionViolationException(sprintf("Subject type '%s' is not available. Please provide configuration for this type", $subjectType));
+        }
+
         if ($userId !== null) {
             return $this->voteRepository->findOneBySubjectAndUserId($subjectType, $subjectId, $userId);
         } else {
@@ -131,13 +158,32 @@ class VoteManager
      * @param string $subjectType
      * @param string $subjectId
      *
+     * @throws PermissionViolationException
+     *
      * @return VoteAggregate|null
      */
     public function findVoteAggregate($subjectType, $subjectId)
     {
+        if (!$this->isTypeAvailable($subjectType)) {
+            throw new PermissionViolationException(sprintf("Subject type '%s' is not available. Please provide configuration for this type", $subjectType));
+        }
+
         $voteAggregate = $this->voteAggregateRepository->findOneBySubject($subjectType, $subjectId);
         return $voteAggregate;
     }
+
+    /**
+     * Checks if this subject type is available
+     *
+     * @param string $subjectType
+     *
+     * @return bool
+     */
+    public function isTypeAvailable($subjectType)
+    {
+        return isset($this->types[$subjectType]);
+    }
+
 
     /**
      * @param int $voteValue

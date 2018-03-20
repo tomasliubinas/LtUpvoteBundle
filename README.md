@@ -56,7 +56,7 @@ The following is an example yml configuration defining 2 basic content types `bl
                 allow_downvote: true
                 allow_anonymous_upvote: true
                 allow_anonymous_downvote: false
-            comment # Custom type having the default values 
+            comment # Custom type having the default values all true
 
 ```
 

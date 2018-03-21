@@ -9,7 +9,6 @@ class TypeAccess
     const ALLOW_ANONYMOUS_UPVOTE = 'allow_anonymous_upvote';
     const ALLOW_ANONYMOUS_DOWNVOTE = 'allow_anonymous_downvote';
 
-
     /**
      * @param string $type
      * @param array $availableTypes

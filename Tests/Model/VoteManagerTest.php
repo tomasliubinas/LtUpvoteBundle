@@ -5,6 +5,7 @@ namespace Lt\UpvoteBundle\Tests\Model;
 use Doctrine\ORM\EntityManager;
 use Lt\UpvoteBundle\Entity\Vote;
 use Lt\UpvoteBundle\Entity\VoteAggregate;
+use Lt\UpvoteBundle\Model\TypeAccess;
 use Lt\UpvoteBundle\Model\VoteManager;
 use Lt\UpvoteBundle\Repository\VoteAggregateRepository;
 use Lt\UpvoteBundle\Repository\VoteRepository;
@@ -28,6 +29,16 @@ class VoteManagerTest extends TestCase
     private $voteAggregateRepository;
 
     /**
+     * @var TypeAccess|\PHPUnit_Framework_MockObject_MockObject
+     */
+    private $typeAccess;
+
+    /**
+     * @var array
+     */
+    private $types;
+
+    /**
      * @var VoteManager
      */
     private $voteManager;
@@ -37,7 +48,22 @@ class VoteManagerTest extends TestCase
         $this->entityManager = $this->createMock(EntityManager::class);
         $this->voteRepository = $this->createMock(VoteRepository::class);
         $this->voteAggregateRepository = $this->createMock(VoteAggregateRepository::class);
-        $this->voteManager = new VoteManager($this->entityManager, $this->voteRepository, $this->voteAggregateRepository);
+        $this->typeAccess = new TypeAccess();
+        $this->types = [];
+        $this->types['testBlog'] = [
+            TypeAccess::VISIBLE_UPVOTE => true,
+            TypeAccess::VISIBLE_DOWNVOTE => true,
+            TypeAccess::ALLOW_ANONYMOUS_UPVOTE => true,
+            TypeAccess::ALLOW_ANONYMOUS_DOWNVOTE => true,
+        ];
+
+        $this->voteManager = new VoteManager(
+            $this->entityManager,
+            $this->voteRepository,
+            $this->voteAggregateRepository,
+            $this->typeAccess,
+            $this->types
+        );
     }
 
     public function testUpvoteBlank()

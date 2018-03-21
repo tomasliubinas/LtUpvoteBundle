@@ -171,7 +171,7 @@ class VoteManager
      */
     public function findVoteAggregate($subjectType, $subjectId)
     {
-        if (!$this->isTypeAvailable($subjectType)) {
+        if (!$this->typeAccess->isTypeAvailable($subjectType, $this->types)) {
             throw new PermissionViolationException(sprintf("Subject type '%s' is not available. Please provide configuration for this type", $subjectType));
         }
 

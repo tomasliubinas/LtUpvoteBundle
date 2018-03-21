@@ -123,6 +123,6 @@ class TypeAccessTest extends TestCase
         $availableTypes['testType']['allow_anonymous_upvote'] = true;
         $availableTypes['testType']['allow_anonymous_downvote'] = false;
 
-        $this->assertFalse($this->typeAccess->canUpvoteAnonymous('testType', $availableTypes));
+        $this->assertFalse($this->typeAccess->canDownvoteAnonymous('testType', $availableTypes));
     }
 }

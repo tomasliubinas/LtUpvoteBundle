@@ -28,6 +28,11 @@ class VoteManager
     private $voteAggregateRepository;
 
     /**
+     * @var TypeAccess
+     */
+    private $typeAccess;
+
+    /**
      * @var array
      */
     private $types;
@@ -42,12 +47,14 @@ class VoteManager
         EntityManager $entityManager,
         VoteRepository $voteRepository,
         VoteAggregateRepository $voteAggregateRepository,
+        TypeAccess $typeAccess,
         array $types
     ) {
         $this->voteRepository = $voteRepository;
         $this->voteAggregateRepository = $voteAggregateRepository;
         $this->entityManager = $entityManager;
         $this->types = $types;
+        $this->typeAccess = $typeAccess;
     }
 
     /**
@@ -141,7 +148,7 @@ class VoteManager
      */
     public function findVote($subjectType, $subjectId, $userId, $visitorId)
     {
-        if (!$this->isTypeAvailable($subjectType)) {
+        if (!$this->typeAccess->isTypeAvailable($subjectType, $this->types)) {
             throw new PermissionViolationException(sprintf("Subject type '%s' is not available. Please provide configuration for this type", $subjectType));
         }
 
@@ -171,19 +178,6 @@ class VoteManager
         $voteAggregate = $this->voteAggregateRepository->findOneBySubject($subjectType, $subjectId);
         return $voteAggregate;
     }
-
-    /**
-     * Checks if this subject type is available
-     *
-     * @param string $subjectType
-     *
-     * @return bool
-     */
-    public function isTypeAvailable($subjectType)
-    {
-        return isset($this->types[$subjectType]);
-    }
-
 
     /**
      * @param int $voteValue

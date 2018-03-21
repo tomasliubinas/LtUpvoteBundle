@@ -18,12 +18,15 @@
             <factory service="doctrine.orm.entity_manager" method="getRepository"/>
             <argument>Lt\UpvoteBundle\Entity\VoteAggregate</argument>
         </service>
+        <service id="lt_upvote_bundle.utils.type_access" class="Lt\UpvoteBundle\Model\TypeAccess"/>
         <service id="lt_upvote_bundle.utils.vote_manager" class="Lt\UpvoteBundle\Model\VoteManager">
             <argument type="service" id="doctrine.orm.entity_manager"/>
             <argument type="service" id="lt_upvote_bundle.repository.vote"/>
             <argument type="service" id="lt_upvote_bundle.repository.vote_aggregate"/>
+            <argument type="service" id="lt_upvote_bundle.utils.type_access"/>
             <argument>%lt-upvote.types%</argument>
         </service>
+
 
         <service id="lt_upvote_bundle.controller.test" class="Lt\UpvoteBundle\Controller\TestController">
             <argument type="service" id="lt_upvote_bundle.utils.vote_manager"/>

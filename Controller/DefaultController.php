@@ -77,40 +77,6 @@ class DefaultController extends Controller
     }
 
     /**
-     * Renders frontend upvote/downvote component
-     *
-     * @param Request $request
-     * @param string $subjectType
-     * @param string $subjectId
-     *
-     * @return Response
-     */
-    public function renderUpvote(Request $request, $subjectType, $subjectId)
-    {
-        $userId = $this->userProvider->getUserId();
-        $visitorId = $this->visitorIdentifier->getVisitorId($request);
-
-        $vote = $this->voteManager->findVote($subjectType, $subjectId, $userId, $visitorId);
-
-        $isUpvoted = true;
-        $isDownvoted = false;
-        if ($vote !== null) {
-            $value = $vote->getValue();
-            $isUpvoted = $value > 0;
-            $isDownvoted = $value < 0;
-        }
-
-        $params = [
-            'id' => $subjectId,
-            'type' => $subjectType,
-            'total' => $this->voteManager->getTotalValue($subjectType, $subjectId),
-            'isUpvoted' => $isUpvoted,
-            'isDownvoted' => $isDownvoted,
-        ];
-        return $this->render('@LtUpvote/Default/upvote.html.twig', $params);
-    }
-
-    /**
      * Resets any existing upvote or downvote for subject.
      *
      * @param Request $request
@@ -126,5 +92,39 @@ class DefaultController extends Controller
         $this->voteManager->reset($subjectType, $subjectId, $userId, $visitorId);
         $this->getDoctrine()->getManager()->flush();
         return new Response('reset');
+    }
+
+    /**
+     * Renders frontend upvote/downvote component
+     *
+     * @param Request $request
+     * @param string $subjectType
+     * @param string $subjectId
+     *
+     * @return Response
+     */
+    public function renderUpvote(Request $request, $subjectType, $subjectId)
+    {
+        $userId = $this->userProvider->getUserId();
+        $visitorId = $this->visitorIdentifier->getVisitorId($request);
+
+        $vote = $this->voteManager->findVote($subjectType, $subjectId, $userId, $visitorId);
+
+        $isUpvoted = false;
+        $isDownvoted = false;
+        if ($vote !== null) {
+            $value = $vote->getValue();
+            $isUpvoted = $value > 0;
+            $isDownvoted = $value < 0;
+        }
+
+        $params = [
+            'id' => $subjectId,
+            'type' => $subjectType,
+            'total' => $this->voteManager->getTotalValue($subjectType, $subjectId),
+            'isUpvoted' => $isUpvoted,
+            'isDownvoted' => $isDownvoted,
+        ];
+        return $this->render('@LtUpvote/Default/upvote.html.twig', $params);
     }
 }

@@ -42,16 +42,16 @@ class DefaultController extends Controller
      * Fails in case the upvote already exists.
      *
      * @param Request $request
-     * @param string $subjectId
      * @param string $subjectType
+     * @param string $subjectId
      *
      * @return Response
      */
-    public function upvoteAction(Request $request, $subjectId, $subjectType)
+    public function upvoteAction(Request $request, $subjectType, $subjectId)
     {
         $userId = $this->userProvider->getUserId();
         $visitorId = $this->visitorIdentifier->getVisitorId($request);
-        $this->voteManager->upvote($subjectId, $subjectType, $userId, $visitorId);
+        $this->voteManager->upvote($subjectType, $subjectId, $userId, $visitorId);
         $this->getDoctrine()->getManager()->flush();
         return new Response(json_encode('upvoted'));
     }
@@ -62,48 +62,30 @@ class DefaultController extends Controller
      * Fails in case the downvote already exists.
      *
      * @param Request $request
-     * @param string $subjectId
      * @param string $subjectType
+     * @param string $subjectId
      *
      * @return Response
      */
-    public function downvoteAction(Request $request, $subjectId, $subjectType)
+    public function downvoteAction(Request $request, $subjectType, $subjectId)
     {
         $userId = $this->userProvider->getUserId();
         $visitorId = $this->visitorIdentifier->getVisitorId($request);
-        $this->voteManager->downvote($subjectId, $subjectType, $userId, $visitorId);
+        $this->voteManager->downvote($subjectType, $subjectId, $userId, $visitorId);
         $this->getDoctrine()->getManager()->flush();
         return new Response('downvoted');
-    }
-
-    /**
-     * Resets any existing upvote or downvote for subject.
-     *
-     * @param Request $request
-     * @param string $subjectId
-     * @param string $subjectType
-     *
-     * @return Response
-     */
-    public function resetAction(Request $request, $subjectId, $subjectType)
-    {
-        $userId = $this->userProvider->getUserId();
-        $visitorId = $this->visitorIdentifier->getVisitorId($request);
-        $this->voteManager->reset($subjectId, $subjectType, $userId, $visitorId);
-        $this->getDoctrine()->getManager()->flush();
-        return new Response('reset');
     }
 
     /**
      * Renders frontend upvote/downvote component
      *
      * @param Request $request
-     * @param string $subjectId
      * @param string $subjectType
+     * @param string $subjectId
      *
      * @return Response
      */
-    public function renderUpvote(Request $request, $subjectId, $subjectType)
+    public function renderUpvote(Request $request, $subjectType, $subjectId)
     {
         $userId = $this->userProvider->getUserId();
         $visitorId = $this->visitorIdentifier->getVisitorId($request);
@@ -126,5 +108,23 @@ class DefaultController extends Controller
             'isDownvoted' => $isDownvoted,
         ];
         return $this->render('@LtUpvote/Default/upvote.html.twig', $params);
+    }
+
+    /**
+     * Resets any existing upvote or downvote for subject.
+     *
+     * @param Request $request
+     * @param string $subjectType
+     * @param string $subjectId
+     *
+     * @return Response
+     */
+    public function resetAction(Request $request, $subjectType, $subjectId)
+    {
+        $userId = $this->userProvider->getUserId();
+        $visitorId = $this->visitorIdentifier->getVisitorId($request);
+        $this->voteManager->reset($subjectType, $subjectId, $userId, $visitorId);
+        $this->getDoctrine()->getManager()->flush();
+        return new Response('reset');
     }
 }

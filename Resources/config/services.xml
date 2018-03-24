@@ -5,6 +5,7 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
+        <service id="datetime" class="\DateTime"/>
         <service id="lt_upvote_bundle.utils.user_provider" class="Lt\UpvoteBundle\Utils\UserProvider">
             <argument type="service" id="security.token_storage"/>
         </service>
@@ -23,6 +24,7 @@
             <argument type="service" id="doctrine.orm.entity_manager"/>
             <argument type="service" id="lt_upvote_bundle.repository.vote"/>
             <argument type="service" id="lt_upvote_bundle.repository.vote_aggregate"/>
+            <argument type="service" id="datetime"/>
             <argument type="service" id="lt_upvote_bundle.utils.type_access"/>
             <argument>%lt-upvote.types%</argument>
         </service>

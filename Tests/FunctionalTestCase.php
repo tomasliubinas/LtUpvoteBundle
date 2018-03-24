@@ -21,11 +21,10 @@ abstract class FunctionalTestCase extends WebTestCase
         self::createDatabase($application);
     }
 
-    private static function createDatabase($application)
+    private static function createDatabase(Application $application)
     {
         self::executeCommand($application, "doctrine:schema:drop", array("--force" => true));
         self::executeCommand($application, "doctrine:schema:create");
-        //self::executeCommand($application, "doctrine:fixtures:load", array("--fixtures" => __DIR__ . "/../DataFixtures/ORM/test"));
     }
 
     private static function executeCommand($application, $command, Array $options = array())
@@ -38,6 +37,7 @@ abstract class FunctionalTestCase extends WebTestCase
 
     public function setUp()
     {
+        self::initialize();
         $this->populateVariables();
     }
 

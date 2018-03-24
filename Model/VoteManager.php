@@ -28,6 +28,11 @@ class VoteManager
     private $voteAggregateRepository;
 
     /**
+     * @var \DateTime
+     */
+    private $dateTime;
+
+    /**
      * @var TypeAccess
      */
     private $typeAccess;
@@ -41,12 +46,15 @@ class VoteManager
      * @param EntityManager $entityManager
      * @param VoteRepository $voteRepository
      * @param VoteAggregateRepository $voteAggregateRepository
+     * @param \DateTime $dateTime
+     * @param TypeAccess $typeAccess
      * @param array $types
      */
     public function __construct(
         EntityManager $entityManager,
         VoteRepository $voteRepository,
         VoteAggregateRepository $voteAggregateRepository,
+        \DateTime $dateTime,
         TypeAccess $typeAccess,
         array $types
     ) {
@@ -55,6 +63,7 @@ class VoteManager
         $this->entityManager = $entityManager;
         $this->types = $types;
         $this->typeAccess = $typeAccess;
+        $this->dateTime = $dateTime;
     }
 
     /**
@@ -191,6 +200,7 @@ class VoteManager
     protected function castVote($voteValue, $subjectType, $subjectId, $userId, $visitorId)
     {
         $vote = $this->getVote($subjectType, $subjectId, $userId, $visitorId);
+
         $currentVoteValue = $vote->getValue();
         if ($currentVoteValue === $voteValue) {
             throw new UniqueConstraintViolationException('Can not cast the same vote more than once');
@@ -211,7 +221,7 @@ class VoteManager
             $voteAggregate->setTotalDownvotes($voteAggregate->getTotalDownvotes() - 1);
         }
 
-        $vote->setUpdatedAt(new \DateTime());
+        $vote->setUpdatedAt($this->dateTime);
 
         $this->entityManager->persist($vote);
         $this->entityManager->persist($voteAggregate);

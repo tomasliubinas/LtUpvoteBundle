@@ -2,9 +2,9 @@
 
 namespace Lt\UpvoteBundle\Tests\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Lt\UpvoteBundle\Tests\FunctionalTestCase;
 
-class DefaultControllerTest extends WebTestCase
+class DefaultControllerTest extends FunctionalTestCase
 {
     public function testIndex()
     {

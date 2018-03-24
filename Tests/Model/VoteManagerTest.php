@@ -28,6 +28,9 @@ class VoteManagerTest extends TestCase
      */
     private $voteAggregateRepository;
 
+    /** @var \DateTime */
+    private $dateTime;
+
     /**
      * @var TypeAccess|\PHPUnit_Framework_MockObject_MockObject
      */
@@ -48,6 +51,7 @@ class VoteManagerTest extends TestCase
         $this->entityManager = $this->createMock(EntityManager::class);
         $this->voteRepository = $this->createMock(VoteRepository::class);
         $this->voteAggregateRepository = $this->createMock(VoteAggregateRepository::class);
+        $this->dateTime = new \DateTime();
         $this->typeAccess = new TypeAccess();
         $this->types = [];
         $this->types['testBlog'] = [
@@ -61,6 +65,7 @@ class VoteManagerTest extends TestCase
             $this->entityManager,
             $this->voteRepository,
             $this->voteAggregateRepository,
+            $this->dateTime,
             $this->typeAccess,
             $this->types
         );
@@ -79,6 +84,7 @@ class VoteManagerTest extends TestCase
             ->setValue(1)
             ->setVisitorId('testVisitor')
             ->setVoteAggregate($voteAggregate)
+            ->setUpdatedAt($this->dateTime)
         ;
 
         $this->voteRepository->expects($this->once())->method('findOneBySubjectAndVisitorId')->with('testBlog', 'testId', 'testVisitor')->willReturn(null);
@@ -105,6 +111,7 @@ class VoteManagerTest extends TestCase
             ->setVisitorId('testVisitor')
             ->setUserId('testUserId')
             ->setVoteAggregate($voteAggregate)
+            ->setUpdatedAt($this->dateTime)
         ;
 
         $this->voteRepository->expects($this->once())->method('findOneBySubjectAndUserId')->with('testBlog', 'testId', 'testUserId')->willReturn(null);

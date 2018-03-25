@@ -51,7 +51,7 @@
                 action = 'reset';
             }
             LtUpvote.dispatchCustomEvent(counter, action);
-            LtUpvote.performBackendAction(action, counter.dataset.ltuId);
+            LtUpvote.performBackendAction(action, counter.dataset.ltuType, counter.dataset.ltuId);
         },
         downvoteAction: function (e) {
             var divLtu = e.target.parentNode.parentNode;

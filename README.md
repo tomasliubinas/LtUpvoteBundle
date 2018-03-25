@@ -5,6 +5,7 @@ Provides thumbs up and thumbs down functionality for Symfony 3.0 project
 - Multiple content type support (as in upvote blog post and separately upvote comments, 
 you basically need to support different types of content for that).
 - Allow/disable anonymous upvote or/and downvote
+- Limit anonymous upvotes/downvotes by IP
 - Optionally show upvote button only
 - Pure JavaScript frontend component implementation
 - JavaScript events on authorized/unauthorized votes.

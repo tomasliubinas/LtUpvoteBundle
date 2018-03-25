@@ -135,7 +135,7 @@ class VoteManager
      */
     public function getTotalValue($subjectType, $subjectId)
     {
-        $voteAggregate = $this->voteAggregateRepository->findOneBySubject($subjectId, $subjectType);
+        $voteAggregate = $this->voteAggregateRepository->findOneBySubject($subjectType, $subjectId);
         if ($voteAggregate !== null) {
             return $voteAggregate->getTotalValue();
         }

@@ -73,7 +73,7 @@ class DefaultController extends Controller
         $visitorId = $this->visitorIdentifier->getVisitorId($request);
         $this->voteManager->downvote($subjectType, $subjectId, $userId, $visitorId);
         $this->getDoctrine()->getManager()->flush();
-        return new Response('downvoted');
+        return new Response(json_encode('downvoted'));
     }
 
     /**
@@ -91,7 +91,7 @@ class DefaultController extends Controller
         $visitorId = $this->visitorIdentifier->getVisitorId($request);
         $this->voteManager->reset($subjectType, $subjectId, $userId, $visitorId);
         $this->getDoctrine()->getManager()->flush();
-        return new Response('reset');
+        return new Response(json_encode('reset'));
     }
 
     /**

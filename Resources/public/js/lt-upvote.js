@@ -84,7 +84,7 @@
                     type: counter.dataset.ltuType,
                     counter: counter.innerText,
                     action: action,
-                    anonymous: false
+                    anonymous: counter.dataset.ltuAnonymous
                 }
             });
             dispatchEvent(event);

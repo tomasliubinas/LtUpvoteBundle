@@ -4,7 +4,7 @@
                {% if isUpvoted %}checked{% endif %}>
         <label for="ltu-checkbox-upvote-{{ type }}-{{ id }}" class="ltu-upvote"></label>
     </div>
-    <span class="ltu-counter" data-ltu-type="{{ type }}" data-ltu-id="{{ id }}">{{ total }}</span>
+    <span class="ltu-counter" data-ltu-type="{{ type }}" data-ltu-id="{{ id }}">{{ totalValue }}</span>
     <div>
         <input type="checkbox" id="ltu-checkbox-downvote-{{ type }}-{{ id }}" class="ltu-hidden ltu-downvote"
                {% if isDownvoted %}checked{% endif %}>

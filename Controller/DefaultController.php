@@ -121,9 +121,10 @@ class DefaultController extends Controller
         $params = [
             'id' => $subjectId,
             'type' => $subjectType,
-            'total' => $this->voteManager->getTotalValue($subjectType, $subjectId),
+            'totalValue' => $this->voteManager->getTotalValue($subjectType, $subjectId),
             'isUpvoted' => $isUpvoted,
             'isDownvoted' => $isDownvoted,
+            'isAnonymous' => $userId === null,
         ];
         return $this->render('@LtUpvote/Default/upvote.html.twig', $params);
     }

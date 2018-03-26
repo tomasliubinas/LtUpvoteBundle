@@ -10,7 +10,6 @@
         },
         init: function () {
             this.bindUIActions();
-
         },
         bindUIActions: function () {
             for (var i = 0; i < this.settings.divs.length; i++) {

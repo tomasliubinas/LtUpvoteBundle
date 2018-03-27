@@ -100,10 +100,11 @@ class DefaultController extends Controller
      * @param Request $request
      * @param string $subjectType
      * @param string $subjectId
+     * @param string $style
      *
      * @return Response
      */
-    public function renderUpvote(Request $request, $subjectType, $subjectId)
+    public function renderUpvote(Request $request, $subjectType, $subjectId, $class = null)
     {
         $userId = $this->userProvider->getUserId();
         $visitorId = $this->visitorIdentifier->getVisitorId($request);
@@ -125,6 +126,7 @@ class DefaultController extends Controller
             'isUpvoted' => $isUpvoted,
             'isDownvoted' => $isDownvoted,
             'isAnonymous' => $userId === null,
+            'class' => ($class !== null) ? ' ' . $class : null,
         ];
         return $this->render('@LtUpvote/Default/upvote.html.twig', $params);
     }

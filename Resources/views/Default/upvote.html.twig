@@ -1,13 +1,13 @@
 <div class="ltu">
     <div>
-        <input type="checkbox" id="ltu-checkbox-upvote-{{ type }}-{{ id }}" class="ltu-hidden ltu-upvote"
+        <input type="checkbox" id="ltu-checkbox-upvote-{{ type }}-{{ id }}" class="ltu-hidden ltu-upvote{{ class }}"
                {% if isUpvoted %}checked{% endif %}>
-        <label for="ltu-checkbox-upvote-{{ type }}-{{ id }}" class="ltu-upvote"></label>
+        <label for="ltu-checkbox-upvote-{{ type }}-{{ id }}" class="ltu-upvote{{ class }}"></label>
     </div>
-    <span class="ltu-counter" data-ltu-type="{{ type }}" data-ltu-id="{{ id }}">{{ totalValue }}</span>
+    <span class="ltu-counter{{ class }}" data-ltu-type="{{ type }}" data-ltu-id="{{ id }}">{{ totalValue }}</span>
     <div>
         <input type="checkbox" id="ltu-checkbox-downvote-{{ type }}-{{ id }}" class="ltu-hidden ltu-downvote"
                {% if isDownvoted %}checked{% endif %}>
-        <label for="ltu-checkbox-downvote-{{ type }}-{{ id }}" class="ltu-downvote"></label>
+        <label for="ltu-checkbox-downvote-{{ type }}-{{ id }}" class="ltu-downvote{{ class }}"></label>
     </div>
 </div>

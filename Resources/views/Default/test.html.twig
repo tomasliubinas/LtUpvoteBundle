@@ -61,6 +61,17 @@
 </div>
 
 
+{{ render(
+    controller(
+        'lt_upvote_bundle.controller.default:renderUpvote',
+        {
+            'subjectId': 2,
+            'subjectType': 'comment',
+            'class': 'style1'
+        }
+    )
+) }} Was it helpful?
+
 <script src="{{asset('/bundles/ltupvote/js/lt-upvote.js')}}"></script>
 <script language="JavaScript"><!--
     ltupvote.init();

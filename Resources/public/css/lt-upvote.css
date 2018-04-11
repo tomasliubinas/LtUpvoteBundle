@@ -6,6 +6,12 @@ div.ltu {
     vertical-align: middle;
 }
 
+div.ltu-upvote {
+}
+
+div.ltu-downvote{
+}
+
 /* Check box style. Should be always hidden, we will style the label */
 input[type=checkbox].ltu-hidden {
     position: absolute;
@@ -54,6 +60,14 @@ input[type=checkbox].ltu-hidden:checked ~ label.ltu-downvote::before {
 
 
 /*style1 definitions*/
+div.ltu-upvote.style1 {
+    display: inline-block;
+}
+
+div.ltu-downvote.style1 {
+    display: inline-block;
+}
+
 
 .ltu-counter.style1 {
     display: inline-block;

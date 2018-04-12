@@ -6,7 +6,11 @@
             downvoteUrl: '/lt-upvote/:type/:id/downvote/',
             resetUrl: '/lt-upvote/:type/:id/reset/',
             actionMethod: 'GET',
-            divs: document.querySelectorAll('div.ltu')
+            divs: document.querySelectorAll('div.ltu'),
+            showUpvote: true,
+            showDownvote: true,
+            allowAnonymousUpvote: true,
+            allowAnonymousDownvote: true
         },
         init: function () {
             this.bindUIActions();

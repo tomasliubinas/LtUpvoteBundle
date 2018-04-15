@@ -127,6 +127,8 @@ class DefaultController extends Controller
             'isDownvoted' => $isDownvoted,
             'isAnonymous' => $userId === null,
             'class' => ($class !== null) ? ' ' . $class : null,
+            'showUpvote' => $this->voteManager->isVisibleUpvote($subjectType),
+            'showDownvote' => $this->voteManager->isVisibleDownvote($subjectType),
         ];
         return $this->render('@LtUpvote/Default/upvote.html.twig', $params);
     }

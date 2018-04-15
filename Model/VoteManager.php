@@ -189,6 +189,26 @@ class VoteManager
     }
 
     /**
+     * @param string $subjectType
+     *
+     * @return bool
+     */
+    public function isVisibleUpvote($subjectType)
+    {
+        return $this->typeAccess->isVisibleUpvote($subjectType, $this->types);
+    }
+
+    /**
+     * @param string $subjectType
+     *
+     * @return bool
+     */
+    public function isVisibleDownvote($subjectType)
+    {
+        return $this->typeAccess->isVisibleDownvote($subjectType, $this->types);
+    }
+
+    /**
      * @param int $voteValue
      * @param string $subjectType
      * @param string $subjectId

@@ -1,5 +1,5 @@
 # LtUpvoteBundle
-Provides thumbs up and thumbs down functionality for Symfony 3.0 project
+Upvote and downvote (thumbs up and thumbs down) component for Symfony 3.0 project
 
 #### Features
 - Multiple content type support (as in upvote blog post and separately upvote comments, 
@@ -14,7 +14,7 @@ you basically need to support different types of content for that).
 
 ## System requirements
 
-- Symfony 3.0, 4.0
+- Symfony 3.0
 - Doctrine bundle
 - Configured database connection
 

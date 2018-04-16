@@ -33,14 +33,14 @@
 
 <h1 class="test-header">LtUpvoteBundle test page</h1>
 
-<div id="test-container-1" class="test-container">
+<div class="test-container">
 
     {{ render(
         controller(
             'lt_upvote_bundle.controller.default:renderUpvote',
             {
                 'subjectId': 1,
-                'subjectType': 'blog',
+                'subjectType': 'testPost1',
             }
         )
     ) }}
@@ -49,19 +49,31 @@
 
 </div>
 
-<div id="test-container-2" class="test-container">
+<div class="test-container">
     {{ render(
         controller(
             'lt_upvote_bundle.controller.default:renderUpvote',
             {
                 'subjectId': 2,
-                'subjectType': 'blog',
+                'subjectType': 'testPost2',
             }
         )
     ) }}
-    <div class="test-contents">Daily weather forecast for your location</div>
+    <div class="test-contents">Upvote only!</div>
 </div>
 
+<div class="test-container">
+    {{ render(
+        controller(
+            'lt_upvote_bundle.controller.default:renderUpvote',
+            {
+                'subjectId': 1,
+                'subjectType': 'testPost3',
+            }
+        )
+    ) }}
+    <div class="test-contents">Log in to downvote</div>
+</div>
 
 {{ render(
     controller(

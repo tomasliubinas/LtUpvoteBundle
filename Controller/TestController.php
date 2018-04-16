@@ -8,6 +8,33 @@ use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 class TestController extends Controller
 {
+    private $testContextType = [
+        'testPost1' => [
+            'show_upvote' => true,
+            'show_downvote' => true,
+            'allow_anonymous_upvote' => true,
+            'allow_anonymous_downvote' => true,
+        ],
+        'testPost2' => [
+            'show_upvote' => true,
+            'show_downvote' => false,
+            'allow_anonymous_upvote' => true,
+            'allow_anonymous_downvote' => true,
+        ],
+        'testPost3' => [
+            'show_upvote' => true,
+            'show_downvote' => true,
+            'allow_anonymous_upvote' => true,
+            'allow_anonymous_downvote' => true,
+        ],
+        'testComment' => [
+            'show_upvote' => true,
+            'show_downvote' => true,
+            'allow_anonymous_upvote' => true,
+            'allow_anonymous_downvote' => false,
+        ],
+    ];
+
     /**
      * @var VoteManager
      */
@@ -26,6 +53,8 @@ class TestController extends Controller
             throw new AccessDeniedHttpException('Access denied in production environment');
         }
 
-        return $this->render('LtUpvoteBundle:Default:test.html.twig', ['voteManager' => $this->voteManager]);
+        $this->voteManager->setTypes($this->testContextType);
+
+        return $this->render('LtUpvoteBundle:Default:test.html.twig');
     }
 }

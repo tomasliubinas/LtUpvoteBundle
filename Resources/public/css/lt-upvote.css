@@ -16,9 +16,11 @@ div.ltu {
 
 /* vertical layout */
 div.ltu-upvote {
+    height: 18px;
 }
 
 div.ltu-downvote{
+    height: 18px;
 }
 
 /* upvote off */
@@ -82,7 +84,7 @@ input[type=checkbox].ltu-hidden ~ label.ltu-upvote.style1::before {
     display: inline-block;
     color: lightgray;
     padding: 2px 5px 2px 5px;
-    margin: 0px;
+    margin: 0;
     font-size: 12px;
     font-weight: 600;
     text-align: center;
@@ -105,7 +107,7 @@ input[type=checkbox].ltu-hidden~ label.ltu-downvote.style1::before {
     display: inline-block;
     color: lightgray;
     padding: 2px 5px 2px 5px;
-    margin: 0px;
+    margin: 0;
     font-size: 12px;
     font-weight: 600;
     text-align: center;
@@ -128,7 +130,7 @@ input[type=checkbox].ltu-hidden:checked ~ label.ltu-downvote.style1::before {
     color: white;
     background-color: #37a;
     padding: 2px 5px 2px 5px;
-    margin: 0px;
+    margin: 0;
     font-size: 12px;
     font-weight: 600;
     text-align: center;

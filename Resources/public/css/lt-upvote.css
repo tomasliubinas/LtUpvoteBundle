@@ -1,8 +1,8 @@
-/* upvote/downvote checkboxes are hidden, we style checkbox labels instead */
+/* the vote is registered by checking upvote or downvote checkbox.
+   The checkboxes are hidden, checkbox labels are styled instead */
 input[type=checkbox].ltu-hidden {
+    visibility: hidden;
     position: absolute;
-    top: -9999px;
-    left: -9999px;
 }
 
 

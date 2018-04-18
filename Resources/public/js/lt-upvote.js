@@ -22,13 +22,9 @@
                 var downvoteA = ltuDiv.querySelector('input.ltu-downvote');
                 if (upvoteA != null) {
                     upvoteA.onclick = this.upvoteAction;
-                } else {
-                    console.warn('Upvote element not found');
                 }
                 if (downvoteA != null) {
                     downvoteA.onclick = this.downvoteAction;
-                } else {
-                    console.warn('Downvote element not found');
                 }
             }
         },
@@ -37,12 +33,15 @@
             var counter = divLtu.querySelector('span.ltu-counter');
             var action = 'upvote';
             var upvoteElement = e.target;
-            var downvoteElement = divLtu.querySelector('input.ltu-downvote');
             var isCheckedUpvote = upvoteElement.checked;
-            var isCheckedDownvote = downvoteElement.checked;
             upvoteElement.checked = false;
-            downvoteElement.checked = false;
             upvoteElement.checked = isCheckedUpvote;
+
+            var downvoteElement = divLtu.querySelector('input.ltu-downvote');
+            if (downvoteElement !== null ) {
+                var isCheckedDownvote = downvoteElement.checked;
+                downvoteElement.checked = false;
+            }
 
             if (isCheckedUpvote) {
                 counter.innerText++;
@@ -62,11 +61,14 @@
             var action = 'downvote';
             var upvoteElement = divLtu.querySelector('input.ltu-upvote');
             var downvoteElement = e.target;
-            var isCheckedUpvote = upvoteElement.checked;
             var isCheckedDownvote = downvoteElement.checked;
-            upvoteElement.checked = false;
             downvoteElement.checked = false;
             downvoteElement.checked = isCheckedDownvote;
+
+            if (upvoteElement !== null) {
+                var isCheckedUpvote = upvoteElement.checked;
+                upvoteElement.checked = false;
+            }
 
             if (isCheckedDownvote) {
                 counter.innerText--;

@@ -62,34 +62,42 @@
             var upvoteElement = divLtu.querySelector('input.ltu-upvote');
             var downvoteElement = e.target;
             var isCheckedDownvote = downvoteElement.checked;
+            var canDownvote = counter.dataset.ltuCanDownvote;
             downvoteElement.checked = false;
             downvoteElement.checked = isCheckedDownvote;
 
-            if (upvoteElement !== null) {
-                var isCheckedUpvote = upvoteElement.checked;
-                upvoteElement.checked = false;
-            }
-
-            if (isCheckedDownvote) {
-                counter.innerText--;
-                if (isCheckedUpvote) {
-                    counter.innerText--;
+            if (canDownvote) {
+                if (upvoteElement !== null) {
+                    var isCheckedUpvote = upvoteElement.checked;
+                    upvoteElement.checked = false;
                 }
+                if (isCheckedDownvote) {
+                    counter.innerText--;
+                    if (isCheckedUpvote) {
+                        counter.innerText--;
+                    }
+                } else {
+                    counter.innerText++;
+                    action = 'reset';
+                }
+
+                LtUpvote.dispatchCustomEvent(counter, action, false);
+                LtUpvote.performBackendAction(action, counter.dataset.ltuType, counter.dataset.ltuId);
             } else {
-                counter.innerText++;
-                action = 'reset';
+                //unauthorized access
+                downvoteElement.checked = false;
+                LtUpvote.dispatchCustomEvent(counter, action, true);
             }
-            LtUpvote.dispatchCustomEvent(counter, action);
-            LtUpvote.performBackendAction(action, counter.dataset.ltuType, counter.dataset.ltuId);
         },
-        dispatchCustomEvent: function (counter, action) {
+        dispatchCustomEvent: function (counter, action, unauthorizedError) {
             var event = new CustomEvent('ltu', {
                 detail: {
                     id: counter.dataset.ltuId,
                     type: counter.dataset.ltuType,
                     counter: counter.innerText,
                     action: action,
-                    anonymous: counter.dataset.ltuAnonymous
+                    unauthorized: counter.dataset.ltuAnonymous,
+                    unauthorizedError: unauthorizedError
                 }
             });
             dispatchEvent(event);

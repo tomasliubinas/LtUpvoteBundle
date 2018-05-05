@@ -122,13 +122,15 @@ class DefaultController extends Controller
         $params = [
             'id' => $subjectId,
             'type' => $subjectType,
-            'totalValue' => $this->voteManager->getTotalValue($subjectType, $subjectId),
-            'isUpvoted' => $isUpvoted,
-            'isDownvoted' => $isDownvoted,
-            'isAnonymous' => $userId === null,
+            'total_value' => $this->voteManager->getTotalValue($subjectType, $subjectId),
+            'is_upvoted' => $isUpvoted,
+            'is_downvoted' => $isDownvoted,
+            'is_anonymous' => $userId === null,
             'class' => ($class !== null) ? ' ' . $class : null,
-            'showUpvote' => $this->voteManager->isVisibleUpvote($subjectType),
-            'showDownvote' => $this->voteManager->isVisibleDownvote($subjectType),
+            'show_upvote' => $this->voteManager->isVisibleUpvote($subjectType, $userId),
+            'show_downvote' => $this->voteManager->isVisibleDownvote($subjectType, $userId),
+            'can_upvote' => $this->voteManager->canUpvote($subjectType, $userId),
+            'can_downvote' => $this->voteManager->canDownvote($subjectType, $userId),
         ];
         return $this->render('@LtUpvote/Default/upvote.html.twig', $params);
     }

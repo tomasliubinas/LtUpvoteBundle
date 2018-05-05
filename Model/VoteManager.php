@@ -190,42 +190,46 @@ class VoteManager
 
     /**
      * @param string $subjectType
+     * @param string|null $userId
      *
      * @return bool
      */
-    public function isVisibleUpvote($subjectType)
+    public function isVisibleUpvote($subjectType, $userId = null)
     {
         return $this->typeAccess->isVisibleUpvote($subjectType, $this->types);
     }
 
     /**
      * @param string $subjectType
+     * @param string|null $userId
      *
      * @return bool
      */
-    public function isVisibleDownvote($subjectType)
+    public function isVisibleDownvote($subjectType, $userId = null)
     {
         return $this->typeAccess->isVisibleDownvote($subjectType, $this->types);
     }
 
     /**
      * @param string $subjectType
+     * @param string|null $userId
      *
      * @return bool
      */
-    public function canUpvoteAnonymous($subjectType)
+    public function canUpvote($subjectType, $userId = null)
     {
-        return $this->typeAccess->canUpvoteAnonymous($subjectType, $this->types);
+        return $userId !== null || $this->typeAccess->canUpvoteAnonymous($subjectType, $this->types);
     }
 
     /**
      * @param string $subjectType
+     * @param string|null $userId
      *
      * @return bool
      */
-    public function canDownvoteAnonymous($subjectType)
+    public function canDownvote($subjectType, $userId = null)
     {
-        return $this->typeAccess->canDownvoteAnonymous($subjectType, $this->types);
+        return $userId !== null || $this->typeAccess->canDownvoteAnonymous($subjectType, $this->types);
     }
 
     /**

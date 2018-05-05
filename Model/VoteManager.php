@@ -209,6 +209,26 @@ class VoteManager
     }
 
     /**
+     * @param string $subjectType
+     *
+     * @return bool
+     */
+    public function canUpvoteAnonymous($subjectType)
+    {
+        return $this->typeAccess->canUpvoteAnonymous($subjectType, $this->types);
+    }
+
+    /**
+     * @param string $subjectType
+     *
+     * @return bool
+     */
+    public function canDownvoteAnonymous($subjectType)
+    {
+        return $this->typeAccess->canDownvoteAnonymous($subjectType, $this->types);
+    }
+
+    /**
      * @param int $voteValue
      * @param string $subjectType
      * @param string $subjectId

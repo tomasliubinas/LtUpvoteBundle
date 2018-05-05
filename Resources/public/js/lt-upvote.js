@@ -32,28 +32,34 @@
             var divLtu = e.target.parentNode.parentNode;
             var counter = divLtu.querySelector('span.ltu-counter');
             var action = 'upvote';
+            var downvoteElement = divLtu.querySelector('input.ltu-downvote');
             var upvoteElement = e.target;
             var isCheckedUpvote = upvoteElement.checked;
+            var canUpvote = counter.dataset.ltuCanUpvote;
             upvoteElement.checked = false;
             upvoteElement.checked = isCheckedUpvote;
 
-            var downvoteElement = divLtu.querySelector('input.ltu-downvote');
-            if (downvoteElement !== null ) {
-                var isCheckedDownvote = downvoteElement.checked;
-                downvoteElement.checked = false;
-            }
-
-            if (isCheckedUpvote) {
-                counter.innerText++;
-                if (isCheckedDownvote) {
-                    counter.innerText++;
+            if (canUpvote) {
+                if (downvoteElement !== null ) {
+                    var isCheckedDownvote = downvoteElement.checked;
+                    downvoteElement.checked = false;
                 }
+
+                if (isCheckedUpvote) {
+                    counter.innerText++;
+                    if (isCheckedDownvote) {
+                        counter.innerText++;
+                    }
+                } else {
+                    counter.innerText--;
+                    action = 'reset';
+                }
+                LtUpvote.dispatchCustomEvent(counter, action, false);
+                LtUpvote.performBackendAction(action, counter.dataset.ltuType, counter.dataset.ltuId);
             } else {
-                counter.innerText--;
-                action = 'reset';
+                upvoteElement.checked = false;
+                LtUpvote.dispatchCustomEvent(counter, action, true);
             }
-            LtUpvote.dispatchCustomEvent(counter, action);
-            LtUpvote.performBackendAction(action, counter.dataset.ltuType, counter.dataset.ltuId);
         },
         downvoteAction: function (e) {
             var divLtu = e.target.parentNode.parentNode;
@@ -84,7 +90,6 @@
                 LtUpvote.dispatchCustomEvent(counter, action, false);
                 LtUpvote.performBackendAction(action, counter.dataset.ltuType, counter.dataset.ltuId);
             } else {
-                //unauthorized access
                 downvoteElement.checked = false;
                 LtUpvote.dispatchCustomEvent(counter, action, true);
             }

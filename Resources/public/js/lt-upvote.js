@@ -54,6 +54,7 @@
                     counter.innerText--;
                     action = 'reset';
                 }
+
                 LtUpvote.dispatchCustomEvent(counter, action, false);
                 LtUpvote.performBackendAction(action, counter.dataset.ltuType, counter.dataset.ltuId);
             } else {

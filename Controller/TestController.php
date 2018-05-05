@@ -48,13 +48,11 @@ class TestController extends Controller
     public function indexAction()
     {
         $env = $this->get('kernel')->getEnvironment();
-
         if ($env !== 'dev' && $env !== 'test') {
             throw new AccessDeniedHttpException('Access denied in production environment');
         }
 
         $this->voteManager->setTypes($this->testContextType);
-
         return $this->render('LtUpvoteBundle:Default:test.html.twig');
     }
 }

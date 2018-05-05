@@ -97,10 +97,10 @@ class DefaultController extends Controller
     /**
      * Renders frontend upvote/downvote component
      *
-     * @param Request $request
-     * @param string $subjectType
-     * @param string $subjectId
-     * @param string $style
+     * @param Request $request Request object
+     * @param string $subjectType Subject context type
+     * @param string $subjectId Subject ID
+     * @param string $class CSS class
      *
      * @return Response
      */

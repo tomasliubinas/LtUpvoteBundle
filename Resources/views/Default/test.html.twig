@@ -72,7 +72,7 @@
             }
         )
     ) }}
-    <div class="test-contents">Downvoting is allowed for registered users only.</div>
+    <div class="test-contents">Downvoting is allowed for logged in users only.</div>
 </div>
 
 {{ render(
@@ -95,6 +95,10 @@
 <script language="JavaScript"><!--
     addEventListener('ltu', function(event) {
         console.log(event.detail);
+        if (event.detail.unauthorizedError) {
+            alert('You need to be logged in to perform this action');
+            //alternatively show login screen
+        }
     })
     //-->
 </script>

@@ -1,21 +1,18 @@
 # LtUpvoteBundle
-Upvote and downvote (thumbs up and thumbs down) component for Symfony 3.0 project
+LtUpvoteBundle is upvote and downvote (thumbs up and thumbs down) component 
+for Symfony 3.0 project
 
-#### Features
-- Configurable voting behaviour per context type
+#### Features 
 - Configurable anonymous vote permissions
 - Automatically limit anonymous upvotes/downvotes by IP
 - Optionally hide upvote/downvote button
 - Pure JavaScript frontend component implementation
-- JavaScript events on authorized/unauthorized votes
-- Retina compatible predefined styles
 - Unit tested
 
 ## System requirements
 
 - Symfony 3.0
-- Doctrine bundle
-- Configured database connection
+- Doctrine bundle with configured database connection
 
 
 ## Installation
@@ -26,10 +23,10 @@ Upvote and downvote (thumbs up and thumbs down) component for Symfony 3.0 projec
  composer require liubinas/upvote-bundle
  ```
 
-* Include the following lines into your AppKernel.php class file:
+* Enable the bundle by adding the following line in the app/AppKernel.php file:
 
  ```php
- $bundles[] = Lt\UpvoteBundle\LtUpvoteBundle();
+ $bundles[] = new Lt\UpvoteBundle\LtUpvoteBundle();
  ```
 
 * Create required database tables:
@@ -38,34 +35,37 @@ Upvote and downvote (thumbs up and thumbs down) component for Symfony 3.0 projec
  $ bin/console  doctrine:schema:update
  ```
 
-Start webserver and run the test page to test your installation:
- 
-    [http://<dev-host>/lt-upvote-test]
-
-
 ## Configuration
 
-The following is an example yml configuration defining 2 basic content types `blog-post` and
+The following is an example yml configuration defining 2 basic context types `blog-post` and
  `comment` to be used by LtUpvoteBundle:
 
 ```yml
     # app/config/config.yml
     lt-upvote-bundle:
         types:
-            blog-post: # Custom type
+            blog-post: # Custom context type
                 show_upvote: true
                 show_downvote: true
                 allow_anonymous_upvote: true
                 allow_anonymous_downvote: false
-            comment # Custom type having the default values all true
+            comment # Custom context type having the default values all true
 
 ```
 
-## Basic usage
 
-Frontend voting component is implemented in a single dependency free JavaScript file.
+## Test run
+
+Bundle test page could be accessed by navigating to 
+[http://<dev-host>/lt-upvote-test] on the `dev` environment. 
+
+## Front-end
+
+Front-end part of the bundle is implemented in a single dependency free JavaScript file.
 It also requires basic element styling defined in a CSS file which could be used as it is 
-or adopted according to custom requirements. 
+or adopted according to custom requirements.
+
+### Basic usage 
 
 For the following steps it is assumed you are using Twig template engine and 
 Assetic asset management package. However the files could be included for different
@@ -83,7 +83,7 @@ packages in a similar fashion:
  <link rel="stylesheet" type="text/css" href="{{ asset('/bundles/ltupvote/css/lt-upvote.css') }}">
 ```
 
-* Initialize JavaScript module:
+* Initialize JavaScript module in your HTML page:
 
  ```html
  <script language="JavaScript"><!--
@@ -116,17 +116,16 @@ Where:
 
 See [test.html.twig](Resources/views/Default/test.html.twig) file for example implementation.
 
-## JavaScript Custom Event handling
+### JavaScript Custom Event handling
 
-On each upvote/downvote action custom event is dispatched. The type of the event is `ltu`.
-Visitor upvote/downvote action could be handled by adding custom event listener and checking event `detail` property if needed.
+On each upvote/downvote action JavaScript event is dispatched.
+This action could be handled by adding custom event listener for `ltu` event type.
+
 The following example shows anonymous downvote handling: 
 
 ```JavaScript
 addEventListener('ltu', function(event) {
-    var action = event.detail.action;
-    var anonymous = event.detail.anonymous;
-    if (anonymous && action === 'downvote') {
+    if (event.detail.unauthorizedError) {
         alert('This action is permitted for the logged in visitors only.');
     }
 })

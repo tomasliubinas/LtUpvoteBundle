@@ -57,7 +57,7 @@ The following is an example yml configuration defining 2 basic context types `bl
 ## Test run
 
 Bundle test page could be accessed by navigating to 
-[http://<dev-host>/lt-upvote-test] on the `dev` environment. 
+`http://<dev-host>/lt-upvote-test` on the `dev` environment. 
 
 ## Front-end
 

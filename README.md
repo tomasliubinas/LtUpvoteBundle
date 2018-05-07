@@ -107,8 +107,8 @@ or adopted according to custom requirements.
 ```
 
 Where:
- * `[TYPE]` is quoted string value of type of the contents for this component
- * `[ID]` is quoted string value representing Subject ID.
+ * `[TYPE]` is context type value.
+ * `[ID]` is Subject ID value.
  * `[CLASS]` is component specific styling CSS class. Predefined styles are `Style1`, `Style2`. 
 
 See [test.html.twig](Resources/views/Default/test.html.twig) file for example implementation.

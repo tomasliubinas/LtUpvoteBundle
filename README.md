@@ -2,7 +2,7 @@
 LtUpvoteBundle is upvote and downvote (thumbs up and thumbs down) component 
 for Symfony 3.0 project
 
-#### Features 
+## Features 
 - Configurable anonymous vote permissions
 - Automatically limit anonymous upvotes/downvotes by IP
 - Optionally hide upvote/downvote button
@@ -23,7 +23,7 @@ for Symfony 3.0 project
  composer require liubinas/upvote-bundle
  ```
 
-* Enable the bundle by adding the following line in the app/AppKernel.php file:
+* Add the line in the app/AppKernel.php file:
 
  ```php
  $bundles[] = new Lt\UpvoteBundle\LtUpvoteBundle();
@@ -37,8 +37,8 @@ for Symfony 3.0 project
 
 ## Configuration
 
-The following is an example yml configuration defining 2 basic context types `blog-post` and
- `comment` to be used by LtUpvoteBundle:
+The following is an example configuration defining basic context types `blog-post` and
+ `comment`:
 
 ```yml
     # app/config/config.yml
@@ -56,32 +56,22 @@ The following is an example yml configuration defining 2 basic context types `bl
 
 ## Test run
 
-Bundle test page could be accessed by navigating to 
+Test page could be accessed by navigating to 
 `http://<dev-host>/lt-upvote-test` on the `dev` environment. 
 
 ## Front-end
 
-Front-end part of the bundle is implemented in a single dependency free JavaScript file.
-It also requires basic element styling defined in a CSS file which could be used as it is 
+Front-end functionality is implemented in a single dependency free JavaScript file.
+Styles are defined in CSS file which could be used out of the box 
 or adopted according to custom requirements.
 
-### Basic usage 
+### JavaScript
 
-For the following steps it is assumed you are using Twig template engine and 
-Assetic asset management package. However the files could be included for different
-packages in a similar fashion:
-
-* Include JavaScrip module file:
+* Include JavaScrip module file (Twig syntax):
 
  ```html
  <script src="{{asset('/bundles/ltupvote/js/lt-upvote.js')}}"></script>
  ```
-
-* Include basic CSS file asset within your twig template html document `<head>` section:
-
- ```html
- <link rel="stylesheet" type="text/css" href="{{ asset('/bundles/ltupvote/css/lt-upvote.css') }}">
-```
 
 * Initialize JavaScript module in your HTML page:
 
@@ -92,27 +82,34 @@ packages in a similar fashion:
  </script>
  ```
 
-* Include one or more front end components into your page. 
-In order for the component to be properly initialized and displayed you would need to render
-the component over the Controller:  
+### CSS
 
+* Include basic CSS file in your html `<head>` section:
+
+ ```html
+ <link rel="stylesheet" type="text/css" href="{{ asset('/bundles/ltupvote/css/lt-upvote.css') }}">
+```
+
+### Twig 
+
+* Include one or more front end components into your page rendered over Controller
 ```
 {{ render(
     controller(
         'lt_upvote_bundle.controller.default:renderVoteComponent',
         {
-            'subjectType': 'TYPE',
-            'subjectId': 'ID',
-            'css_class': 'CLASS' 
+            'subjectType': '[TYPE]',
+            'subjectId': '[ID]',
+            'css_class': '[CLASS]' 
         }
     )
 ) }}
 ```
 
 Where:
- * `TYPE` is quoted string value of type of the contents for this component
- * `ID` is quoted string value representing Subject ID.
- * `CLASS` is is component specific styling CSS class. Predefined styles are `Style1` and `Style2`. 
+ * `[TYPE]` is quoted string value of type of the contents for this component
+ * `[ID]` is quoted string value representing Subject ID.
+ * `[CLASS]` is component specific styling CSS class. Predefined styles are `Style1`, `Style2`. 
 
 See [test.html.twig](Resources/views/Default/test.html.twig) file for example implementation.
 
@@ -121,7 +118,7 @@ See [test.html.twig](Resources/views/Default/test.html.twig) file for example im
 On each upvote/downvote action JavaScript event is dispatched.
 This action could be handled by adding custom event listener for `ltu` event type.
 
-The following example shows anonymous downvote handling: 
+An example code for anonymous downvote handling: 
 
 ```JavaScript
 addEventListener('ltu', function(event) {
@@ -130,7 +127,9 @@ addEventListener('ltu', function(event) {
     }
 })
 ```   
+                                                                                                                                                                                                                                                                                                                                                                                                                    xx                                                                                                                                                                                                                                                                                                                                                                                                        x
+`even.detail` data object holds the following properties: x
 
 ## License
 
-This bundle is under the MIT license. See the complete license in [LICENSE](LICENSE) file.
+This bundle is under the MIT licens                                                    e. See the complete license in [LICENSE](LICENSE) file.

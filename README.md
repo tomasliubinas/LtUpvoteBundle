@@ -119,7 +119,7 @@ On each upvote/downvote action JavaScript event is dispatched.
 This action could be handled by adding custom event listener for `ltu` event type.
 
 An example code for anonymous downvote handling: 
-
+ 
 ```JavaScript
 addEventListener('ltu', function(event) {
     if (event.detail.unauthorizedError) {
@@ -128,8 +128,8 @@ addEventListener('ltu', function(event) {
 })
 ```   
                                                                                                                                                                                                                                                                                                                                                                                                                     xx                                                                                                                                                                                                                                                                                                                                                                                                        x
-The following properties could be accessed from `even.detail` data object: `id`, `type`, `counter`, `action`, `unauthorized`, `unauthorizedError`. 
+The following properties describing performed action could be accessed from `even.detail` data object: `id`, `type`, `counter`, `action`, `unauthorized`, `unauthorizedError`. 
 
 ## License
 
-This bundle is under the MIT licens                                                    e. See the complete license in [LICENSE](LICENSE) file.
+This bundle is under the MIT license. See the complete license in [LICENSE](LICENSE) file.

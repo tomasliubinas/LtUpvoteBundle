@@ -23,7 +23,7 @@ for Symfony 3.0 project
  composer require liubinas/upvote-bundle
  ```
 
-* Add the line in the app/AppKernel.php file:
+* Initialize it in the app/AppKernel.php file:
 
  ```php
  $bundles[] = new Lt\UpvoteBundle\LtUpvoteBundle();

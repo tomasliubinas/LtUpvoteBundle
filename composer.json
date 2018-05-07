@@ -1,6 +1,6 @@
 {
     "name": "liubinas/upvote-bundle",
-    "description": "Provides thumbs up and down functionality for Symfony project",
+    "description": "Upvote and downvote (aka thumbs up) bundle for Symfony project",
     "type": "symfony-bundle",
     "license": "MIT",
     "authors": [

@@ -128,7 +128,7 @@ addEventListener('ltu', function(event) {
 })
 ```   
                                                                                                                                                                                                                                                                                                                                                                                                                     xx                                                                                                                                                                                                                                                                                                                                                                                                        x
-`even.detail` data object holds the following properties: x
+The following properties could be accessed from `even.detail` data object: `id`, `type`, `counter`, `action`, `unauthorized`, `unauthorizedError`. 
 
 ## License
 

@@ -11,9 +11,9 @@
     ],
     "require": {
         "doctrine/doctrine-bundle": "^1.0",
-        "symfony/framework-bundle": "^2.0",
+        "symfony/framework-bundle": "^3.0",
         "doctrine/orm": "^2.0",
-        "symfony/var-dumper": "^2.0"
+        "symfony/var-dumper": "^3.0"
     },
     "require-dev": {
         "phpspec/phpspec": "^4.1",

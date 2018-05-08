@@ -14,10 +14,9 @@ for Symfony 3.0 project
 - Symfony 3.0
 - Doctrine bundle with configured database connection
 
-
 ## Installation
 
-* LtUpvoteBundle could be installed over Composer:
+* Require LtUpvoteBundle over composer in your existing Symfony project:
 
  ```
  composer require liubinas/upvote-bundle
@@ -28,6 +27,14 @@ for Symfony 3.0 project
  ```php
  $bundles[] = new Lt\UpvoteBundle\LtUpvoteBundle();
  ```
+
+* Import LtUpvoteBundle routing:
+
+```yaml
+# app/config/routing.yml
+lt-upvote:
+    resource: "@LtUpvoteBundle/Resources/config/routing.xml"
+```
 
 * Create required database tables:
 
@@ -53,11 +60,15 @@ The following is an example configuration defining basic context types `blog-pos
 
 ```
 
-
 ## Test run
 
+Start web server:
+```
+$ bin/console server:start
+```
+
 Test page could be accessed by navigating to 
-`http://<dev-host>/lt-upvote-test` on the `dev` environment. 
+`http://<dev-host>/lt-upvote-test` on your `dev` environment. 
 
 ## Front-end
 

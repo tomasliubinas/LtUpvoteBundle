@@ -133,7 +133,7 @@ An example code for unauthenticated downvote handling:
  
 ```JavaScript
 addEventListener('ltu', function(event) {
-    if (event.detail.unauthentificatedError) {
+    if (event.detail.unauthenticatedError) {
         alert('This action is permitted for the logged in visitors only.');
     }
 })

@@ -3,8 +3,8 @@ LtUpvoteBundle is upvote and downvote (thumbs up and thumbs down) component
 for Symfony 3.0 project
 
 ## Features 
-- Configurable anonymous vote permissions
-- Automatically limit anonymous upvotes/downvotes by IP
+- Configurable vote permissions
+- Automatically limit unauthenticated upvotes/downvotes by IP
 - Optionally hide upvote/downvote button
 - Pure JavaScript frontend component implementation
 - Unit tested
@@ -54,8 +54,8 @@ The following is an example configuration defining basic context types `blog-pos
             blog-post: # Custom context type
                 show_upvote: true
                 show_downvote: true
-                allow_anonymous_upvote: true
-                allow_anonymous_downvote: false
+                allow_unauthenticated_upvote: true
+                allow_unauthenticated_downvote: false
             comment # Custom context type having the default values all true
 
 ```
@@ -129,7 +129,7 @@ See [test.html.twig](Resources/views/Default/test.html.twig) file for example im
 On each upvote/downvote action JavaScript event is dispatched.
 This action could be handled by adding custom event listener for `ltu` event type.
 
-An example code for anonymous downvote handling: 
+An example code for unauthenticated downvote handling: 
  
 ```JavaScript
 addEventListener('ltu', function(event) {

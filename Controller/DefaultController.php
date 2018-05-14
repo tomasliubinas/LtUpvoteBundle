@@ -125,7 +125,7 @@ class DefaultController extends Controller
             'total_value' => $this->voteManager->getTotalValue($subjectType, $subjectId),
             'is_upvoted' => $isUpvoted,
             'is_downvoted' => $isDownvoted,
-            'is_anonymous' => $userId === null,
+            'is_unauthenticated' => $userId === null,
             'class' => ($class !== null) ? ' ' . $class : null,
             'show_upvote' => $this->voteManager->isVisibleUpvote($subjectType, $userId),
             'show_downvote' => $this->voteManager->isVisibleDownvote($subjectType, $userId),

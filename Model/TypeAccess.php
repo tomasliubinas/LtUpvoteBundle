@@ -6,8 +6,8 @@ class TypeAccess
 {
     const VISIBLE_UPVOTE = 'show_upvote';
     const VISIBLE_DOWNVOTE = 'show_downvote';
-    const ALLOW_ANONYMOUS_UPVOTE = 'allow_anonymous_upvote';
-    const ALLOW_ANONYMOUS_DOWNVOTE = 'allow_anonymous_downvote';
+    const ALLOW_UNAUTHENTICATED_UPVOTE = 'allow_unauthenticated_upvote';
+    const ALLOW_UNAUTHENTICATED_DOWNVOTE = 'allow_unauthenticated_downvote';
 
     /**
      * @param string $type
@@ -48,9 +48,9 @@ class TypeAccess
      *
      * @return bool
      */
-    public function canUpvoteAnonymous($type, $availableTypes)
+    public function canUpvoteUnauthenticated($type, $availableTypes)
     {
-        return $this->isTypeAvailable($type, $availableTypes) && $availableTypes[$type][self::ALLOW_ANONYMOUS_UPVOTE];
+        return $this->isTypeAvailable($type, $availableTypes) && $availableTypes[$type][self::ALLOW_UNAUTHENTICATED_UPVOTE];
     }
 
     /**
@@ -59,8 +59,8 @@ class TypeAccess
      *
      * @return bool
      */
-    public function canDownvoteAnonymous($type, $availableTypes)
+    public function canDownvoteUnauthenticated($type, $availableTypes)
     {
-        return $this->isTypeAvailable($type, $availableTypes) && $availableTypes[$type][self::ALLOW_ANONYMOUS_DOWNVOTE];
+        return $this->isTypeAvailable($type, $availableTypes) && $availableTypes[$type][self::ALLOW_UNAUTHENTICATED_DOWNVOTE];
     }
 }

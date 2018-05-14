@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Request;
 class VisitorIdentifier
 {
     /**
-     * Returns unique anonymous visitor identifier.
+     * Returns pseudo unique visitor identifier.
      *
      * @param Request $request
      *

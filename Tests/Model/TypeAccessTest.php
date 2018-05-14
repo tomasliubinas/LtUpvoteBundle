@@ -22,8 +22,8 @@ class TypeAccessTest extends TestCase
         $availableTypes = [];
         $availableTypes['testType']['show_upvote'] = true;
         $availableTypes['testType']['show_downvote'] = true;
-        $availableTypes['testType']['allow_anonymous_upvote'] = true;
-        $availableTypes['testType']['allow_anonymous_downvote'] = true;
+        $availableTypes['testType']['allow_unauthenticated_upvote'] = true;
+        $availableTypes['testType']['allow_unauthenticated_downvote'] = true;
 
         $this->assertTrue($this->typeAccess->isTypeAvailable('testType', $availableTypes));
     }
@@ -33,8 +33,8 @@ class TypeAccessTest extends TestCase
         $availableTypes = [];
         $availableTypes['testType']['show_upvote'] = true;
         $availableTypes['testType']['show_downvote'] = true;
-        $availableTypes['testType']['allow_anonymous_upvote'] = true;
-        $availableTypes['testType']['allow_anonymous_downvote'] = true;
+        $availableTypes['testType']['allow_unauthenticated_upvote'] = true;
+        $availableTypes['testType']['allow_unauthenticated_downvote'] = true;
 
         $this->assertFalse($this->typeAccess->isTypeAvailable('testType2', $availableTypes));
     }
@@ -44,8 +44,8 @@ class TypeAccessTest extends TestCase
         $availableTypes = [];
         $availableTypes['testType']['show_upvote'] = true;
         $availableTypes['testType']['show_downvote'] = true;
-        $availableTypes['testType']['allow_anonymous_upvote'] = true;
-        $availableTypes['testType']['allow_anonymous_downvote'] = true;
+        $availableTypes['testType']['allow_unauthenticated_upvote'] = true;
+        $availableTypes['testType']['allow_unauthenticated_downvote'] = true;
 
         $this->assertTrue($this->typeAccess->isVisibleUpvote('testType', $availableTypes));
     }
@@ -55,8 +55,8 @@ class TypeAccessTest extends TestCase
         $availableTypes = [];
         $availableTypes['testType']['show_upvote'] = false;
         $availableTypes['testType']['show_downvote'] = true;
-        $availableTypes['testType']['allow_anonymous_upvote'] = true;
-        $availableTypes['testType']['allow_anonymous_downvote'] = true;
+        $availableTypes['testType']['allow_unauthenticated_upvote'] = true;
+        $availableTypes['testType']['allow_unauthenticated_downvote'] = true;
 
         $this->assertFalse($this->typeAccess->isVisibleUpvote('testType', $availableTypes));
     }
@@ -66,8 +66,8 @@ class TypeAccessTest extends TestCase
         $availableTypes = [];
         $availableTypes['testType']['show_upvote'] = true;
         $availableTypes['testType']['show_downvote'] = true;
-        $availableTypes['testType']['allow_anonymous_upvote'] = true;
-        $availableTypes['testType']['allow_anonymous_downvote'] = true;
+        $availableTypes['testType']['allow_unauthenticated_upvote'] = true;
+        $availableTypes['testType']['allow_unauthenticated_downvote'] = true;
 
         $this->assertTrue($this->typeAccess->isVisibleDownvote('testType', $availableTypes));
     }
@@ -77,8 +77,8 @@ class TypeAccessTest extends TestCase
         $availableTypes = [];
         $availableTypes['testType']['show_upvote'] = true;
         $availableTypes['testType']['show_downvote'] = false;
-        $availableTypes['testType']['allow_anonymous_upvote'] = true;
-        $availableTypes['testType']['allow_anonymous_downvote'] = true;
+        $availableTypes['testType']['allow_unauthenticated_upvote'] = true;
+        $availableTypes['testType']['allow_unauthenticated_downvote'] = true;
 
         $this->assertFalse($this->typeAccess->isVisibleDownvote('testType', $availableTypes));
     }
@@ -88,10 +88,10 @@ class TypeAccessTest extends TestCase
         $availableTypes = [];
         $availableTypes['testType']['show_upvote'] = true;
         $availableTypes['testType']['show_downvote'] = true;
-        $availableTypes['testType']['allow_anonymous_upvote'] = true;
-        $availableTypes['testType']['allow_anonymous_downvote'] = true;
+        $availableTypes['testType']['allow_unauthenticated_upvote'] = true;
+        $availableTypes['testType']['allow_unauthenticated_downvote'] = true;
 
-        $this->assertTrue($this->typeAccess->canUpvoteAnonymous('testType', $availableTypes));
+        $this->assertTrue($this->typeAccess->canUpvoteUnauthenticated('testType', $availableTypes));
     }
 
     public function testCanNotUpvoteAnonymous()
@@ -99,10 +99,10 @@ class TypeAccessTest extends TestCase
         $availableTypes = [];
         $availableTypes['testType']['show_upvote'] = true;
         $availableTypes['testType']['show_downvote'] = true;
-        $availableTypes['testType']['allow_anonymous_upvote'] = false;
-        $availableTypes['testType']['allow_anonymous_downvote'] = true;
+        $availableTypes['testType']['allow_unauthenticated_upvote'] = false;
+        $availableTypes['testType']['allow_unauthenticated_downvote'] = true;
 
-        $this->assertFalse($this->typeAccess->canUpvoteAnonymous('testType', $availableTypes));
+        $this->assertFalse($this->typeAccess->canUpvoteUnauthenticated('testType', $availableTypes));
     }
 
     public function testCanDownvoteAnonymous()
@@ -110,19 +110,19 @@ class TypeAccessTest extends TestCase
         $availableTypes = [];
         $availableTypes['testType']['show_upvote'] = true;
         $availableTypes['testType']['show_downvote'] = true;
-        $availableTypes['testType']['allow_anonymous_upvote'] = true;
-        $availableTypes['testType']['allow_anonymous_downvote'] = true;
+        $availableTypes['testType']['allow_unauthenticated_upvote'] = true;
+        $availableTypes['testType']['allow_unauthenticated_downvote'] = true;
 
-        $this->assertTrue($this->typeAccess->canDownvoteAnonymous('testType', $availableTypes));
+        $this->assertTrue($this->typeAccess->canDownvoteUnauthenticated('testType', $availableTypes));
     }
     public function testCanNotDownvoteAnonymous()
     {
         $availableTypes = [];
         $availableTypes['testType']['show_upvote'] = true;
         $availableTypes['testType']['show_downvote'] = true;
-        $availableTypes['testType']['allow_anonymous_upvote'] = true;
-        $availableTypes['testType']['allow_anonymous_downvote'] = false;
+        $availableTypes['testType']['allow_unauthenticated_upvote'] = true;
+        $availableTypes['testType']['allow_unauthenticated_downvote'] = false;
 
-        $this->assertFalse($this->typeAccess->canDownvoteAnonymous('testType', $availableTypes));
+        $this->assertFalse($this->typeAccess->canDownvoteUnauthenticated('testType', $availableTypes));
     }
 }

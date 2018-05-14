@@ -12,26 +12,26 @@ class TestController extends Controller
         'testPost1' => [
             'show_upvote' => true,
             'show_downvote' => true,
-            'allow_anonymous_upvote' => true,
-            'allow_anonymous_downvote' => true,
+            'allow_unauthenticated_upvote' => true,
+            'allow_unauthenticated_downvote' => true,
         ],
         'testPost2' => [
             'show_upvote' => true,
             'show_downvote' => false,
-            'allow_anonymous_upvote' => true,
-            'allow_anonymous_downvote' => true,
+            'allow_unauthenticated_upvote' => true,
+            'allow_unauthenticated_downvote' => true,
         ],
         'testPost3' => [
             'show_upvote' => true,
             'show_downvote' => true,
-            'allow_anonymous_upvote' => true,
-            'allow_anonymous_downvote' => false,
+            'allow_unauthenticated_upvote' => true,
+            'allow_unauthenticated_downvote' => false,
         ],
         'testComment' => [
             'show_upvote' => true,
             'show_downvote' => true,
-            'allow_anonymous_upvote' => true,
-            'allow_anonymous_downvote' => true,
+            'allow_unauthenticated_upvote' => true,
+            'allow_unauthenticated_downvote' => true,
         ],
     ];
 

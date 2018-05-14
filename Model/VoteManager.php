@@ -218,7 +218,7 @@ class VoteManager
      */
     public function canUpvote($subjectType, $userId = null)
     {
-        return $userId !== null || $this->typeAccess->canUpvoteAnonymous($subjectType, $this->types);
+        return $userId !== null || $this->typeAccess->canUpvoteUnauthenticated($subjectType, $this->types);
     }
 
     /**
@@ -229,7 +229,7 @@ class VoteManager
      */
     public function canDownvote($subjectType, $userId = null)
     {
-        return $userId !== null || $this->typeAccess->canDownvoteAnonymous($subjectType, $this->types);
+        return $userId !== null || $this->typeAccess->canDownvoteUnauthenticated($subjectType, $this->types);
     }
 
     /**

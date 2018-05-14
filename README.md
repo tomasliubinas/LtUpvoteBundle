@@ -133,14 +133,15 @@ An example code for unauthenticated downvote handling:
  
 ```JavaScript
 addEventListener('ltu', function(event) {
-    if (event.detail.unauthorizedError) {
+    if (event.detail.unauthentificatedError) {
         alert('This action is permitted for the logged in visitors only.');
     }
 })
 ```   
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
-The following properties describing performed action could be accessed from `even.detail` data object: `id`, `type`, `counter`, `action`, `unauthorized`, `unauthorizedError`. 
+The following properties describing performed action could be accessed from `even.detail` data object: `id`, `type`, `counter`, `action`, `unauthentificated`, `unauthentificatedError`. 
 
 ## License
 
 This bundle is under the MIT license. See the complete license in [LICENSE](LICENSE) file.
+f

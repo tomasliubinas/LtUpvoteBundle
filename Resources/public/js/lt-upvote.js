@@ -58,7 +58,7 @@
                 LtUpvote.dispatchCustomEvent(counter, action, false);
                 LtUpvote.performBackendAction(action, counter.dataset.ltuType, counter.dataset.ltuId);
             } else {
-                upvoteElement.checked = false;
+                upvoteElementd.checked = false;
                 LtUpvote.dispatchCustomEvent(counter, action, true);
             }
         },
@@ -95,15 +95,15 @@
                 LtUpvote.dispatchCustomEvent(counter, action, true);
             }
         },
-        dispatchCustomEvent: function (counter, action, unauthorizedError) {
+        dispatchCustomEvent: function (counter, action, unauthenticatedError) {
             var event = new CustomEvent('ltu', {
                 detail: {
                     id: counter.dataset.ltuId,
                     type: counter.dataset.ltuType,
                     counter: counter.innerText,
                     action: action,
-                    unauthorized: counter.dataset.ltuAnonymous,
-                    unauthorizedError: unauthorizedError
+                    unauthenticated: counter.dataset.ltuAnonymous,
+                    unauthenticatedError: unauthenticatedError
                 }
             });
             dispatchEvent(event);
